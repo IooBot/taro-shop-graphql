@@ -1,0 +1,118 @@
+.am-checkbox.am-checkbox-checked .am-checkbox-inner {
+    border-color: #f44;
+    background: #f44;
+}
+
+.navbar-button {
+    color: #ff6d6d;
+}
+
+.cart-content-wrap {
+    padding: 45px 0;
+}
+
+.cart-list {
+    width: 100%;
+    line-height: 22px;
+    background-color: #fff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #f5f5f9;
+}
+
+.cart-list-checkbox {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    z-index: 0;
+}
+
+.cart-list-image {
+    width: 25%;
+}
+
+.cart-list-image img {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.cart-list-intro {
+    width: 35%;
+    position: relative;
+    text-align: left;
+}
+
+.cart-list-intro :first-child {
+    color: black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+ }
+
+.cart-list-intro :nth-child(2) {
+    font-size: 12px;
+    color: gray;
+}
+
+.cart-list-intro :last-child {
+    color: #f44;
+    position: absolute;
+    bottom:0;
+}
+
+.cart-list-count {
+    width: 30%;
+    position: relative;
+}
+
+.footer{
+    position: fixed;
+    bottom: 50px;
+    height: 45px;
+    width: 100%;
+}
+
+.jiesuan {
+    height: 100%;
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+    background-color: #fdfbfb;
+    border-top: 1px solid #f5f5f9;
+    z-index: 3;
+}
+
+.jiesuan-disabled {
+    opacity: 0.5;
+}
+
+.jiesuan-checkbox_label {
+    color: #323233;
+    margin-left: 10px;
+    vertical-align: middle;
+    line-height: 20px;
+}
+
+.jiesuan-total {
+    flex: 1;
+    font-weight: 500;
+    text-align: right;
+    color: #323233;
+    padding-right: 12px;
+}
+
+.jiesuan-total_price {
+    color: #f44;
+    font-size: 18px;
+}
+
+.jiesuan-button {
+    width: 110px;
+    height: 100%;
+    color: #fff;
+    background-color: #f44;
+    border: 1px solid #f44;
+    font-size: 16px;
+    text-align: center;
+}

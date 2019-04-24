@@ -1,0 +1,26 @@
+.item-value {
+    float: right;
+    font-weight: 500;
+}
+
+.item-title {
+    font-size: 15px!important;
+}
+
+.order-tip-wrap {
+    position: relative;
+    height: 200px;
+    width: 100%;
+    background-color: white;
+}
+
+.order-tip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.search-query {
+    min-height: 200px;
+}

@@ -1,0 +1,34 @@
+@import "../../../styles/theme.scss";
+
+/**
+ * // NOTE  RN Swiper 的 indicator 位置与 H5、小程序不同
+ * 这边通过 height + 负 margin 实现一致样式，或者自己实现 indicator 也不难
+ */
+
+.home-banner {
+  margin: -30px 0 -40px;
+  height: 410px;
+  background: #ffffff;
+  overflow: hidden;
+
+  @include eject(height, 340px);
+  @include eject(margin, 0);
+}
+
+.home-banner__swiper {
+  // NOTE RN 的 Swiper 需要有高度，否则会报错
+  height: 340px;
+
+  &-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    &-img {
+      width: 690px;
+      height: 340px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  }
+}

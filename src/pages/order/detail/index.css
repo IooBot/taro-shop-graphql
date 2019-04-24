@@ -1,0 +1,105 @@
+.detail-address-wrap {
+    height: 190px;
+    position: relative;
+}
+
+.detail-address-backgroud-top {
+    font-size: 18px;
+    background-color: #f44;
+    height: 100px;
+    color: white;
+    padding: 10px 20px;
+}
+
+.detail-status {
+    font-size: 18px;
+    float: left;
+}
+
+.detail-pay {
+    float: right;
+}
+
+.detail-address-backgroud-bottom {
+    background-color: white;
+    height: 80px;
+}
+
+.detail-address-content {
+    background-color: white;
+    height: 100px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    width: 90%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    border: 1px solid #F3F3F3;
+    box-shadow: 0 1px 10px #F3F3F3;
+    padding: 10px 5px;
+    overflow: hidden;
+}
+
+.detail-address-content-icon {
+    width: 20px;
+    height: 100%;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.detail-address-content-username-phone {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.detail-store-name {
+    width: 100%;
+    background-color: white;
+    height: 40px;
+    padding: 0 15px;
+    color: black;
+    font-size: 15px;
+    line-height: 40px;
+}
+
+.detail-good-wrap {
+    background-color: white;
+    padding: 10px 0;
+    border: 1px solid #f3f3f3;
+}
+
+.detail-contact {
+    height: 40px;
+    width: 100%;
+    background-color: white;
+    padding: 0 15px;
+    line-height: 40px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.detail-order-wrap {
+    margin-top: 10px;
+    background-color: white;
+}
+
+.detail-order-wrapper {
+    padding: 10px;
+}
+
+.detail-order-item {
+    height: 25px;
+    line-height: 25px;
+}
+
+.detail-order-title {
+    font-weight: 600;
+}
+
+.detail-footer-wrap {
+    background-color: white;
+    border-top: 1px solid #f3f3f3;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

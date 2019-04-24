@@ -2,9 +2,9 @@
   "miniprogramRoot": "./dist",
   "projectname": "taro-shop-graphql",
   "description": "",
-  "appid": "touristappid",
+  "appid": "wx5502661387cbf12d",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": false,
     "postcss": false,
     "minified": false

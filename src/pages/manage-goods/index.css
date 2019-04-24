@@ -1,0 +1,64 @@
+.my-accordion {
+    background-color: #f5f5f9!important;
+}
+
+.list-others {
+    margin-left: 15px;
+    padding-top: 10px;
+}
+
+.list-others-subtitle {
+    font-size: 17px;
+}
+
+.am-list-content {
+    font-size: 17px!important;
+}
+
+.list-extra {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.am-list-item .am-input-extra {
+    max-height: 40px;
+}
+
+.hidden {
+    display: none;
+    transition: 0.3s all ease;
+}
+
+.good-block {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.good-image {
+    height: 100px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.all-goods {
+    background-color: #f5f5f9;
+}
+
+.good-block {
+    background-color: white;
+}
+
+.modify-goods-modal{
+    height: 510px
+}
+
+.not-like {
+    color: grey;
+}
+
+.like {
+    color: #3283fa;
+}

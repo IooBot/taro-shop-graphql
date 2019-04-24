@@ -1,6 +1,9 @@
+import '@tarojs/async-await'
 import Taro, { Component } from '@tarojs/taro'
-import Index from './pages/index'
+import Home from './pages/home'
+import * as QL from 'graphql-sync-multi-platform/graphql_cache.core'
 
+import {graphqlEndpoint} from './config'
 import './app.css'
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -13,21 +16,63 @@ class App extends Component {
 
   config = {
     pages: [
-      'pages/index/index'
+      'pages/home/index',
+      // 'pages/kind/index',
+      // 'pages/detail/index',
+      // 'pages/cart/index',
+      // 'pages/orders/index',
+      // 'pages/pay/index',
+      // 'pages/order/index',
+      // 'pages/user/index',
+      // 'pages/message/index',
+      // 'pages/manage-goods/index',
+      // 'pages/manage-orders/index',
+      // 'pages/manage-shop/index',
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
+      navigationBarTitleText: '服装商城',
       navigationBarTextStyle: 'black'
+    },
+    tabBar: {
+      color: "#666",
+      selectedColor: "#b4282d",
+      backgroundColor: "#fafafa",
+      borderStyle: 'black',
+      list: [{
+        pagePath: "pages/home/index",
+        iconPath: "./assets/tab-bar/home.png",
+        selectedIconPath: "./assets/tab-bar/home-active.png",
+        text: "主页"
+      }
+      ,{
+        pagePath: "pages/home/index",
+        iconPath: "./assets/tab-bar/cart.png",
+        selectedIconPath: "./assets/tab-bar/cart-active.png",
+        text: "购物车"
+      }, {
+        pagePath: "pages/home/index",
+        iconPath: "./assets/tab-bar/user.png",
+        selectedIconPath: "./assets/tab-bar/user-active.png",
+        text: "我"
+      }
+      ]
     }
   }
 
-  componentDidMount () {}
+  componentDidMount() {
+    // graphql
+    // console.log("fetch-fn:",Taro.request);
+    // console.log('init start',QL.init(graphqlEndpoint, Taro.request));
+    QL.init(graphqlEndpoint, Taro.request);
+  }
 
   componentDidShow () {}
 
   componentDidHide () {}
+
+  componentCatchError() {}
 
   componentDidCatchError () {}
 
@@ -35,7 +80,7 @@ class App extends Component {
   // 请勿修改此函数
   render () {
     return (
-      <Index />
+      <Home />
     )
   }
 }

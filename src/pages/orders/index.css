@@ -1,0 +1,128 @@
+.orders-content-wrap > div {
+    margin-bottom: 10px;
+    background: white;
+}
+
+.orders-address-add {
+    height: 50px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.orders-address-label {
+    width: 16%;
+    float: left;
+}
+
+.orders-address:after {
+    left: 0;
+    right: 0;
+    content: "";
+    height: 2px;
+    position: absolute;
+    background: repeating-linear-gradient(-45deg,#ff6d6d,#ff6d6d 20%,transparent 0,transparent 25%,#3283fa 0,#3283fa 45%,transparent 0,transparent 50%);
+    background-size: 80px;
+}
+
+.orders-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+}
+
+.orders-delivery > div:nth-child(1) {
+    border-bottom: 1px solid #ebedf0;
+}
+
+.orders-price > div {
+    padding: 10px 15px;
+}
+
+.cart-orders-intro {
+    width: 55%;
+    position: relative;
+    text-align: left;
+}
+
+.cart-orders-intro :first-child {
+    color: black;
+}
+
+.cart-orders-intro :nth-child(2) {
+    font-size: 12px;
+    color: gray;
+}
+
+.cart-orders-intro :last-child {
+    color: #f44;
+    position: absolute;
+    bottom:0;
+    font-weight: 500;
+}
+
+.cart-orders-count {
+    text-align: right;
+    padding-right: 10px;
+    color: #323233;
+}
+
+.am-list-content, .am-list-extra{
+    font-size: 14px!important;
+    color: #323233!important;
+}
+
+.orders-message input {
+    font-size: 14px!important;
+}
+
+.orders-message-title {
+    width: 20%;
+    max-width: 90px;
+    font-size: 14px;
+}
+
+.orders-message-textarea {
+    width: 80%;
+    color: #969799;
+    text-align: right;
+    position: relative;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+}
+
+.message-textarea {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    resize: none;
+    display: block;
+    color: #323233;
+    box-sizing: border-box;
+    background-color: transparent;
+}
+
+.orders-price {
+    font-weight: 600;
+    color: #323233;
+}
+
+.orders-price span {
+    float: right;
+}
+
+.packup {
+    display: none;
+}
+
+.packup-unfold {
+    background: #f5f5f9;
+    text-align: center;
+}
+
+.packup-title {
+    padding-top: 5px;
+}

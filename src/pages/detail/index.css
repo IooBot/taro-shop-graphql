@@ -1,0 +1,306 @@
+.detail-wrap {
+
+}
+
+.detail-padding {
+    padding: 5px 10px;
+}
+
+.detail-wrapper {
+    height: 100%;
+}
+
+.detail-simple-show {
+    height: 70%;
+    background-color: white;
+}
+
+.detail-img {
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+}
+
+.detail-name {
+    font-size: 16px;
+}
+
+.detail-intro {
+    font-size: 12px;
+    color: #666666;
+}
+
+.detail-price span:first-child {
+    color: #f44;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.detail-price span:nth-child(2){
+    text-decoration: line-through;
+    color: gray;
+    font-size: 14px;
+}
+
+.detail-stock {
+    float: right;
+    color: #5f6f86;
+}
+
+.detail-complicate-show {
+    margin-top: 15px;
+    background-color: white;
+}
+
+.detail-complicate-title {
+    background-color: white;
+}
+
+.detail-complicate-show-img {
+
+}
+
+.detail-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+}
+
+.detail-bottom {
+    height: 100%;
+    display: flex;
+    font-size: 16px;
+    align-items: center;
+    background-color: #fdfbfb;
+    /*border-top: 1px solid #f5f5f9;*/
+    z-index: 3;
+}
+
+.detail-bottom-icon {
+    height: 100%;
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.am-badge-text {
+    height: 14px;
+    line-height: 14px;
+    font-size: 10px;
+}
+
+.border-right {
+    border-right: 1px solid #f5f5f9;
+}
+
+.detail-bottom-button {
+    display: inline-block;
+    width: 35%;
+    text-align: center;
+    height: 100%;
+    line-height: 50px;
+}
+
+.add {
+    color: #0a0a0a;
+    background-color: #ffd6c7;
+}
+
+.buy {
+    color: white;
+    background-color: #f44;
+}
+
+.detail-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.detail-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.detail-icon-cart {
+    background: url("https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/cart.png") no-repeat;
+    background-size: cover;
+}
+
+.detail-icon-shop {
+    background: url("https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/ship.png") no-repeat;
+    background-size: cover;
+}
+
+.am-modal-popup {
+    height: 425px;
+    overflow: auto;
+}
+
+.am-modal-content {
+    text-align: left;
+}
+
+.main-goods-box {
+    padding: 12px;
+    color: #333;
+}
+
+.close-popup {
+    width: 42px;
+    height: 52px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 30px;
+    font-weight: lighter;
+    text-align: center;
+    z-index: 5;
+}
+
+.goods-box {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    position: relative;
+    padding-top: 95px;
+}
+
+.goods-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+}
+
+.goods-info img {
+    width: 100%;
+    height: 100%;
+}
+
+.goods-info .left {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+}
+
+.goods-info .mid {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    height:  80px;
+    margin-left: 10px;
+}
+
+.goods-info .right {
+    display: flex;
+    align-items: flex-end;
+    width: 40px;
+    text-align: right;
+    font-size: 10px;
+    line-height: 15px;
+    color: #999;
+    margin-left:  10px;
+    white-space: nowrap;
+}
+
+.goods_price {
+    height: 20px;
+    line-height: 20px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.selected-type {
+    width: 100%;
+    max-height: 32px;
+    line-height: 16px;
+    font-size: 11px;
+    margin-top: 2px;
+    overflow: hidden;
+}
+
+.goods_type {
+    padding: 8px 0;
+    position: relative;
+}
+
+li, ol, ul {
+    list-style: none;
+}
+
+.goods_type ul {
+    padding-inline-start: 0;
+}
+
+.goods_type ul li dl {
+    width: 100%;
+    display: block;
+    overflow: auto;
+}
+
+.goods_type ul li dl .spec-red {
+    border: 1px solid red;
+    color: red;
+}
+
+.goods_type ul li dl .spec-gray {
+    border: 1px solid #989898;
+    color: #989898;
+}
+
+.goods_type ul li dl dd {
+    display: block;
+    float: left;
+    margin-top: 8px;
+    margin-right:  8px;
+    padding: 4px 10px;
+    border: 1px solid #333;
+    font-size: 12px;
+    line-height: 12px;
+    transition: all .2s;
+    box-sizing: content-box;
+}
+
+.goods_type:after {
+    position: absolute;
+    display: block;
+    background: #eee;
+    content: "";
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    transform: scaleY(.5);
+}
+
+.type-title {
+    width: 100%;
+    font-size: 12px;
+    line-height: 16px;
+    height: 16px;
+}
+
+.edit-product {
+    display: block;
+    padding-top: 15px;
+    overflow: hidden;
+    position: relative;
+    line-height: 28px;
+}
+
+.edit-product-text {
+    float: left;
+    font-size: 14px;
+    color: #2c2f34;
+}
+
+.edit-product-count {
+    overflow: hidden;
+    float: right;
+}

@@ -1,0 +1,93 @@
+.order-card {
+    margin-top: 10px;
+    background-color: white;
+}
+
+.order-card-top {
+    height: 30px;
+    padding: 5px 10px;
+}
+
+.order-card-content {
+    height: 100px;
+    background-color: #f5f5f9;
+    display: flex;
+    padding: 5px 0;
+}
+
+.order-product-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 90px;
+    margin-left: 5px;
+    height: 100%;
+}
+
+.order-card-bottom {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+    height: 35px;
+    line-height: 35px;
+}
+
+.order-card-pay {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+    margin-right: 10px;
+}
+
+.order-card-count {
+    display: inline-block;
+}
+
+.order-card-button-group {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid #F3F3F3;
+    height: 45px;
+    line-height: 45px;
+    padding: 5px 10px 5px 0;
+}
+
+.order-card-button-group>a:hover {
+
+}
+
+.order-button {
+    border-radius: 50px;
+    background-color: white;
+    height: 30px;
+    width: 75px;
+    border: 1px solid #F3F3F3 !important;
+}
+
+.pay-button {
+    border: 1px solid #f44 !important;
+    color: #f44;
+}
+
+.ship-button {
+
+}
+
+.cancel-button {
+    border: 1px solid #f44 !important;
+    color: #f44;
+    width: 85px;
+}
+
+.unbox-button {
+    width: 85px;
+}
+
+.judge-button {
+
+}
+
+.more-button {
+
+}
