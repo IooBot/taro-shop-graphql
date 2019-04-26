@@ -5,15 +5,14 @@ import Loading from '../../components/loading'
 import Popup from '../../components/popup'
 import { getWindowHeight } from '../../utils/style'
 import Gallery from './gallery'
-// import InfoBase from './info-base'
-// import InfoParam from './info-param'
-// import Detail from './detail'
-// import Footer from './footer'
+import InfoBase from './info-base'
+import DetailImg from './detail-img'
+import Footer from './footer'
 import Spec from './spec'
 import './index.scss'
 
 
-class Details extends Component {
+class Detail extends Component {
   config = {
     navigationBarTitleText: '商品详情'
   }
@@ -49,46 +48,46 @@ class Details extends Component {
     this.setState({ selected })
   }
 
-  // handleAdd = () => {
-  //   // 添加购物车是先从 skuSpecValueList 中选择规格，再去 skuMap 中找 skuId，多个规格时用 ; 组合
-  //   const { itemInfo } = this.props
-  //   const { skuSpecList = [] } = itemInfo
-  //   const { visible, selected } = this.state
-  //   const isSelected = visible && !!selected.id && itemInfo.skuMap[selected.id]
-  //   const isSingleSpec = skuSpecList.every(spec => spec.skuSpecValueList.length === 1)
-  //
-  //   if (isSelected || isSingleSpec) {
-  //     const selectedItem = isSelected ? selected : {
-  //       id: skuSpecList.map(spec => spec.skuSpecValueList[0].id).join(';'),
-  //       cnt: 1
-  //     }
-  //     const skuItem = itemInfo.skuMap[selectedItem.id] || {}
-  //     const payload = {
-  //       skuId: skuItem.id,
-  //       cnt: selectedItem.cnt
-  //     }
-  //     this.props.dispatchAdd(payload).then(() => {
-  //       Taro.showToast({
-  //         title: '加入购物车成功',
-  //         icon: 'none'
-  //       })
-  //     })
-  //     if (isSelected) {
-  //       this.toggleVisible()
-  //     }
-  //     return
-  //   }
-  //
-  //   if (!visible) {
-  //     this.setState({ visible: true })
-  //   } else {
-  //     // XXX 加购物车逻辑不一定准确
-  //     Taro.showToast({
-  //       title: '请选择规格（或换个商品测试）',
-  //       icon: 'none'
-  //     })
-  //   }
-  // }
+  handleAdd = () => {
+    // 添加购物车是先从 skuSpecValueList 中选择规格，再去 skuMap 中找 skuId，多个规格时用 ; 组合
+    const { itemInfo } = this.props
+    const { skuSpecList = [] } = itemInfo
+    const { visible, selected } = this.state
+    const isSelected = visible && !!selected.id && itemInfo.skuMap[selected.id]
+    const isSingleSpec = skuSpecList.every(spec => spec.skuSpecValueList.length === 1)
+
+    if (isSelected || isSingleSpec) {
+      const selectedItem = isSelected ? selected : {
+        id: skuSpecList.map(spec => spec.skuSpecValueList[0].id).join(';'),
+        cnt: 1
+      }
+      const skuItem = itemInfo.skuMap[selectedItem.id] || {}
+      const payload = {
+        skuId: skuItem.id,
+        cnt: selectedItem.cnt
+      }
+      this.props.dispatchAdd(payload).then(() => {
+        Taro.showToast({
+          title: '加入购物车成功',
+          icon: 'none'
+        })
+      })
+      if (isSelected) {
+        this.toggleVisible()
+      }
+      return
+    }
+
+    if (!visible) {
+      this.setState({ visible: true })
+    } else {
+      // XXX 加购物车逻辑不一定准确
+      Taro.showToast({
+        title: '请选择规格（或换个商品测试）',
+        icon: 'none'
+      })
+    }
+  }
 
   toggleVisible = () => {
     this.setState({
@@ -124,9 +123,8 @@ class Details extends Component {
           style={{ height }}
         >
           <Gallery list={gallery} />
-          {/*<InfoBase data={itemInfo} />*/}
-          {/*<InfoParam list={itemInfo.attrList} />*/}
-          {/*<Detail html={itemDetail.detailHtml} />*/}
+          <InfoBase data={detailInfo} />
+          <DetailImg imgList={gallery} />
         </ScrollView>
 
         {/* NOTE Popup 一般的实现是 fixed 定位，但 RN 不支持，只能用 absolute，要注意引入位置 */}
@@ -142,12 +140,12 @@ class Details extends Component {
           {/*/>*/}
         </Popup>
 
-        {/*<View className='item__footer'>*/}
-          {/*<Footer onAdd={this.handleAdd} />*/}
-        {/*</View>*/}
+        <View className='item__footer'>
+          <Footer onAdd={this.handleAdd} />
+        </View>
       </View>
     )
   }
 }
 
-export default Details
+export default Detail
