@@ -4,6 +4,9 @@
   "private": true,
   "description": "",
   "scripts": {
+    "watch": "shadow-cljs watch npm",
+    "build": "shadow-cljs release npm",
+    "compile": "shadow-cljs compile npm",
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
@@ -53,6 +56,7 @@
     "eslint-config-taro": "1.2.26",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-react": "^7.8.2",
-    "eslint-plugin-taro": "1.2.26"
+    "eslint-plugin-taro": "1.2.26",
+    "shadow-cljs": "^2.8.31"
   }
 }
