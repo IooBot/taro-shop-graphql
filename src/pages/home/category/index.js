@@ -8,6 +8,12 @@ export default class Category extends Component {
     data: {}
   }
 
+  handleClick = (item) => {
+    Taro.navigateTo({
+      url: `/pages/kind/index?categoryId=${item.id}`
+    })
+  }
+
   render () {
     const { list } = this.props
     const more = {
@@ -20,7 +26,7 @@ export default class Category extends Component {
       <View className='home-category'>
         <View className='home-category__list'>
           {categoryList.map((item, index) => (
-            <View key={index} className='home-category__list-item'>
+            <View key={index} className='home-category__list-item' onClick={this.handleClick.bind(this, item)}>
               <Image className='home-category__list-item-img' src={item.image} />
               <Text className='home-category__list-item-name'>{item.value}</Text>
             </View>
