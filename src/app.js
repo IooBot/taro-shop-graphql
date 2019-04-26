@@ -1,8 +1,9 @@
 import '@tarojs/async-await'
 import Taro, { Component } from '@tarojs/taro'
+import * as QL from 'graph-cache/graphql_cache.core'
 import 'taro-ui/dist/style/index.scss'
 import Home from './pages/home'
-import * as QL from 'graphql-sync-multi-platform/graphql_cache.core'
+
 
 import {graphqlEndpoint} from './config'
 import './app.scss'
