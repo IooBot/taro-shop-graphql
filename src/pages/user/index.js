@@ -1,12 +1,13 @@
-import React, {Component} from 'react'
-import './index.css'
+import Taro, { Component } from '@tarojs/taro';
 import {Grid, ActivityIndicator} from 'antd-mobile'
 import {withRouter} from 'react-router-dom'
+import './index.css'
 import Logo from '../../../components/logo'
 import {getCookie} from "../../../utils/cookie"
-import {user_by_id} from "../../../utils/gql"
-import {Query} from "react-apollo"
-import gql from "graphql-tag"
+import { findOne} from "../../utils/crud"
+//import {user_by_id} from "../../../utils/gql"
+//import {Query} from "react-apollo"
+//import gql from "graphql-tag"
 
 const orderIcon = [
     {
@@ -83,47 +84,52 @@ const shopIcon = [
         text: '订单管理',
         id: 'orders'
     }
-]
+];
 
 class All extends Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+          loaded: false,
+          user_data:{}
+        }
     }
-
+  componentDidMount() {
+    let user_id = getCookie('user_id')
+    console.log(user_id)
+    this.userInfo(user_id);
+  }
+  userInfo = (user_id) => {
+    let userData = findOne({collection:"user",condition:{id: user_id}});//,fields:[]
+    Promise.all([userData]).then((res)=>{
+      console.log('user data',res)
+      this.setState({
+        loaded:true,
+        user_data: res[0]
+      });
+    })
+   };
     render() {
-        let user_id = getCookie('user_id')
-        // console.log(user_id)
+      if (!this.state.loaded) {
+        return (
+          <div className="loading-center">
+            <ActivityIndicator text="Loading..." size="large"/>
+          </div>
+        )
+      }
+      let user_data = this.state.user_data;
+      let data = user_data.userbyid;
         return (
             <div className='my-wrap all'>
-                <Query query={gql(user_by_id)} variables={{id: user_id}}>
-                    {
-                        ({loading, error, data}) => {
-                            if (loading) {
-                                return (
-                                    <div className="loading-center">
-                                        <ActivityIndicator text="Loading..." size="large"/>
-                                    </div>
-                                )
-                            }
-                            if (error) {
-                                return 'error!'
-                            }
-                            data = data.userbyid
-                            return (
-                                <div className='avatar-area' onClick={()=>{
-                                    this.props.history.push({
-                                        pathname: `/my/profile`,
-                                        state: {}
-                                    })
-                                }}>
-                                    <div className='avatar'/>
-                                    <div className='nickname'>{data.username}</div>
-                                </div>
-                            )
-                        }
-                    }
-                </Query>
+              <div className='avatar-area' onClick={()=>{
+                    this.props.history.push({
+                      pathname: `/my/profile`,
+                      state: {}
+                    })
+                  }}>
+                <div className='avatar'/>
+                <div className='nickname'>{user_data.username}</div>
+              </div>
 
                 <div className='my-card order-card'>
                     <div className='card-title'>
