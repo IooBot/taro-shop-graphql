@@ -21,7 +21,7 @@ class App extends Component {
       'pages/home/index',
       'pages/kind/index',
       'pages/detail/index',
-      // 'pages/cart/index',
+      'pages/cart/index',
       // 'pages/orders/index',
       // 'pages/pay/index',
       // 'pages/order/index',
@@ -49,7 +49,7 @@ class App extends Component {
         text: "主页"
       }
       ,{
-        pagePath: "pages/home/index",
+        pagePath: "pages/cart/index",
         iconPath: "./assets/tab-bar/cart.png",
         selectedIconPath: "./assets/tab-bar/cart-active.png",
         text: "购物车"
