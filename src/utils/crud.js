@@ -1,5 +1,13 @@
 import * as QL from "graphql-sync-multi-platform/graphql_cache.core";
 
+export const findOne = (options = {collection:'', condition:'', fields: '',}) => {
+  //console.log("f-many:",options);
+  return QL.find_one(options.collection,options.condition,options.fields).then(res => {
+    //console.log("many-res:", res);
+    return res;
+  });
+};
+
 export const findMany = (options = {collection:'', condition:'', fields: '',}) => {
   //console.log("f-many:",options);
   return QL.find_many(options.collection,options.condition,options.fields).then(res => {
