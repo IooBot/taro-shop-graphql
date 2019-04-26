@@ -9,6 +9,9 @@ import Recommend from './recommend'
 import Category from './category'
 
 import './index.scss'
+import {graphqlEndpoint} from "../../config";
+// graphql
+QL.init(graphqlEndpoint, Taro.request);
 
 class Home extends Component {
   constructor(props) {
@@ -46,37 +49,36 @@ class Home extends Component {
       // "sort_by": {"order": "asc"}
     };
 
-    // let category = QL.find_many("category",categoryFilter, ["id", "value:name", "image:img", "status"]).then((res)=>{
-    //   console.log('category res',res)
-    //   return res
-    // })
-    //
-    // let recommend = QL.find_many("product",{status: '1', recommend: 1}, ["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]).then((res)=>{
-    //   console.log('recommend res',res)
-    //   return res
-    // });
-    QL.find([["category",categoryFilter, ["id", "value:name", "image:img", "status"]],
-             ["product",{status: '1', recommend: 1}, ["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]]]).then(
-               res=>{
-                     console.log('fetch data',res);
-                     this.setState({
-                     loaded:true,
-                     category: res[0],
-                     recommend: res[1]
-                     });
-             }
-    );
+    let category = QL.find_many("category",categoryFilter, ["id", "value:name", "image:img", "status"]).then((res)=>{
+      console.log('category res',res)
+      return res
+    })
 
+    let recommend = QL.find_many("product",{status: '1', recommend: 1}, ["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]).then((res)=>{
+      console.log('recommend res',res)
+      return res
+    });
+    Promise.all([category, recommend]).then((res)=>{
+      console.log('promise data',res)
+      this.setState({
+        loaded:true,
+        category: res[0],
+        recommend: res[1]
+      });
+    })
+    // QL.find([["category",categoryFilter, ["id", "value:name", "image:img", "status"]],
+    //          ["product",{status: '1', recommend: 1}, ["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]]]).then(
+    //            res=>{
+    //                  console.log('fetch data',res);
+    //                  this.setState({
+    //                  loaded:true,
+    //                  category: res[0],
+    //                  recommend: res[1]
+    //                  });
+    //          }
+    // );
 
-    // Promise.all([category, recommend]).then((res)=>{
-    //   console.log('promise data',res)
-    //   this.setState({
-    //     loaded:true,
-    //     category: res[0],
-    //     recommend: res[1]
-    //   });
-    // })
-  }
+  };
 
   render() {
     if (!this.state.loaded) {

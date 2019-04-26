@@ -4,7 +4,7 @@ import Loading from '../../components/loading'
 import ItemList from '../../components/item-list'
 import './index.scss'
 import { getWindowHeight } from '../../utils/style'
-import {findOne} from "../../utils/crud"
+import {findMany} from "../../utils/crud"
 
 class Kind extends Component {
   config = {
@@ -22,7 +22,7 @@ class Kind extends Component {
   }
 
   componentDidMount() {
-    let detailInfo = findOne({collection:"product",condition:{category_id: this.categoryId},fields:["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]})
+    let detailInfo = findMany({collection:"product",condition:{category_id: this.categoryId},fields:["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]})
 
     this.setState({
       loaded:true,

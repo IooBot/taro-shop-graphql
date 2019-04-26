@@ -1,11 +1,11 @@
 import '@tarojs/async-await'
 import Taro, { Component } from '@tarojs/taro'
-import * as QL from 'graph-cache/graphql_cache.core'
+//import * as QL from 'graph-cache/graphql_cache.core'
 import 'taro-ui/dist/style/index.scss'
 import Home from './pages/home'
 
 
-import {graphqlEndpoint} from './config'
+//import {graphqlEndpoint} from './config'
 import './app.scss'
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -64,8 +64,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // graphql
-    QL.init(graphqlEndpoint, Taro.request);
   }
 
   componentDidShow () {}
