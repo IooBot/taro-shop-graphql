@@ -11,6 +11,7 @@ import {user_default_address, create_order, create_order_product, orderbyprops} 
 import {idGen} from "../../../utils/func"
 import {getCookie} from "../../../utils/cookie"
 import './index.css'
+import {findMany} from "../../utils/crud";
 
 const Item = List.Item
 const Brief = Item.Brief
@@ -60,7 +61,17 @@ class CartOrders extends Component {
             })
         }
     }
-
+  componentDidMount() {
+    let user_id = getCookie('user_id');
+    let userAddressData = findMany({collection:"userAddress",condition:{user_id: user_id,default:1}});//,fields:[]
+    userAddressData.then(res =>{
+      console.log('userAddressData',res)
+      this.setState({
+        loaded: true,
+        defaultAddress: res
+      });
+    })
+  }
     onChangeDelivery = (val) => {
         this.setState({
             delivery: val,

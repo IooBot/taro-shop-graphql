@@ -9,6 +9,7 @@ import gql from "graphql-tag"
 import {shop_by_props, create_shop, update_shop} from "../../../../utils/gql"
 import {storeFile} from "../../../../configs/url"
 import moment from 'moment'
+import {findMany} from "../../utils/crud";
 
 const Item = List.Item
 
@@ -17,7 +18,17 @@ class Shop extends Component {
         super(props)
         this.state = {}
     }
-
+  componentDidMount() {
+    let shopData = findMany({collection:"shop",condition:{limit: 1}});//,fields:[]
+    userAddressData.then(res =>{
+      console.log('userAddressData',res)
+      this.setState({
+        loaded: true,
+        shop:res,
+        shopLength: res.length
+      });
+    })
+  }
     render() {
         return (
             <div className='shop-wrap'>

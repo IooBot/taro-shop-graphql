@@ -14,6 +14,7 @@ import {Query} from "react-apollo"
 import gql from "graphql-tag"
 import {order_by_id, orderbyprops} from "../../../../utils/gql"
 import {DisplayRender} from "../../../order/display"
+import {findOne, findMany} from "../../utils/crud";
 
 const Item = List.Item;
 
@@ -116,7 +117,16 @@ class SearchQuery extends Component {
     shouldComponentUpdate(nextProps) {
         return nextProps.id !== this.props.id;
     }
-
+    componentDidMount() {
+      let orderData = findOne({collection:"order",condition:{id: this.props.id}});//,fields:[]
+      orderData.then(res =>{
+        console.log('orderData',res);
+        this.setState({
+          loaded: true,
+          data: res
+        });
+      })
+    }
     statusRender = (status) => {
         switch (status) {
             case '0':
@@ -214,7 +224,16 @@ class Shiping extends Component {
         super(props)
         this.state = {}
     }
-
+    componentDidMount() {
+      let orderData = findMany({collection:"order",condition:{orderStatus: 1}});//,fields:[]
+      orderData.then(res =>{
+        console.log('orderData',res);
+        this.setState({
+          loaded: true,
+          data: res
+        });
+      })
+    }
     render() {
         return (
             <Query query={gql(orderbyprops)} variables={{orderStatus: '1'}}>
@@ -262,6 +281,16 @@ class Unbox extends Component {
         super(props)
         this.state = {}
     }
+  componentDidMount() {
+    let orderData = findMany({collection:"order",condition:{orderStatus: 2}});//,fields:[]
+    orderData.then(res =>{
+      console.log('orderData',res);
+      this.setState({
+        loaded: true,
+        data: res
+      });
+    })
+  }
 
     render() {
         return (
@@ -309,7 +338,16 @@ class Completed extends Component {
         super(props)
         this.state = {}
     }
-
+    componentDidMount() {
+      let orderData = findMany({collection:"order",condition:{orderStatus: 3}});//,fields:[]
+      orderData.then(res =>{
+        console.log('orderData',res);
+        this.setState({
+          loaded: true,
+          data: res
+        });
+      })
+    }
     render() {
         return (
             <Query query={gql(orderbyprops)} variables={{orderStatus: '3'}}>
@@ -356,7 +394,16 @@ class Commented extends Component {
         super(props)
         this.state = {}
     }
-
+    componentDidMount() {
+      let orderData = findMany({collection:"order",condition:{orderStatus: 4}});//,fields:[]
+      orderData.then(res =>{
+        console.log('orderData',res);
+        this.setState({
+          loaded: true,
+          data: res
+        });
+      })
+    }
     render() {
         return (
             <Query query={gql(orderbyprops)} variables={{orderStatus: '4'}}>

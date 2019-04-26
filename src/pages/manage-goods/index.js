@@ -35,6 +35,7 @@ import moment from 'moment'
 import {storeFile} from "../../../../configs/url"
 import axios from 'axios'
 import classNames from 'classnames'
+import {findMany} from "../../utils/crud";
 
 const Item = List.Item
 const categoryFilterRefetch = {
@@ -100,7 +101,16 @@ class AllCategory extends Component {
         super(props)
         this.state = {}
     }
-
+    componentDidMount() {
+      let categoryData = findMany({collection:"category",condition:categoryFilter});//,fields:[]
+      categoryData.then(res =>{
+        console.log('categoryData',res)
+        this.setState({
+          loaded: true,
+          categoryList: res,
+         });
+      })
+    }
     render() {
         return (
             <div>
@@ -304,7 +314,16 @@ class AllGoods extends Component {
             })
         }
     }
-
+  componentDidMount() {
+    let productData = findMany({collection:"product"});//,condition:{user_id: user_id},fields:[]
+    productData.then(res =>{
+      console.log('productData',res)
+      this.setState({
+        loaded: true,
+        products: res,
+      });
+    })
+  }
     render() {
         let {modal, product} = this.state
         return (
@@ -435,7 +454,16 @@ class AddGoods extends Component {
             }
         }
     }
-
+  componentDidMount() {
+    let specificationStockData = findMany({collection:"specificationStock",condition:{product_id: this.state.id}});//,fields:[]
+    specificationStockData.then(res =>{
+      console.log('specificationStockData',res)
+      this.setState({
+        loaded: true,
+        products: res,
+      });
+    })
+  }
     onChange = (id) => (files, operationType) => {
         let imgDatas = []
 
