@@ -1,0 +1,64 @@
+@import "../../styles/theme.scss";
+
+$footerHeight: 100px;
+
+.cart {
+  position: relative;
+  height: 100%;
+  background: #f4f4f4;
+
+  &--not-login {
+    background: #ffffff;
+  }
+}
+
+.cart__login {
+  margin-top: -80px;
+  padding: 0 30px;
+}
+
+.cart__ext {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &-img {
+    margin-right: 18px;
+    width: 74px;
+    height: 74px;
+    background: $image-bg;
+    border-radius: 4px;
+  }
+
+  &-txt {
+    color: $text-color;
+    font-size: 28px;
+    line-height: 28px;
+  }
+}
+
+.cart__recommend {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  &-txt {
+    color: $black;
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: bold;
+  }
+}
+
+.cart__footer {
+  // NOTE RN 中没有 position: fixed，只能用 absolute 了或 flex 布局实现(此处不适用)
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: $footerHeight;
+
+  &--placeholder {
+    height: $footerHeight;
+  }
+}

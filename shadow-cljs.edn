@@ -13,6 +13,6 @@
 
  :builds
  {:npm {:target :npm-module
-        :output-dir "node_modules/graph-cache"
+        :output-dir "node_modules/graphql-sync-multi-platform"
         :runtime :browser
         :entries [graphql-cache.core]}}}
