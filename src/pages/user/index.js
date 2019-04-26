@@ -101,11 +101,11 @@ class All extends Component {
   }
   userInfo = (user_id) => {
     let userData = findOne({collection:"user",condition:{id: user_id}});//,fields:[]
-    Promise.all([userData]).then((res)=>{
+    userData.then(res =>{
       console.log('user data',res)
       this.setState({
         loaded:true,
-        user_data: res[0]
+        user_data: res
       });
     })
    };

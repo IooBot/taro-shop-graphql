@@ -10,7 +10,7 @@ import {userAddressbyprops, delete_address} from "../../../../utils/gql"
 import './index.css'
 import { findMany } from "../../utils/crud"
 
-const alert = Modal.alert;
+//const alert = Modal.alert;
 
 class Address extends Component {
     constructor(props) {
@@ -33,13 +33,14 @@ class Address extends Component {
         }
     }
     componentDidMount() {
-      let userAddressData = findMany({collection:"userAddress",condition:{user_id: this.id}});//,fields:[]
-      userAddressData.then((res)=>{
+      let user_id = getCookie('user_id')
+      let userAddressData = findMany({collection:"userAddress",condition:{user_id: user_id}});//,fields:[]
+      userAddressData.then(res =>{
         console.log('userAddressData',res)
         this.setState({
           loaded: true,
-          data: res[0],
-          defaultAddress: res[0].find(data => data.default === 1) || ''
+          data: res,
+          defaultAddress: res.find(data => data.default === 1) || ''
         });
       })
     }

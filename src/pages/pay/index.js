@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import Taro, { Component } from '@tarojs/taro'
 import {withRouter} from 'react-router-dom'
 import {message} from 'antd'
 import {NavBar, Icon, Checkbox, Toast} from 'antd-mobile'
