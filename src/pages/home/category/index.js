@@ -5,7 +5,8 @@ import './index.scss'
 
 export default class Category extends Component {
   static defaultProps = {
-    data: {}
+    data: {},
+    list:[]
   }
 
   handleClick = (item) => {

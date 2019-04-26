@@ -31,23 +31,13 @@ class Cart extends Component {
       "product_id{id, img, intro, name, price, status, stock, unit, discountRate}",
       "specificationStock_id{id, color, size, stock, status}"
     ]
-    let cartInfo1 = findMany({collection:"userCart",condition:{user_id},fields})
-
-    const cartInfo = [{
-      "count":1,"id":"1550813365801",
-      "product_id":{"id":"5","img":"https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/xs.jpg","intro":"米白","name":"打底衫内搭2019新款纯色打底针织衫带帽宽松慵懒风毛衣","price":150.0,"status":"1","stock":145,"unit":"1","discountRate":88.0},
-      "specificationStock_id":
-        {"id":"14","color":"米白","size":"165/88A(L)","stock":76,"status":"1"}
-      }, {
-        "count":1,"id":"1550813381065",
-      "product_id":{"id":"3","img":"https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/wt.jpg","intro":"卡其","name":"新款双面羊绒大衣 女 短款 赫本大衣小个子 高端羊毛呢子外套","price":320.0,"status":"1","stock":103,"unit":"1","discountRate":88.0},
-      "specificationStock_id":{"id":"7","color":"卡其","size":"160/84A(M)","stock":25,"status":"1"}}]
-    this.setState({
-      loaded:true,
-      cartInfo
-    });
-    console.log("cartInfo",cartInfo)
-
+    findMany({collection:"userCart",condition:{user_id},fields}).then((res)=>{
+      console.log("cartInfo",res)
+      this.setState({
+        loaded:true,
+        cartInfo:res
+      });
+    })
   }
 
   render () {

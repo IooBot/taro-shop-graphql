@@ -22,12 +22,14 @@ class Kind extends Component {
   }
 
   componentDidMount() {
-    let detailInfo = findMany({collection:"product",condition:{category_id: this.categoryId},fields:["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]})
+    findMany({collection:"product",condition:{category_id: this.categoryId},fields:["category_id.name", "name", "id", "intro", "price", "img", "stock", "discountRate", "status"]}).then((res)=>{
+      console.log("detailInfo res",res)
+      this.setState({
+        loaded:true,
+        detailInfo:res,
+      });
+    })
 
-    this.setState({
-      loaded:true,
-      detailInfo,
-    });
     // const payload = { categoryId: this.categoryId }
     // this.props.dispatchSubMenu(payload).then((res) => {
     //   this.setState({ loaded: true })
@@ -66,13 +68,10 @@ class Kind extends Component {
         <ItemList list={detailInfo}>
           <View className='cate-sub__list-title'>
             <Text className='cate-sub__list-title-txt'>
-              {detailInfo.name}
+              {detailInfo[0].category_id.name}
             </Text>
           </View>
         </ItemList>
-        <View className='cate-sub__list-tip'>
-          <Text className='cate-sub__list-tip-txt'>横向滑动切换其他分类</Text>
-        </View>
       </ScrollView>
     )
   }
