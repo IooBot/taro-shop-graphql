@@ -9,7 +9,8 @@ export default class Tip extends Component {
   }
 
   render () {
-    const { list } = this.props
+    // const { list } = this.props
+    const list = ["7天可退换货","满88包邮","48小时极速退款"]
     return (
       <View className='cart-tip'>
         {list.map((tip, index) => (

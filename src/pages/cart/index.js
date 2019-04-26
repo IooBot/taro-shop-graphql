@@ -4,7 +4,7 @@ import ButtonItem from '../../components/button'
 import Loading from '../../components/loading'
 import { getWindowHeight } from '../../utils/style'
 import Tip from './tip'
-import Gift from './gift'
+// import Gift from './gift'
 import Empty from './empty'
 import List from './list'
 import Footer from './footer'
@@ -33,7 +33,15 @@ class Cart extends Component {
     ]
     let cartInfo1 = findMany({collection:"userCart",condition:{user_id},fields})
 
-    const cartInfo = [{"count":1,"id":"1550813365801","product_id":{"id":"5","img":"https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/xs.jpg","intro":"\u7C73\u767D","name":"\u6253\u5E95\u886B\u5185\u642D2019\u65B0\u6B3E\u7EAF\u8272\u6253\u5E95\u9488\u7EC7\u886B\u5E26\u5E3D\u5BBD\u677E\u6175\u61D2\u98CE\u6BDB\u8863","price":150.0,"status":"1","stock":145,"unit":"1\u4EF6","discountRate":88.0},"specificationStock_id":{"id":"14","color":"\u7C73\u767D","size":"165/88A(L)","stock":76,"status":"1"}},{"count":1,"id":"1550813381065","product_id":{"id":"3","img":"https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/wt.jpg","intro":"\u5361\u5176","name":"\u65B0\u6B3E\u53CC\u9762\u7F8A\u7ED2\u5927\u8863 \u5973 \u77ED\u6B3E \u8D6B\u672C\u5927\u8863\u5C0F\u4E2A\u5B50 \u9AD8\u7AEF\u7F8A\u6BDB\u5462\u5B50\u5916\u5957","price":320.0,"status":"1","stock":103,"unit":"1\u4EF6","discountRate":88.0},"specificationStock_id":{"id":"7","color":"\u5361\u5176","size":"160/84A(M)","stock":25,"status":"1"}}]
+    const cartInfo = [{
+      "count":1,"id":"1550813365801",
+      "product_id":{"id":"5","img":"https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/xs.jpg","intro":"米白","name":"打底衫内搭2019新款纯色打底针织衫带帽宽松慵懒风毛衣","price":150.0,"status":"1","stock":145,"unit":"1","discountRate":88.0},
+      "specificationStock_id":
+        {"id":"14","color":"米白","size":"165/88A(L)","stock":76,"status":"1"}
+      }, {
+        "count":1,"id":"1550813381065",
+      "product_id":{"id":"3","img":"https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/wt.jpg","intro":"卡其","name":"新款双面羊绒大衣 女 短款 赫本大衣小个子 高端羊毛呢子外套","price":320.0,"status":"1","stock":103,"unit":"1","discountRate":88.0},
+      "specificationStock_id":{"id":"7","color":"卡其","size":"160/84A(M)","stock":25,"status":"1"}}]
     this.setState({
       loaded:true,
       cartInfo
@@ -44,9 +52,7 @@ class Cart extends Component {
 
   render () {
     let {cartInfo} = this.state
-    const { cartGroupList = [] } = cartInfo
-    const cartList = cartGroupList.filter(i => !i.promType)
-    const isEmpty = !cartList.length
+    const isEmpty = !cartInfo.length
     const isShowFooter = !isEmpty
 
     if (!this.state.loaded) {
@@ -79,21 +85,18 @@ class Cart extends Component {
           className='cart__wrap'
           style={{ height: getWindowHeight() }}
         >
-          <Tip list={cartInfo.policyDescList} />
+          <Tip />
           {isEmpty && <Empty />}
 
-          {!isEmpty && <Gift data={cartGroupList[0]} />}
+          {/*{!isEmpty && <Gift />}*/}
 
-          {!isEmpty && cartList.map((group, index) => (
+          {!isEmpty &&
             <List
-              key={index}
-              promId={group.promId}
-              promType={group.promType}
-              list={group.cartItemList}
+              list={cartInfo}
               onUpdate={this.props.dispatchUpdate}
               onUpdateCheck={this.props.dispatchUpdateCheck}
             />
-          ))}
+          }
 
           {isShowFooter &&
             <View className='cart__footer--placeholder' />
