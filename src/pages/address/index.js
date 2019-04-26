@@ -1,5 +1,4 @@
-import {Component} from "react"
-import React from "react"
+import Taro, { Component } from '@tarojs/taro'
 import {ActivityIndicator, NavBar, Modal} from 'antd-mobile'
 import {Icon, Row, Col, message} from 'antd'
 import {Query, Mutation} from "react-apollo"
@@ -9,12 +8,15 @@ import SingleAddress from "./singleaddress"
 import {getCookie} from "../../../../utils/cookie"
 import {userAddressbyprops, delete_address} from "../../../../utils/gql"
 import './index.css'
-const alert = Modal.alert
+import { findMany } from "../../utils/crud"
+
+const alert = Modal.alert;
 
 class Address extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            loaded:false,
             single: false,
             addressID: '',
             addressChoosed: {}
@@ -30,7 +32,17 @@ class Address extends Component {
             })
         }
     }
-
+    componentDidMount() {
+      let userAddressData = findMany({collection:"userAddress",condition:{user_id: this.id}});//,fields:[]
+      userAddressData.then((res)=>{
+        console.log('userAddressData',res)
+        this.setState({
+          loaded: true,
+          data: res[0],
+          defaultAddress: res[0].find(data => data.default === 1) || ''
+        });
+      })
+    }
     changePage = (bool) => {
         this.setState({
             single: bool
