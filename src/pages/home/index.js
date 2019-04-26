@@ -7,8 +7,9 @@ import Loading from '../../components/loading'
 import { getWindowHeight } from '../../utils/style'
 import Banner from './banner'
 import Recommend from './recommend'
+import Category from './category'
 
-import './index.css'
+import './index.scss'
 
 class Home extends Component {
   constructor(props) {
@@ -23,7 +24,8 @@ class Home extends Component {
       ],
       loaded: false,
       // category:[],
-      recommend:[]
+      recommend:[],
+      hasMore: false
     }
   }
 
@@ -32,30 +34,44 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    // this.setState({
+    //   loaded:true,
+    // });
     this.getGoodsInfo();
   }
 
-  getGoodsInfo() {
-    // const categoryFilter = {
-    //   "status": "1",
-    //   "limit": 7,
-    //   "sort_by": {"order": "asc"}
-    // }
-    // let category = QL.find_many("category",categoryFilter, ["id", "text", "icon", "status"]);
-    QL.find_many("product",{status: '1', recommend: 1}, ["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]).then((res)=>{
-      console.log('res',res)
+  getGoodsInfo = () => {
+    const categoryFilter = {
+      "status": "1",
+      "limit": 7,
+      // "sort_by": {"order": "asc"}
+    }
+
+    let category = QL.find_many("category",categoryFilter, ["id", "value:name", "image:img", "status"]).then((res)=>{
+      console.log('category res',res)
+      return res
+    })
+
+    let recommend = QL.find_many("product",{status: '1', recommend: 1}, ["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]).then((res)=>{
+      console.log('recommend res',res)
+      return res
+    });
+
+    Promise.all([category, recommend]).then((res)=>{
+      console.log('promise data',res)
       this.setState({
         loaded:true,
-        recommend:res
+        category: res[0],
+        recommend: res[1]
       });
-    });
+    })
   }
 
   render() {
     if (!this.state.loaded) {
       return <Loading />
     }
-    const { swiperList, recommend } = this.state
+    const { swiperList, category, recommend } = this.state
     console.log('recommend',recommend)
     return (
       <View className='home'>
@@ -67,8 +83,9 @@ class Home extends Component {
         >
           <View onClick={this.handlePrevent}>
             <Banner list={swiperList} />
-
           </View>
+
+          <Category list={category} />
 
           {/* 为你推荐 */}
           <Recommend list={recommend} />
@@ -83,8 +100,8 @@ class Home extends Component {
             <Text className='home__loading-txt'>更多内容，敬请期待</Text>
           </View>
           }
+          <Logo />
         </ScrollView>
-        <Logo />
       </View>
     )
   }

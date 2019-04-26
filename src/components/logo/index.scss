@@ -1,8 +1,15 @@
-.footer-logo {
-    height: 50px;
-    background-color: white;
-    text-align: center;
-    line-height: 50px;
-    font-size: 16px;
-    color: #b9b9b9;
+@import "../../styles/theme.scss";
+
+.logo_wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background: #fafafa;
+
+    &-txt {
+        color: $text-color-lighter;
+        font-size: 28px;
+    }
 }

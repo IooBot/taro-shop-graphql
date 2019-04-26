@@ -1,10 +1,11 @@
 import '@tarojs/async-await'
 import Taro, { Component } from '@tarojs/taro'
+import 'taro-ui/dist/style/index.scss'
 import Home from './pages/home'
 import * as QL from 'graphql-sync-multi-platform/graphql_cache.core'
 
 import {graphqlEndpoint} from './config'
-import './app.css'
+import './app.scss'
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -63,8 +64,6 @@ class App extends Component {
 
   componentDidMount() {
     // graphql
-    // console.log("fetch-fn:",Taro.request);
-    // console.log('init start',QL.init(graphqlEndpoint, Taro.request));
     QL.init(graphqlEndpoint, Taro.request);
   }
 

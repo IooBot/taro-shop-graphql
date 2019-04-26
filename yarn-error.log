@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @assets/default-avatar.png --silent --no-progress
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @components --silent --no-progress
 
 PATH: 
-  C:\Users\Csy\AppData\Roaming\npm\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;E:\mini-program\taro-shop-graphql\node_modules\.bin;C:\Users\Csy\AppData\Local\Temp\yarn--1556102589285-0.8540531316290543;E:\mini-program\taro-shop-graphql\node_modules\.bin;C:\Users\Csy\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;E:\mini-program\taro-shop-graphql\node_modules\.bin;C:\Program Files (x86)\NetSarang\Xshell 6\;C:\Program Files (x86)\NetSarang\Xftp 6\;C:\Perl64\site\bin;C:\Perl64\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;E:\androidSDK\platform-tools;E:\androidSDK\tools;C:\Program Files (x86)\GNU\GnuPG\pub;C:\Program Files\Redis\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files (x86)\Calibre2\;C:\Program Files\TortoiseGit\bin;C:\Program Files\nodejs\;C:\Program Files\IDM Computer Solutions\UltraEdit;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin\;C:\Users\Csy\Anaconda2;C:\Users\Csy\Anaconda2\Scripts;C:\Users\Csy\Anaconda2\Library\bin;C:\Users\Csy\AppData\Local\.meteor;C:\Users\Csy\.lein\bin;C:\Program Files\Java\jdk1.8.0_101\bin;C:\Program Files\Java\jdk1.8.0_101\jre\bin;E:\androidSDK\tools;E:\androidSDK\platform-tools;c:\tools;C:\Program Files\Redis;C:\Users\Csy\AppData\Local\Microsoft\WindowsApps;C:\Users\Csy\AppData\Local\.meteor\;C:\tools\apache-maven-3.3.9-bin\apache-maven-3.3.9\bin;C:\Users\Csy\AppData\Roaming\npm;C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.4\bin;;C:\Program Files\JetBrains\WebStorm 2018.3.4\bin;;C:\Users\Csy\AppData\Local\Yarn\bin
+  C:\Users\Csy\AppData\Roaming\npm\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;E:\mini-program\taro-shop-graphql\node_modules\.bin;C:\Users\Csy\AppData\Local\Temp\yarn--1556162115303-0.393226367475616;E:\mini-program\taro-shop-graphql\node_modules\.bin;C:\Users\Csy\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;E:\mini-program\taro-shop-graphql\node_modules\.bin;C:\Program Files (x86)\NetSarang\Xshell 6\;C:\Program Files (x86)\NetSarang\Xftp 6\;C:\Perl64\site\bin;C:\Perl64\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;E:\androidSDK\platform-tools;E:\androidSDK\tools;C:\Program Files (x86)\GNU\GnuPG\pub;C:\Program Files\Redis\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files (x86)\Calibre2\;C:\Program Files\TortoiseGit\bin;C:\Program Files\nodejs\;C:\Program Files\IDM Computer Solutions\UltraEdit;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin\;C:\Users\Csy\Anaconda2;C:\Users\Csy\Anaconda2\Scripts;C:\Users\Csy\Anaconda2\Library\bin;C:\Users\Csy\AppData\Local\.meteor;C:\Users\Csy\.lein\bin;C:\Program Files\Java\jdk1.8.0_101\bin;C:\Program Files\Java\jdk1.8.0_101\jre\bin;E:\androidSDK\tools;E:\androidSDK\platform-tools;c:\tools;C:\Program Files\Redis;C:\Users\Csy\AppData\Local\Microsoft\WindowsApps;C:\Users\Csy\AppData\Local\.meteor\;C:\tools\apache-maven-3.3.9-bin\apache-maven-3.3.9\bin;C:\Users\Csy\AppData\Roaming\npm;C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.4\bin;;C:\Program Files\JetBrains\WebStorm 2018.3.4\bin;;C:\Users\Csy\AppData\Local\Yarn\bin
 
 Yarn version: 
   1.15.2
@@ -14,8 +14,8 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@assets%2fdefault-avatar.png: Not found
-      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65167:18)
+  Error: https://registry.yarnpkg.com/@components: Request "https://registry.yarnpkg.com/@components" returned a 405
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65176:18)
       at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:129541:22)
       at emitTwo (events.js:126:13)
       at Request.emit (events.js:214:7)
@@ -81,8 +81,7 @@ npm manifest:
       "eslint-config-taro": "1.2.26",
       "eslint-plugin-import": "^2.12.0",
       "eslint-plugin-react": "^7.8.2",
-      "eslint-plugin-taro": "1.2.26",
-      "fbjs": "^1.0.0"
+      "eslint-plugin-taro": "1.2.26"
     }
   }
 
@@ -2190,7 +2189,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
     integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
   
-  core-js@^2.4.0, core-js@^2.4.1, core-js@^2.5.0:
+  core-js@^2.4.0, core-js@^2.5.0:
     version "2.6.5"
     resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
     integrity sha512-klh/kDpwX8hryYL14M9w/xei6vrv6sE8gTHDG7/T/+SEovB/G4ejwcfE/CBzO6Edsu+OETZMZ3wcX/EjUkrl5A==
@@ -2737,13 +2736,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/encodeurl/-/encodeurl-1.0.2.tgz#ad3ff4c86ec2d029322f5a02c3a9a606c95b3f59"
     integrity sha1-rT/0yG7C0CkyL1oCw6mmBslbP1k=
   
-  encoding@^0.1.11:
-    version "0.1.12"
-    resolved "https://registry.yarnpkg.com/encoding/-/encoding-0.1.12.tgz#538b66f3ee62cd1ab51ec323829d1f9480c74beb"
-    integrity sha1-U4tm8+5izRq1HsMjgp0flIDHS+s=
-    dependencies:
-      iconv-lite "~0.4.13"
-  
   end-of-stream@^1.0.0, end-of-stream@^1.1.0:
     version "1.4.1"
     resolved "https://registry.yarnpkg.com/end-of-stream/-/end-of-stream-1.4.1.tgz#ed29634d19baba463b6ce6b80a37213eab71ec43"
@@ -3202,25 +3194,6 @@ Lockfile:
     integrity sha1-8O/hjE9W5PQK/H4Gxxn9XuYYjzg=
     dependencies:
       websocket-driver ">=0.5.1"
-  
-  fbjs-css-vars@^1.0.0:
-    version "1.0.2"
-    resolved "https://registry.yarnpkg.com/fbjs-css-vars/-/fbjs-css-vars-1.0.2.tgz#216551136ae02fe255932c3ec8775f18e2c078b8"
-    integrity sha512-b2XGFAFdWZWg0phtAWLHCk836A1Xann+I+Dgd3Gk64MHKZO44FfoD1KxyvbSh0qZsIoXQGGlVztIY+oitJPpRQ==
-  
-  fbjs@^1.0.0:
-    version "1.0.0"
-    resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-1.0.0.tgz#52c215e0883a3c86af2a7a776ed51525ae8e0a5a"
-    integrity sha512-MUgcMEJaFhCaF1QtWGnmq9ZDRAzECTCRAF7O6UZIlAlkTs1SasiX9aP0Iw7wfD2mJ7wDTNfg2w7u5fSCwJk1OA==
-    dependencies:
-      core-js "^2.4.1"
-      fbjs-css-vars "^1.0.0"
-      isomorphic-fetch "^2.1.1"
-      loose-envify "^1.0.0"
-      object-assign "^4.1.0"
-      promise "^7.1.1"
-      setimmediate "^1.0.5"
-      ua-parser-js "^0.7.18"
   
   figgy-pudding@^3.5.1:
     version "3.5.1"
@@ -3840,7 +3813,7 @@ Lockfile:
     dependencies:
       safer-buffer ">= 2.1.2 < 3"
   
-  iconv-lite@^0.4.17, iconv-lite@^0.4.4, iconv-lite@~0.4.13:
+  iconv-lite@^0.4.17, iconv-lite@^0.4.4:
     version "0.4.24"
     resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
     integrity sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==
@@ -4191,7 +4164,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/is-resolvable/-/is-resolvable-1.1.0.tgz#fb18f87ce1feb925169c9a407c19318a3206ed88"
     integrity sha512-qgDYXFSR5WvEfuS5dMj6oTMEbrrSaM0CrFk2Yiq/gXnBvD9pMa2jGXxyhGLfvhZpuMZe18CJpFxAt3CRs42NMg==
   
-  is-stream@^1.0.1, is-stream@^1.1.0:
+  is-stream@^1.1.0:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/is-stream/-/is-stream-1.1.0.tgz#12d4a3dd4e68e0b79ceb8dbc84173ae80d91ca44"
     integrity sha1-EtSj3U5o4Lec6428hBc66A2RykQ=
@@ -4244,14 +4217,6 @@ Lockfile:
     version "3.0.1"
     resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
     integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
-  
-  isomorphic-fetch@^2.1.1:
-    version "2.2.1"
-    resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
-    integrity sha1-YRrhrPFPXoH3KVB0coGf6XM1WKk=
-    dependencies:
-      node-fetch "^1.0.1"
-      whatwg-fetch ">=0.10.0"
   
   isstream@~0.1.2:
     version "0.1.2"
@@ -5102,14 +5067,6 @@ Lockfile:
     integrity sha512-rmTZ9kz+f3rCvK2TD1Ue/oZlns7OGoIWP4fc3llxxRXlOkHKoWPPWJOfFYpITabSow43QJbRIoHQXtt10VldyQ==
     dependencies:
       lower-case "^1.1.1"
-  
-  node-fetch@^1.0.1:
-    version "1.7.3"
-    resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-1.7.3.tgz#980f6f72d85211a5347c6b2bc18c5b84c3eb47ef"
-    integrity sha512-NhZ4CsKx7cYm2vSrBAr2PvFOe6sWDf0UYLRqA6svUYg7+/TSfVAu49jYC4BvQ4Sms9SZgdqGBgroqfDhJdTyKQ==
-    dependencies:
-      encoding "^0.1.11"
-      is-stream "^1.0.1"
   
   node-forge@0.7.5:
     version "0.7.5"
@@ -6623,7 +6580,7 @@ Lockfile:
       is-plain-object "^2.0.3"
       split-string "^3.0.1"
   
-  setimmediate@^1.0.4, setimmediate@^1.0.5:
+  setimmediate@^1.0.4:
     version "1.0.5"
     resolved "https://registry.yarnpkg.com/setimmediate/-/setimmediate-1.0.5.tgz#290cbb232e306942d7d7ea9b83732ab7856f8285"
     integrity sha1-KQy7Iy4waULX1+qbg3Mqt4VvgoU=
@@ -7303,11 +7260,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
     integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
   
-  ua-parser-js@^0.7.18:
-    version "0.7.19"
-    resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.19.tgz#94151be4c0a7fb1d001af7022fdaca4642659e4b"
-    integrity sha512-T3PVJ6uz8i0HzPxOF9SWzWAlfN/DavlpQqepn22xgve/5QecC+XMCAtmUNnY7C9StehaV6exjUCI801lOI7QlQ==
-  
   uglify-es@^3.3.4:
     version "3.3.9"
     resolved "https://registry.yarnpkg.com/uglify-es/-/uglify-es-3.3.9.tgz#0c1c4f0700bed8dbc124cdb304d2592ca203e677"
@@ -7680,11 +7632,6 @@ Lockfile:
     version "1.1.3"
     resolved "https://registry.yarnpkg.com/weui/-/weui-1.1.3.tgz#0f0899bb61bb2ec603b2648367a8139298f81514"
     integrity sha512-vC6eWUvG1MYoE8yLsvBBmLB2+4DZWynQOL47MUscHMwPVltOZPGsiRb2PE7y3z+w3ElF1SsmJsyhr40wiXgP5A==
-  
-  whatwg-fetch@>=0.10.0:
-    version "3.0.0"
-    resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.0.0.tgz#fc804e458cc460009b1a2b966bc8817d2578aefb"
-    integrity sha512-9GSJUgz1D4MfyKU7KRqwOjXCXTqWdFNvEr7eUBYchQiVc744mqK/MzXPNR2WsPkmkOa4ywfg8C2n8h+13Bey1Q==
   
   whatwg-fetch@^2.0.4:
     version "2.0.4"

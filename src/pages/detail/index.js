@@ -8,9 +8,9 @@ import classNames from 'classnames'
 import moment from 'moment'
 
 import {productAndSpec_by_id, create_userCart, cart_by_userid} from "../../../utils/gql"
-import {idGen} from '../../../utils/func'
-import {getCookie} from "../../../utils/cookie"
-import './index.css'
+import {idGen} from '../../utils/func'
+import {getCookie} from "../../utils/cookie"
+import './index.scss'
 
 class Detail extends Component {
     constructor(props) {

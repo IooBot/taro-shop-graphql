@@ -32,7 +32,8 @@
     "graphql-sync-multi-platform": "^1.2.0",
     "nerv-devtools": "^1.3.9",
     "nervjs": "^1.3.9",
-    "react": "^16.8.6"
+    "react": "^16.8.6",
+    "taro-ui": "^2.1.0"
   },
   "devDependencies": {
     "@tarojs/plugin-babel": "1.2.26",
@@ -52,7 +53,6 @@
     "eslint-config-taro": "1.2.26",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-react": "^7.8.2",
-    "eslint-plugin-taro": "1.2.26",
-    "fbjs": "^1.0.0"
+    "eslint-plugin-taro": "1.2.26"
   }
 }

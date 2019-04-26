@@ -20,11 +20,10 @@ export default class Recommend extends Component {
     return (
       <View className='home-recommend'>
         <View className='home-recommend__title'>
-          <Text className='home-recommend__title-txt'>为你推荐</Text>
+          <Text className='home-recommend__title-txt'>-为你推荐-</Text>
         </View>
         <View className='home-recommend__list'>
           {list.filter(item => item.status === "1").map((item) => {
-            console.log('item',item)
             const { id, name, intro, price, discountRate, img, limitedTag="", simpleDescClose=false, comments=[]} = item
             let activityPrice = (price * discountRate / 100).toFixed(2)
             return (
