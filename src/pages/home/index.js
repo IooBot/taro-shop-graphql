@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text, ScrollView } from '@tarojs/components'
-import * as QL from 'graphql-sync-multi-platform/graphql_cache.core'
+import * as QL from 'graph-cache/graphql_cache.core'
 import Logo from '../../components/logo'
 import Loading from '../../components/loading'
 import { getWindowHeight } from '../../utils/style'
@@ -9,6 +9,9 @@ import Recommend from './recommend'
 import Category from './category'
 
 import './index.scss'
+import {graphqlEndpoint} from "../../config";
+// graphql
+QL.init(graphqlEndpoint, Taro.request);
 
 class Home extends Component {
   constructor(props) {
@@ -55,6 +58,14 @@ class Home extends Component {
       console.log('recommend res',res)
       return res
     });
+    Promise.all([category, recommend]).then((res)=>{
+      console.log('promise data',res)
+      this.setState({
+        loaded:true,
+        category: res[0],
+        recommend: res[1]
+      });
+    })
     // QL.find([["category",categoryFilter, ["id", "value:name", "image:img", "status"]],
     //          ["product",{status: '1', recommend: 1}, ["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]]]).then(
     //            res=>{
@@ -67,16 +78,7 @@ class Home extends Component {
     //          }
     // );
 
-
-    Promise.all([category, recommend]).then((res)=>{
-      console.log('promise data',res)
-      this.setState({
-        loaded:true,
-        category: res[0],
-        recommend: res[1]
-      });
-    })
-  }
+  };
 
   render() {
     if (!this.state.loaded) {

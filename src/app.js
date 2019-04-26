@@ -1,11 +1,11 @@
 import '@tarojs/async-await'
 import Taro, { Component } from '@tarojs/taro'
-import * as QL from 'graphql-sync-multi-platform/graphql_cache.core'
+//import * as QL from 'graph-cache/graphql_cache.core'
 import 'taro-ui/dist/style/index.scss'
 import Home from './pages/home'
 
 
-import {graphqlEndpoint} from './config'
+//import {graphqlEndpoint} from './config'
 import './app.scss'
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -21,7 +21,7 @@ class App extends Component {
       'pages/home/index',
       'pages/kind/index',
       'pages/detail/index',
-      'pages/cart/index',
+      // 'pages/cart/index',
       // 'pages/orders/index',
       // 'pages/pay/index',
       // 'pages/order/index',
@@ -49,7 +49,7 @@ class App extends Component {
         text: "主页"
       }
       ,{
-        pagePath: "pages/cart/index",
+        pagePath: "pages/home/index",
         iconPath: "./assets/tab-bar/cart.png",
         selectedIconPath: "./assets/tab-bar/cart-active.png",
         text: "购物车"
@@ -64,8 +64,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // graphql
-    QL.init(graphqlEndpoint, Taro.request);
   }
 
   componentDidShow () {}
