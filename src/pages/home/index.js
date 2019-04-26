@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text, ScrollView } from '@tarojs/components'
-import * as QL from 'graph-cache/graphql_cache.core'
+import * as QL from 'graphql-sync-multi-platform/graphql_cache.core'
 import Logo from '../../components/logo'
 import Loading from '../../components/loading'
 import { getWindowHeight } from '../../utils/style'
