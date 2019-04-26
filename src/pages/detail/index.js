@@ -5,7 +5,7 @@ import Loading from '../../components/loading'
 import Popup from '../../components/popup'
 import { getWindowHeight } from '../../utils/style'
 import Gallery from './gallery'
-// import InfoBase from './info-base'
+import InfoBase from './info-base'
 // import InfoParam from './info-param'
 // import Detail from './detail'
 // import Footer from './footer'
@@ -124,7 +124,7 @@ class Details extends Component {
           style={{ height }}
         >
           <Gallery list={gallery} />
-          {/*<InfoBase data={itemInfo} />*/}
+          <InfoBase data={detailInfo} />
           {/*<InfoParam list={itemInfo.attrList} />*/}
           {/*<Detail html={itemDetail.detailHtml} />*/}
         </ScrollView>
