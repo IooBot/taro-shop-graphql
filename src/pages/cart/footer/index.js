@@ -35,9 +35,8 @@ export default class Footer extends Component {
   }
 
   handleOrder = () => {
-    Taro.showToast({
-      title: '敬请期待',
-      icon: 'none'
+    Taro.navigateTo({
+      url: `/pages/orders/index`
     })
   }
 

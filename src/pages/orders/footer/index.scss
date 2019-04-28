@@ -1,0 +1,29 @@
+@import "../../../styles/theme.scss";
+
+.orders-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  background: #ffffff;
+}
+
+.orders-footer__amount {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 30px;
+
+  &-txt {
+    color: $primary-color;
+    font-size: 28px;
+    line-height: 28px;
+    padding-left: 10px;
+  }
+}
+
+.orders-footer__btn {
+  width: 226px;
+}

@@ -1,0 +1,86 @@
+@import "../../../styles/theme.scss";
+
+.orders-address {
+  background: $white;
+  margin-bottom: 20px;
+
+  &::after {
+    left: 0;
+    right: 0;
+    content: "";
+    height: 4px;
+    position: absolute;
+    background: repeating-linear-gradient(-45deg,#ff6d6d,#ff6d6d 20%,transparent 0,transparent 25%,#3283fa 0,#3283fa 45%,transparent 0,transparent 50%);
+    background-size: 160px;
+  }
+}
+
+.orders-address__item{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px 30px;
+  width: 100%;
+
+  &-detail {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &-name {
+    color: $text-color;
+    font-size: 34px;
+    line-height: 40px;
+  }
+
+  &-tel {
+    padding-left: 10px;
+    color: $text-color;
+    font-size: 34px;
+    line-height: 40px;
+  }
+
+  &-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &-label {
+    width: 16%;
+
+    &-tag{
+      font-size: 24px;
+      line-height: 40px;
+      padding: 0 10px;
+      background-color: #ff6d6d;
+      color: white;
+      border-radius: 20px;
+    }
+  }
+
+  &-txt {
+    color: $text-color-light;
+    font-size: 26px;
+    line-height: 40px;
+  }
+
+  &-icon {
+    margin-left: 22px;
+  }
+}
+
+.orders-address__add {
+  height: 100px;
+  line-height: 100px;
+  font-size: 32px;
+  text-align: center;
+  width: 100%;
+}
