@@ -1,0 +1,78 @@
+@import "../../styles/theme.scss";
+
+.pay {
+    position: relative;
+    height: 100%;
+    background: #f4f4f4;
+}
+
+.pay__wrap {
+    color: #323233;
+}
+
+.content-piece{
+    margin-bottom: 20px;
+    background: white;
+    padding: 20px;
+}
+
+.pay__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &-title {
+        font-size: 28px;
+        line-height: 42px;
+        padding-top: 40px;
+        padding-bottom: 28px;
+    }
+
+    &-price {
+        font-size: 48px;
+        line-height: 72px;
+        font-weight: 500;
+        padding-bottom: 48px;
+    }
+}
+
+.pay__body {
+
+    &-title {
+        color: #929292;
+        font-size: 24px;
+        line-height: 36px;
+        margin-bottom: 24px;
+    }
+
+    &-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    &-type {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &-image {
+            width: 70px;
+            height: 70px;
+        }
+
+        &-name {
+            padding-left: 20px;
+            font-size: 28px;
+            line-height: 42px;
+        }
+    }
+}
+
+.pay__footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

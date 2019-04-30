@@ -6,7 +6,7 @@ import {Query} from "react-apollo"
 import gql from "graphql-tag"
 
 import {orderProduct_by_props} from "../../../../utils/gql"
-import {ButtonGroupRender} from '../display'
+import {ButtonGroupRender} from '..'
 import './index.css'
 
 class Detail extends Component {

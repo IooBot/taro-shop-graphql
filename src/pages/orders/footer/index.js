@@ -9,14 +9,12 @@ export default class OrdersFooter extends Component {
   }
 
   handleOrder = () => {
-    Taro.showToast({
-      title: '敬请期待',
-      icon: 'none'
+    Taro.navigateTo({
+      url: `/pages/pay/index`
     })
   }
 
   render () {
-
     return (
       <View className='orders-footer'>
         <View className='orders-footer__amount'>
