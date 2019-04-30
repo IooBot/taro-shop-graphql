@@ -1,0 +1,58 @@
+@import "../../styles/theme.scss";
+
+.user {
+  position: relative;
+  height: 100%;
+  background: $background-color;
+}
+
+.avatar-area {
+  height: 300px;
+  background-image: linear-gradient(to top, #ffdcd2 0%, #ffdbd1 1%, #fd898c 100%);
+  position: relative;
+  border-bottom-left-radius: 80% 15%;
+  border-bottom-right-radius: 80% 15%;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 130px;
+  height: 130px;
+  background-color: #e8e8e8;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nickname {
+  color: white;
+  font-weight: 600;
+  font-size: 36px;
+  position: absolute;
+  left: 50%;
+  top: 90%;
+  transform: translate(-50%, -50%);
+}
+
+.my-card {
+  background-color: white;
+  margin-top: 30px;
+}
+
+.card-title {
+  height: 120px;
+  line-height: 120px;
+  padding-left: 20px;
+  font-size: 36px;
+  border-bottom: 2px solid #F3F3F3;
+}
+
+.at-grid__flex .content-inner__text {
+  font-size: 24px;
+}
+
+.at-grid__flex .content-inner__img {
+  width: 60px;
+  height: 60px;
+}

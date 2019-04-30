@@ -1,7 +1,9 @@
 @import "../../styles/theme.scss";
 
 .home {
-    position: relative;
+  position: relative;
+  height: 100%;
+  background: $background-color;
 }
 
 .home__search {
