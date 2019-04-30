@@ -11,3 +11,4 @@ node_modules/
 /temp
 /data
 /schema
+package-lock.json
