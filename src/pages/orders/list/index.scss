@@ -1,0 +1,73 @@
+@import "../../../styles/mixins.scss";
+
+.orders__detail {
+  margin-bottom: 20px;
+  background: white;
+}
+
+.cart__orders {
+  width: 100%;
+  line-height: 44px;
+  background-color: #fff;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 2px solid #f5f5f9;
+}
+
+.cart__orders-image {
+  width: 25%;
+
+  & Image {
+    width: 160px;
+    height: 160px;
+    margin-left: 10%;
+  }
+}
+
+.cart__orders-intro {
+  width: 55%;
+  position: relative;
+  text-align: left;
+
+  &-name {
+    color: black;
+    font-size: 28px;
+    @include text-ellipsis;
+  }
+
+  &-spec {
+    font-size: 24px;
+    color: gray;
+  }
+
+  &-price {
+    color: #f44;
+    font-size: 28px;
+    position: absolute;
+    bottom:0;
+    font-weight: 500;
+  }
+}
+
+.cart__orders-count {
+  font-size: 28px;
+  text-align: right;
+  padding-right: 20px;
+  color: #323233;
+}
+
+.packup {
+  display: none;
+}
+
+.packup-unfold {
+  background: #f5f5f9;
+  text-align: center;
+}
+
+.packup-title {
+  padding-top: 10px;
+  font-size: 28px;
+  line-height: 42px;
+}

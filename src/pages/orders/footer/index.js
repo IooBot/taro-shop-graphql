@@ -21,7 +21,7 @@ export default class OrdersFooter extends Component {
       <View className='orders-footer'>
         <View className='orders-footer__amount'>
           <Text className='orders-footer__select-txt'>
-            合计
+            合计:
           </Text>
           <Text className='orders-footer__amount-txt'>
             ¥{parseFloat(100).toFixed(2)}
