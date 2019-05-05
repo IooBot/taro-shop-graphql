@@ -7,10 +7,14 @@ import moment from 'moment'
 import {district} from 'antd-mobile-full-demo-data';
 
 import {create_update_userAddress, update_userAddress, userAddressbyprops} from "../../../../../utils/gql"
-import './index.css'
+import './index.scss'
 import {idGen} from "../../../../../utils/func"
 
 class SingleAddress extends Component {
+    config = {
+        navigationBarTitleText: '编辑地址'
+    }
+
     constructor(props) {
         super(props)
         let state = {

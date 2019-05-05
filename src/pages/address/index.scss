@@ -1,0 +1,96 @@
+@import "../../styles/theme.scss";
+
+.address {
+  position: relative;
+  height: 100%;
+  background: $background-color;
+}
+
+.address-card {
+  background-color: white;
+  padding: 20px;
+  font-size: 32px;
+  line-height: 56px;
+  color: black;
+  display: flex;
+  border: 2px solid #F3F3F3;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.address-add {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 32px;
+  border-top: 2px solid #F3F3F3;
+  height: 100px;
+  line-height: 100px;
+  box-shadow: 6px -2px 2px #ebedf0;
+  background-color: #f44;
+  color: white;
+}
+
+.address-info{
+  width: 85%;
+}
+
+.address-username-telephone {
+  display: flex;
+  flex-direction: row;
+}
+
+.address-edit {
+  width: 15%;
+  text-align: center;
+}
+
+.address-username {
+  font-weight: 600;
+  width: 25%;
+}
+
+.address-phone {
+  text-indent: 10px;
+  width: 75%;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
+.address-address {
+  font-size: 28px;
+  line-height: 42px;
+}
+
+.address-label {
+  margin-left: 10px;
+  font-size: 24px;
+  line-height: 26px;
+  padding: 0 20px;
+  background-color: #ff6d6d;
+  color: white;
+  border-radius: 20px;
+}
+
+
+.kind-empty {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  & Text {
+    display: flex;
+    flex-direction: column;
+    color: gray;
+    font-size: 28px;
+    line-height: 42px;
+    margin-bottom: 28px;
+  }
+}

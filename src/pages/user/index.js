@@ -40,11 +40,6 @@ const toolsIcon = [
     image: 'https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/cart.png',
     value: '购物袋',
     id: 'cart'
-  },
-  {
-    image: 'https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/message.png',
-    value: '系统通知',
-    id: 'message'
   }
 ]
 
@@ -93,7 +88,7 @@ class All extends Component {
   }
 
   navigateTo = (page,type,id) => {
-    let url = type ? `/pages/${page}?${type}=${id}` : `/pages/${page}`
+    let url = type ? `/pages${page}?${type}=${id}` : `/pages${page}`
     Taro.navigateTo({
       url
     })
@@ -142,10 +137,10 @@ class All extends Component {
                 columnNum={4}
                 hasBorder={false}
                 onClick={(tools) => {
-                  if (tools.id === 'cart') {
+                  if (tools.id === 'address') {
+                    this.navigateTo('/address/index')
+                  }else if(tools.id === 'cart'){
                     this.navigateTo('/cart/index')
-                  } else {
-                    this.navigateTo('/user/index','page',tools.id)
                   }
                 }}
               />

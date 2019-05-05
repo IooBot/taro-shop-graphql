@@ -1,240 +1,136 @@
 import Taro, { Component } from '@tarojs/taro'
-import {ActivityIndicator, NavBar, Modal} from 'antd-mobile'
-import {Icon, Row, Col, message} from 'antd'
-import {Query, Mutation} from "react-apollo"
-import gql from "graphql-tag"
-
-import SingleAddress from "./singleaddress"
-import {getCookie} from "../../../../utils/cookie"
-import {userAddressbyprops, delete_address} from "../../../../utils/gql"
-import './index.css'
-import { findMany } from "../../utils/crud"
-
-//const alert = Modal.alert;
+import { View, ScrollView, Text } from '@tarojs/components'
+import {AtIcon} from "taro-ui"
+import {findMany,remove} from "../../utils/crud"
+import {getWindowHeight} from "../../utils/style"
+import Loading from "../../components/loading"
+import './index.scss'
 
 class Address extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            loaded:false,
-            single: false,
-            addressID: '',
-            addressChoosed: {}
-        }
-    }
+  config = {
+    navigationBarTitleText: '地址管理'
+  }
 
-    componentWillMount() {
-        let state = this.props.history.location.state || ''
-        if (state && state.single) {
-            this.setState({
-                single: true,
-                addressID: 'add'
-            })
-        }
+  constructor(props) {
+    super(props)
+    this.state = {
+      loaded:false,
+      shoppingAddress:[],
+      defaultAddress: {}
     }
-    componentDidMount() {
-      let user_id = getCookie('user_id')
-      let userAddressData = findMany({collection:"userAddress",condition:{user_id: user_id}});//,fields:[]
-      userAddressData.then(res =>{
-        console.log('userAddressData',res)
-        this.setState({
-          loaded: true,
-          data: res,
-          defaultAddress: res.find(data => data.default === 1) || ''
-        });
+  }
+
+  componentDidMount() {
+    let user_id = 'ioobot'
+    let fields = ["address", "updatedAt", "telephone","default", "city", "username", "id", "area", "province"]
+    let userAddressData = findMany({collection:"userAddress",condition:{user_id: user_id},fields});//,fields:[]
+    userAddressData.then(res =>{
+      console.log('userAddressData',res)
+      this.setState({
+        loaded: true,
+        shoppingAddress:res,
+        defaultAddress: res.find(data => data.default === 1) || ''
+      });
+    })
+  }
+
+  handleClick = (id) => {
+    Taro.navigateTo({
+      url: `/pages/address/edit/index?id=${id}`
+    })
+  }
+
+  changeOrdersAddress =(address) => {
+    console.log('address',address)
+    Taro.setStorageSync('ordersAddress', JSON.stringify(address))
+  }
+
+  deleteAddress = (deleteId) => {
+    console.log("deleteId",deleteId)
+    Taro.showModal({
+        title: '',
+        content: '确定要删除这个收货地址吗？',
       })
+      .then(res =>{
+        if(res.confirm){
+          remove({collection:"userAddress",condition:{id:deleteId}}).then((data)=>{
+            console.log('delete data',data)
+            let num = data.replace(/[^0-9]/ig,"")
+            if(num){
+              Taro.showToast({
+                title: '删除成功',
+                icon: 'none'
+              });
+            }
+          })
+        }
+      })
+  }
+
+  render() {
+    let {shoppingAddress, defaultAddress} = this.state
+    console.log("defaultAddress",defaultAddress,defaultAddress.length)
+    if (!this.state.loaded) {
+      return (
+        <Loading />
+      )
     }
-    changePage = (bool) => {
-        this.setState({
-            single: bool
-        })
-    }
-
-    changeAddress = (address) => {
-        this.setState({
-            addressID: address.id,
-            addressChoosed: address
-        })
-    }
-
-    render() {
-        let {addressChoosed, addressID, single} = this.state
-        let user_id = getCookie('user_id')
-        let navContent = single ? '编辑地址' : '地址管理'
-
-        return (
-            <div>
-                <div className='navbar'>
-                    <NavBar
-                        mode="light"
-                        icon={<Icon type="left"/>}
-                        onLeftClick={() => {
-                            if(single){
-                                this.changePage(false)
-                            }else {
-                                this.props.history.go(-2)
-                            }
-                        }}
-                    >{navContent}</NavBar>
-                </div>
-                <div className='content-wrap'>
-                    <Query query={gql(userAddressbyprops)} variables={{user_id}}>
-                        {
-                            ({loading, error, data, refetch}) => {
-                                if (loading) {
-                                    return (
-                                        <div className="loading-center">
-                                            <ActivityIndicator text="Loading..." size="large"/>
-                                        </div>
-                                    )
-                                }
-                                if (error) {
-                                    return 'error!'
-                                }
-
-                                data = data.userAddressbyprops
-                                // console.log('address data',data)
-                                let defaultAddress = data.find(data => data.default === 1) || ''
-
-                                return (
-                                    <div>
-                                        {
-                                            this.state.single ?
-                                                <SingleAddress
-                                                    addressID={addressID}
-                                                    addressChoosed={addressChoosed}
-                                                    history={this.props.history}
-                                                    user_id={user_id}
-                                                    defaultAddress={defaultAddress}
-                                                    changePage={this.changePage}
-                                                    refetch={refetch}
-                                                />
-                                                :
-                                                <AddressRender
-                                                    shoppingAddress={data}
-                                                    changePage={this.changePage}
-                                                    changeAddress={this.changeAddress}
-                                                    history={this.props.history}
-                                                    refetch={refetch}
-                                                />
-                                        }
-                                    </div>
-                                )
-                            }
-                        }
-                    </Query>
-                </div>
-            </div>
-        )
-    }
+    return (
+      <View className='address'>
+        <ScrollView
+          scrollY
+          className='address__wrap'
+          style={{ height: getWindowHeight() }}
+        >
+          <View className='address-add'>
+            + 添加新地址
+          </View>
+          {
+            !shoppingAddress.length ?
+              <View className='kind-empty'>
+                <Text>暂无收货地址</Text>
+                <Text>点击下方按钮可新增地址</Text>
+              </View>:''
+          }
+          {
+            shoppingAddress.length ?
+              <View className='other-address'>
+                {shoppingAddress.map(address => (
+                  <View key={address.id} className='address-card'>
+                    <View className='address-info' onClick={this.changeOrdersAddress.bind(this, address)}>
+                      <View className='address-username-telephone'>
+                        <View className='address-username ellipsis'>{address.username}</View>
+                        <View className='address-phone ellipsis'>
+                          <Text>{address.telephone}</Text>
+                          {address.default ?
+                            <Text className='address-label'>默认</Text>:''
+                          }
+                        </View>
+                      </View>
+                      <View className='address-address'>{address.province + address.city + address.area + address.address}</View>
+                    </View>
+                    <View className='address-edit'>
+                      <AtIcon
+                        value='edit'
+                        size='16'
+                        onClick={this.handleClick.bind(this, address.id)}
+                      />
+                    </View>
+                    <View className='address-edit'>
+                      <AtIcon
+                        value='trash'
+                        size='16'
+                        onClick={this.deleteAddress.bind(this, address.id)}
+                      />
+                    </View>
+                  </View>
+                ))}
+              </View>:''
+          }
+        </ScrollView>
+      </View>
+    )
+  }
 }
 
 export default Address
-
-class AddressRender extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {}
-    }
-
-    changeOrdersAddress =(address) => {
-        // console.log('address',address,this.props.history)
-        let {history} = this.props
-        let prePage = history.location.state.prePage
-
-        if(prePage){
-            sessionStorage.setItem('ordersAddress',JSON.stringify(address))
-            this.props.history.go(-2)
-        }
-    }
-
-    deleteAddress = (delete_address, deleteId) => {
-        alert('', `确定要删除这个收货地址吗？`, [
-            { text: '取消', onPress: () => console.log('cancel') },
-            {
-                text: '确定',
-                onPress: () => {
-                    delete_address({variables:{id:deleteId}}).then((data)=>{
-                        // console.log('delete data',data)
-                        let num = data.data.deleteuserAddress.replace(/[^0-9]/ig,"")
-                        if(num){
-                            message.success('删除成功')
-                            this.props.refetch()
-                        }
-                    })
-                }
-            }
-        ])
-    }
-
-    render() {
-        let {changePage, changeAddress, shoppingAddress} = this.props
-
-        return (
-            <div>
-                <div className='address-add' onClick={() => {
-                    changePage(true)
-                    changeAddress({id: 'add'})
-                }}>
-                    <Icon type="plus"/>&nbsp;
-                    添加新地址
-                </div>
-                {
-                    !shoppingAddress.length ?
-                        <div className='kind-empty gray'>
-                            <p>暂无收货地址</p>
-                            <p>点击下方按钮可新增地址</p>
-                        </div>:''
-                }
-                {
-                    shoppingAddress.length ?
-                        <div className='other-address'>
-                            {shoppingAddress.map(address => {
-                                return (
-                                    <div key={address.id} className='address-card'>
-                                        <div className='address-info' onClick={() => this.changeOrdersAddress(address)}>
-                                            <Row className='address-username-telephone'>
-                                                <Col span={6} className='address-username ellipsis'>{address.username}</Col>
-                                                <Col span={18} className='address-phone ellipsis'>
-                                                    {address.telephone}&nbsp;&nbsp;
-                                                    {address.default ?
-                                                        <span className='address-label'>默认</span>:''
-                                                    }
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col span={24} className='address-address'>{address.province + address.city + address.area + address.address}</Col>
-                                            </Row>
-                                        </div>
-                                        <div className='address-edit'>
-                                            <Icon
-                                                type="edit"
-                                                onClick={()=>{
-                                                    changePage(true)
-                                                    changeAddress(address)
-                                                }}
-                                            />
-                                        </div>
-                                        <Mutation mutation={gql(delete_address)}
-                                                  onError={error=>console.log('error',error)}
-                                        >
-                                            {(delete_address,{ loading, error }) => (
-                                                <div className='address-edit'>
-                                                    <Icon
-                                                        type="delete"
-                                                        onClick={()=>{
-                                                            this.deleteAddress(delete_address,address.id)
-                                                        }}
-                                                    />
-                                                </div>
-                                            )}
-                                        </Mutation>
-                                    </div>
-                                )
-                            })}
-                        </div>:''
-                }
-            </div>
-        )
-    }
-}

@@ -23,7 +23,7 @@ class App extends Component {
       'pages/detail/index',
       'pages/cart/index',
       'pages/orders/index',
-      // 'pages/orders/address/index',
+      'pages/address/index',
       'pages/pay/index',
       // 'pages/order/index',
       'pages/user/index',
