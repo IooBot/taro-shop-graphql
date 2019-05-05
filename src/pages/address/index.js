@@ -34,10 +34,16 @@ class Address extends Component {
     })
   }
 
-  handleClick = (id) => {
+  navigateToAddressEdit = (id,address) => {
+    console.log("handleClick url", `/pages/address/edit/index?id=${id}`)
+
     Taro.navigateTo({
       url: `/pages/address/edit/index?id=${id}`
     })
+    if(id !== 'add'){
+      Taro.setStorageSync('editChoseAddress', address)
+      console.log('editChoseAddress',Taro.getStorageSync('editChoseAddress'))
+    }
   }
 
   changeOrdersAddress =(address) => {
@@ -82,7 +88,7 @@ class Address extends Component {
           className='address__wrap'
           style={{ height: getWindowHeight() }}
         >
-          <View className='address-add'>
+          <View className='address-add' onClick={this.navigateToAddressEdit.bind(this, 'add')}>
             + 添加新地址
           </View>
           {
@@ -113,7 +119,7 @@ class Address extends Component {
                       <AtIcon
                         value='edit'
                         size='16'
-                        onClick={this.handleClick.bind(this, address.id)}
+                        onClick={this.navigateToAddressEdit.bind(this, address.id, address)}
                       />
                     </View>
                     <View className='address-edit'>

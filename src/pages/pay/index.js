@@ -35,7 +35,7 @@ class Pay extends Component {
   }
 
   pay = () => {
-    this.message( '支付成功')
+    this.message('支付成功')
     Taro.navigateTo({
       url: `/pages/my/index`
     })

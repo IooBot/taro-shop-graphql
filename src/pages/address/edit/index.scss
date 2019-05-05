@@ -1,19 +1,42 @@
-.address-button-group {
-    margin-top: 30px;
+.address-edit__region {
+  display: flex;
+  flex-direction: row;
+  position:relative;
+  padding: 24px 0;
+  margin-left:32px;
+  margin-bottom:1px;
+
+
+  &-title {
+    margin-right:16px;
+    width:172px;
+    font-size:32px;
+    line-height:1.5;
+    vertical-align:middle;
+    text-align:left;
+  }
+
+  &-item {
+    color:#333;
+    font-size:32px;
+    line-height:1.5;
+  }
 }
 
-.address-button {
-    margin-top: 5px;
+.placeholder-text {
+  color: gray;
 }
 
-.address-default-checked {
-    background: white;
-    font-size: 16px;
-    padding: 10px 10px 15px 15px;
-    border-top: 1px solid #ebedf0;
-    width: 100%;
-}
-
-.address-default-checked span:last-child{
-    float: right;
+.address-add {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 32px;
+  border-top: 2px solid #F3F3F3;
+  height: 100px;
+  line-height: 100px;
+  box-shadow: 6px -2px 2px #ebedf0;
+  background-color: #f44;
+  color: white;
 }
