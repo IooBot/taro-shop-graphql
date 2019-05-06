@@ -94,6 +94,12 @@ class All extends Component {
     })
   }
 
+  switchTab = () => {
+    Taro.switchTab({
+      url: '/pages/cart/index'
+    })
+  }
+
   render() {
     if (!this.state.loaded) {
       return (
@@ -140,7 +146,7 @@ class All extends Component {
                   if (tools.id === 'address') {
                     this.navigateTo('/address/index')
                   }else if(tools.id === 'cart'){
-                    this.navigateTo('/cart/index')
+                    this.switchTab()
                   }
                 }}
               />

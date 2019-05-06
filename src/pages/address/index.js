@@ -67,6 +67,9 @@ class Address extends Component {
                 title: '删除成功',
                 icon: 'none'
               });
+              setTimeout(() => {
+                Taro.navigateBack();
+              }, 1000);
             }
           })
         }

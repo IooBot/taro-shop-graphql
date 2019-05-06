@@ -35,9 +35,18 @@ export default class Footer extends Component {
     }
   }
 
-  handleBuy = () => {
+  handleAdd = () => {
+    this.props.onChangeAddOrBuy('add')
     Taro.showToast({
-      title: '暂时只支持加入购物车',
+      title: '加入购物车',
+      icon: 'none'
+    })
+  }
+
+  handleBuy = () => {
+    this.props.onChangeAddOrBuy('buy')
+    Taro.showToast({
+      title: '购买',
       icon: 'none'
     })
   }
@@ -63,7 +72,7 @@ export default class Footer extends Component {
         <ButtonItem
           type='primary'
           text='加入购物车'
-          onClick={this.props.onAdd}
+          onClick={this.handleAdd}
           compStyle={{
             width: Taro.pxTransform(235),
             height: Taro.pxTransform(100)

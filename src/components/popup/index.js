@@ -7,7 +7,6 @@ import './index.scss'
 export default class Popup extends Component {
   static defaultProps = {
     visible: false,
-    compStyle: '',
     onClose: () => {}
   }
 
@@ -37,21 +36,20 @@ export default class Popup extends Component {
   }
 
   render () {
-    const { onClose, compStyle } = this.props
+    const { onClose } = this.props
     const { isShow } = this.state
 
     return (
       <View
         className={classNames('comp-popup', isShow && 'comp-popup--visible')}
         onTouchMove={this.handleTouchMove}
-        style={compStyle}
       >
         <View className='comp-popup__mask' onClick={onClose} />
         <View className='comp-popup__wrapper'>
           <ScrollView
             scrollY
             className='comp-popup__content'
-            style={{ height: Taro.pxTransform(750) }}
+            // style={{ height: Taro.pxTransform(850) }}
           >
             {this.props.children}
           </ScrollView>
