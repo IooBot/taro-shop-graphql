@@ -11,22 +11,22 @@ const orderIcon = [
   {
     image: 'https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/pay.png',
     value: '待付款',
-    id: 'pay'
+    id: 0
   },
   {
     image: 'https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/ship.png',
     value: '待发货',
-    id: 'ship'
+    id: 1
   },
   {
     image: 'https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/unbox.png',
     value: '待收货',
-    id: 'unbox'
+    id: 2
   },
   {
     image: 'https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/judge.png',
     value: '待评价',
-    id: 'judge'
+    id: 3
   }
 ]
 
@@ -128,7 +128,7 @@ class All extends Component {
                 columnNum={4}
                 hasBorder={false}
                 onClick={(order) => {
-                  this.navigateTo('/order/index','kind',order.id)
+                  this.navigateTo('/order/index','type',order.id)
                 }}
               />
             </View>
