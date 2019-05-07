@@ -21,34 +21,42 @@ class Address extends Component {
   }
 
   componentDidMount() {
+    this.getAddressData()
+  }
+
+  getAddressData = () => {
     let user_id = 'ioobot'
-    let fields = ["address", "updatedAt", "telephone","default", "city", "username", "id", "area", "province"]
-    let userAddressData = findMany({collection:"userAddress",condition:{user_id: user_id},fields});//,fields:[]
-    userAddressData.then(res =>{
+    let fields = ["address", "telephone", "default", "city", "username", "id", "area", "province"]
+    findMany({collection:"userAddress",condition:{user_id: user_id},fields}).then(res =>{
       console.log('userAddressData',res)
       this.setState({
         loaded: true,
-        shoppingAddress:res,
+        shoppingAddress: res,
         defaultAddress: res.find(data => data.default === 1) || ''
       });
     })
   }
 
   navigateToAddressEdit = (id,address) => {
-    console.log("handleClick url", `/pages/address/edit/index?id=${id}`)
-
     Taro.navigateTo({
       url: `/pages/address/edit/index?id=${id}`
     })
     if(id !== 'add'){
-      Taro.setStorageSync('editChoseAddress', address)
-      console.log('editChoseAddress',Taro.getStorageSync('editChoseAddress'))
+      Taro.setStorageSync('ordersAddress', address)
+      console.log('ordersAddress',Taro.getStorageSync('ordersAddress'))
     }
   }
 
-  changeOrdersAddress =(address) => {
+  changeOrdersAddress = (address) => {
     console.log('address',address)
-    Taro.setStorageSync('ordersAddress', JSON.stringify(address))
+    Taro.setStorageSync('ordersAddress', address)
+
+    let prePage = this.$router.params.prePage
+    if(prePage === 'orders') {
+      Taro.navigateTo({
+        url: `/pages/orders/index`
+      })
+    }
   }
 
   deleteAddress = (deleteId) => {
@@ -78,6 +86,7 @@ class Address extends Component {
 
   render() {
     let {shoppingAddress, defaultAddress} = this.state
+    console.log("shoppingAddress",shoppingAddress)
     console.log("defaultAddress",defaultAddress,defaultAddress.length)
     if (!this.state.loaded) {
       return (

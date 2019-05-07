@@ -8,25 +8,35 @@ export default class OrdersDelivery extends Component {
     this.state = {
       deliveryList: ["快递配送","门店自提"],
       delivery: ["快递配送"],
-      remark:'',
     }
   }
 
-  onChange = e => {
-    console.log('onChange e',e)
+  changeDelivery = e => {
+    // console.log('changeDelivery e',e)
+    let delivery = this.state.deliveryList[e.detail.value]
     this.setState({
-      delivery: this.state.deliveryList[e.detail.value]
+      delivery
     })
+    this.props.onChangeOrdersState('delivery',delivery)
+  }
+
+  changeRemark = (e) => {
+    // console.log('changeRemark e',e)
+    this.props.onChangeOrdersState('remark',e.detail.value)
   }
 
   render () {
-    let {deliveryList} = this.state
+    let {deliveryList, delivery} = this.state
+
     return (
       <View className='orders__delivery'>
-        <Picker onChange={this.onChange} range={deliveryList}>
+        <Picker
+          range={deliveryList}
+          onChange={this.changeDelivery}
+        >
           <view className='orders__delivery-picker'>
             <Text className='orders__delivery-picker-title'>配送方式</Text>
-            <Text className='orders__delivery-picker-select'>{this.state.delivery}{' >'}</Text>
+            <Text className='orders__delivery-picker-select'>{delivery}{' >'}</Text>
           </view>
         </Picker>
         <View className='orders__delivery-message'>
@@ -36,12 +46,7 @@ export default class OrdersDelivery extends Component {
               placeholder='输入留言内容(50字以内)'
               type='text'
               maxLength={50}
-              onInput={(val) => {
-                // console.log('orders-remark val',val)
-                this.setState({
-                  remark:val
-                })
-              }}
+              onInput={this.changeRemark}
             />
           </View>
         </View>

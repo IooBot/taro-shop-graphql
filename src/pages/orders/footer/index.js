@@ -4,17 +4,16 @@ import ButtonItem from '../../../components/button'
 import './index.scss'
 
 export default class OrdersFooter extends Component {
-  static defaultProps = {
-    cartInfo: {},
-  }
 
   handleOrder = () => {
+    this.props.onSubmitOrderAndProduct()
     Taro.navigateTo({
       url: `/pages/pay/index`
     })
   }
 
   render () {
+    const {totalPrice} = this.props
     return (
       <View className='orders-footer'>
         <View className='orders-footer__amount'>
@@ -22,7 +21,7 @@ export default class OrdersFooter extends Component {
             合计:
           </Text>
           <Text className='orders-footer__amount-txt'>
-            ¥{parseFloat(100).toFixed(2)}
+            ¥{parseFloat(totalPrice).toFixed(2)}
           </Text>
         </View>
         <View className='orders-footer__btn'>

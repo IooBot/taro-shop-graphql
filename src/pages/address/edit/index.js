@@ -2,9 +2,9 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Picker, Text } from '@tarojs/components'
 import { AtForm, AtInput, AtSwitch } from 'taro-ui'
 import moment from 'moment'
-import './index.scss'
 import {idGen} from "../../../utils/func"
 import {insert, update} from "../../../utils/crud"
+import './index.scss'
 
 class AddressEdit extends Component {
   config = {
@@ -28,7 +28,7 @@ class AddressEdit extends Component {
     if (this.$router.params.id === 'add') {
       this.state = {...state}
     } else {
-      let addressChose = Taro.getStorageSync('editChoseAddress')
+      let addressChose = Taro.getStorageSync('ordersAddress')
       let {province, city, area, address, telephone, username, id, default:default1} = addressChose
       let defaultStatus = default1 ? true : false
       this.state = {...state, province, city, area, address, telephone, username, id, defaultStatus}
@@ -36,6 +36,7 @@ class AddressEdit extends Component {
   }
 
   saveAddress = (user_id) => {
+    console.log("saveAddress user_id",user_id)
     let createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
     let {username, telephone, province, city, area, address, defaultStatus, id} = this.state
     let areaAddress = province + city + area
@@ -61,15 +62,18 @@ class AddressEdit extends Component {
         area,
         province
       }
+      console.log("saveAddress addressContent",addressContent)
 
-      let fields = ["address", "telephone","default", "city", "username", "id", "area", "province"]
+      // let fields = ["address", "telephone","default", "city", "username", "id", "area", "province"]
 
       if(this.$router.params.id === 'add'){
-        insert({collection:'userAddress',condition: addressContent,fields})
-        Taro.setStorageSync('ordersAddress', JSON.stringify(addressContent))
+        insert({collection:'userAddress',condition: addressContent})
+        Taro.setStorageSync('ordersAddress', addressContent)
+        this.goBackPage(1)
       }else {
-        update({collection: 'userAddress',condition: addressContent,fields})
-        Taro.setStorageSync('ordersAddress', JSON.stringify(addressContent))
+        update({collection: 'userAddress',condition: addressContent})
+        Taro.setStorageSync('ordersAddress', addressContent)
+        this.goBackPage(1)
       }
 
     }else if(!username){
@@ -85,6 +89,12 @@ class AddressEdit extends Component {
     }else {
       this.message('收货地址暂未完善')
     }
+  }
+
+  goBackPage = (val) => {
+    Taro.navigateBack({
+      delta: val
+    })
   }
 
   message = (title) => {
@@ -113,8 +123,7 @@ class AddressEdit extends Component {
   }
 
   render() {
-    let {user_id} = 'ioobot'
-    console.log("address edit this.state",this.state)
+    let user_id = 'ioobot'
     let {username, telephone, address, province, city, area, region} = this.state
 
     return (
@@ -168,7 +177,7 @@ class AddressEdit extends Component {
             onChange={this.handleChange.bind(this, 'defaultStatus')}
           />
         </AtForm>
-        <View className='address-add' onClick={this.saveAddress.bind(this,user_id)}>保存并使用</View>
+        <View className='address-add' onClick={this.saveAddress.bind(this, user_id)}>保存并使用</View>
       </View>
     )
   }

@@ -18,8 +18,6 @@ class Detail extends Component {
 
   constructor(props) {
     super(props)
-    let cartCount = Taro.getStorageSync('cartCount')
-    console.log("Detail cartCount",cartCount, typeof cartCount)
     this.state = {
       loaded: false,
       selected: {},
