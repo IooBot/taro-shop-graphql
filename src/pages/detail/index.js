@@ -11,7 +11,6 @@ import Footer from './footer'
 import Spec from './spec'
 import './index.scss'
 
-
 class Detail extends Component {
   config = {
     navigationBarTitleText: '商品详情'
@@ -19,30 +18,33 @@ class Detail extends Component {
 
   constructor(props) {
     super(props)
+    let cartCount = Taro.getStorageSync('cartCount')
+    console.log("Detail cartCount",cartCount, typeof cartCount)
     this.state = {
       loaded: false,
       selected: {},
       detailInfo:{},
       detailSpec:[],
-      buttonType: 'add'
+      buttonType: 'add',
+      cartCount: Taro.getStorageSync('cartCount')
     }
     this.id = String(this.$router.params.id)
   }
 
   componentDidMount() {
-    console.log("this.id",this.id,typeof this.id)
-    let detail = findOne({collection:"product",condition:{id: this.id},fields:["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]})
-    let detailSpec = findMany({collection:"specificationStock",condition:{product_id: this.id},fields:["id", "color", "size", "slideImg", "detailImg", "stock", "status"]})
+    console.log("detail product this.id",this.id)
+    let productId = this.id
+    let detail = findOne({collection:"product",condition:{id: productId},fields:["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]})
+    let detailSpec = findMany({collection:"specificationStock",condition:{product_id: productId},fields:["id", "color", "size", "slideImg", "detailImg", "stock", "status"]})
 
     Promise.all([detail, detailSpec]).then((res)=>{
-      console.log('promise data',res)
+      console.log('detail spec data',res)
       this.setState({
         loaded:true,
         detailInfo: res[0],
         detailSpec: res[1]
       });
     })
-    this.setState({ loaded: true })
   }
 
   handleSelect = (selected) => {
@@ -62,7 +64,7 @@ class Detail extends Component {
     })
   }
 
-  onChangeAddOrBuy = (val) => {
+  changeAddOrBuy = (val) => {
     this.setState({
       buttonType:val
     })
@@ -70,15 +72,11 @@ class Detail extends Component {
   }
 
   render () {
-    const { detailInfo, detailSpec, buttonType} = this.state
+    const { detailInfo, detailSpec, buttonType, cartCount} = this.state
     let {img, price} = detailInfo
-    console.log("detailInfo",detailInfo)
-    console.log("detailSpec",detailSpec)
     let sliderImg = detailInfo.img
     let gallery = [detailInfo.img]
     gallery.push(sliderImg)
-
-    console.log("gallery",gallery)
     const height = getWindowHeight(false)
 
     if (!this.state.loaded) {
@@ -86,10 +84,10 @@ class Detail extends Component {
     }
 
     return (
-      <View className='item'>
+      <View className='detail'>
         <ScrollView
           scrollY
-          className='item__wrap'
+          className='detail__wrap'
           style={{ height }}
         >
           <Gallery list={gallery} />
@@ -103,19 +101,22 @@ class Detail extends Component {
           onClose={this.toggleVisible}
         >
           <Spec
-            detailInfo={detailInfo}
-            detailSpec={detailSpec}
             price={price}
             img={img}
+            buttonType={buttonType}
+            detailInfo={detailInfo}
+            detailSpec={detailSpec}
             selected={this.state.selected}
             onSelect={this.handleSelect}
             onClose={this.toggleVisible}
-            buttonType={buttonType}
             onChangeDetailState={this.changeDetailState}
           />
         </Popup>
-        <View className='item__footer'>
-          <Footer onChangeAddOrBuy={this.onChangeAddOrBuy} />
+        <View className='detail__footer'>
+          <Footer
+            cartCount={cartCount}
+            onChangeAddOrBuy={this.changeAddOrBuy}
+          />
         </View>
       </View>
     )

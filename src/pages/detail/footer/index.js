@@ -1,30 +1,28 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
+import { AtBadge } from 'taro-ui'
 import ButtonItem from '../../../components/button'
-// import homeIcon from './assets/home.png'
+import homeIcon from './assets/home.png'
 import serviceIcon from './assets/service.png'
-// import cartIcon from './assets/cart.png'
+import cartIcon from './assets/cart.png'
 import './index.scss'
 
 const NAV_LIST = [{
   key: 'home',
-  // img: homeIcon,
-  img: "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/ship.png",
+  img: homeIcon,
+  // img: "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/ship.png",
   url: '/pages/home/home'
 }, {
   key: 'service',
   img: serviceIcon
 }, {
   key: 'cart',
-  // img: cartIcon,
-  img: "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/cart.png",
+  img: cartIcon,
+  // img: "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/cart.png",
   url: '/pages/cart/cart'
 }]
 
 export default class Footer extends Component {
-  static defaultProps = {
-    onAdd: () => {}
-  }
 
   handleNav = (item) => {
     if (item.key === 'service') {
@@ -32,26 +30,23 @@ export default class Footer extends Component {
         title: '敬请期待',
         icon: 'none'
       })
+    }else {
+      Taro.switchTab({
+        url: `/pages/${item.key}/index`
+      })
     }
   }
 
   handleAdd = () => {
     this.props.onChangeAddOrBuy('add')
-    Taro.showToast({
-      title: '加入购物车',
-      icon: 'none'
-    })
   }
 
   handleBuy = () => {
     this.props.onChangeAddOrBuy('buy')
-    Taro.showToast({
-      title: '购买',
-      icon: 'none'
-    })
   }
 
   render () {
+    let {cartCount} = this.props
     return (
       <View className='item-footer'>
         {NAV_LIST.map(item => (
@@ -60,10 +55,12 @@ export default class Footer extends Component {
             className='item-footer__nav'
             onClick={this.handleNav.bind(this, item)}
           >
-            <Image
-              className='item-footer__nav-img'
-              src={item.img}
-            />
+            <AtBadge value={item.key === 'cart' ? cartCount : ''} maxValue={99}>
+              <Image
+                className='item-footer__nav-img'
+                src={item.img}
+              />
+            </AtBadge>
           </View>
         ))}
         <View className='item-footer__buy' onClick={this.handleBuy}>

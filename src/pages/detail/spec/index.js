@@ -2,11 +2,11 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import classNames from 'classnames'
 import moment from 'moment'
-import './index.scss'
 import InputNumber from '../../../components/input-number'
 import ButtonItem from "../../../components/button"
 import {idGen} from '../../../utils/func'
 import {insert} from "../../../utils/crud"
+import './index.scss'
 
 export default class Spec extends Component {
   static defaultProps = {
@@ -27,13 +27,13 @@ export default class Spec extends Component {
   }
 
   componentDidMount() {
-    this.handleData()
+    // console.log("Spec this.props",this.props)
+    this.handleSpec()
   }
 
-  // 规格表处理
-  handleData = () => {
+  // specificationStock 规格库存表处理，目前按颜色进行分类，更新默认选择的规格
+  handleSpec = () => {
     let {detailSpec} = this.props
-    console.log("handleData detailSpec",detailSpec)
     let flag = true, selectFlag = true
     let specObject = {}, i = 0, specList = []
     let colorObject = {}, j = 0, colorList = [], selectColor = ''
@@ -72,19 +72,20 @@ export default class Spec extends Component {
       selectColor,
       specList,
       colorList
+    },()=>{
+      this.changeColor(this.state.selectColor)
     })
-    console.log('specs specList',specList)
-    console.log('specs colorList',colorList)
+    // console.log("handleSpec specList",specList)
   }
 
+  // 选择颜色
   changeColor = (val) => {
-    console.log("changeColor val",val)
+    // console.log("changeColor val",val)
     let {specList} = this.state
     let colorSpec = specList.filter(item=>item.color === val)[0].spec
-    console.log("changeColor colorSpec",colorSpec)
-
+    // console.log("changeColor colorSpec",colorSpec)
     let specFilter = colorSpec.filter(item=> item.select && item.status > 0)[0]
-    console.log("changeColor specFilter",specFilter)
+    // console.log("changeColor specFilter",specFilter)
 
     this.setState({
       selectColor:val,
@@ -93,18 +94,19 @@ export default class Spec extends Component {
     })
   }
 
-  handleUpdate = (count) => {
+  // 选择数量
+  changeCount = (count) => {
+    // console.log("Spec handleUpdate count",count)
     this.setState({ count })
   }
 
-  // 改变选择
+  // 更新规格选择状态
   changeSelectedStatus=(i)=>{
     this.setState((prevState) => ({
-      colorSpec: prevState.colorSpec.map((item,index)=>{
-        if(index===i){
+      colorSpec: prevState.colorSpec.map((item,index) => {
+        if (index === i){
           item.select=true
-          // console.log('select item',item)
-        }else {
+        } else {
           item.select=false
         }
         return item
@@ -132,10 +134,13 @@ export default class Spec extends Component {
     }
     // console.log('cartContent',cartContent)
 
-    this.onClose()
-    insert({collection:'cart',condition:cartContent,fields:['id']}).then(()=>{
+    this.props.onClose()
+    insert({collection:'userCart',condition:cartContent}).then(()=>{
       // console.log('create_userCart data',data)
-      let cartCount = Taro.getStorageSync('cartCount') + count
+      let preCartCount = parseInt(Taro.getStorageSync('cartCount')) || 0
+      let cartCount = preCartCount + count
+
+      // 购物车数量显示更新
       this.props.onChangeDetailState('cartCount',cartCount)
       Taro.showToast({
         title: '成功添加至购物车',
@@ -178,18 +183,30 @@ export default class Spec extends Component {
       }
     }]
     // console.log('buyNowContent',buyNowContent)
+
     Taro.setStorageSync('buyNowContent',buyNowContent)
     Taro.setStorageSync('totalPrice',totalPrice)
     Taro.setStorageSync('totalCount',this.state.count)
-    this.onClose()
+    this.props.onClose()
     Taro.navigateTo({
       url: `/pages/orders/index?dataType=buyNowContent`
     })
   }
 
-  render() {
+  // 选择确认
+  handleConfirm = () => {
     let user_id = 'ioobot'
-    let {price, img, buttonType} = this.props
+    let {buttonType} = this.props
+
+    if(buttonType === 'add'){
+      this.onCreateUserCart(user_id)
+    }else if(buttonType === 'buy'){
+      this.buyNow()
+    }
+  }
+
+  render() {
+    let {price, img} = this.props
     let {count, selectColor, colorList, colorSpec, specFilter} = this.state
     let specStock =  specFilter.stock || 0
     let selectSize =  specFilter.size
@@ -261,7 +278,7 @@ export default class Spec extends Component {
                 <View className='edit-product-count'>
                   <InputNumber
                     num={count}
-                    onChange={this.handleUpdate}
+                    onChange={this.changeCount}
                   />
                 </View>
               </View>
@@ -272,13 +289,7 @@ export default class Spec extends Component {
           <ButtonItem
             type='primary'
             text='确认'
-            onClick={()=>{
-              if(buttonType === 'add'){
-                this.onCreateUserCart(user_id)
-              }else if(buttonType === 'buy'){
-                this.buyNow()
-              }
-            }}
+            onClick={this.handleConfirm}
           />
         </View>
       </View>
