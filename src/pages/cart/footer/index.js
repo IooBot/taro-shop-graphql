@@ -1,70 +1,60 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Button } from '@tarojs/components'
+import classNames from 'classnames'
 import CheckboxItem from '../../../components/checkbox'
-import ButtonItem from '../../../components/button'
 import './index.scss'
 
 export default class Footer extends Component {
   static defaultProps = {
-    cartInfo: {},
-    onToggle: () => {}
   }
 
-  handleUpdateCheck = () => {
-    const { cartInfo } = this.props
-    const { cartGroupList = [], countCornerMark, selectedCount } = cartInfo
-    const cartList = cartGroupList.slice(1)
-    const payload = { skuList: [] }
-    const isAllChecked = !!selectedCount && parseInt(countCornerMark) === selectedCount
-    const nextChecked = !isAllChecked
-    cartList.forEach((group) => {
-      group.cartItemList.forEach((item) => {
-        payload.skuList.push({
-          skuId: item.skuId,
-          type: item.type,
-          extId: item.extId,
-          cnt: item.cnt,
-          checked: nextChecked,
-          canCheck: true,
-          promId: group.promId,
-          promType: group.promType
-        })
+  changeSelectChecked = () => {
+    this.props.onCheckedAll()
+  }
+
+  handleConfirm = () => {
+    let {selectedCount} = this.props
+    if(selectedCount){
+      this.props.onSettleAccounts()
+    }else {
+      Taro.showToast({
+        title: '请选择商品！',
+        icon: 'none'
       })
-    })
-    this.props.onUpdateCheck(payload)
-  }
-
-  handleOrder = () => {
-    Taro.navigateTo({
-      url: `/pages/orders/index`
-    })
+    }
   }
 
   render () {
-    const { cartInfo } = this.props
+    let {isSelectAll, totalPrice, selectedCount} = this.props
+
     return (
-      <View className='cart-footer'>
-        <View className='cart-footer__select'>
-          <CheckboxItem
-            checked={!!cartInfo.selectedCount}
-            onClick={this.handleUpdateCheck}
+      <View className='footer'>
+        <View className='jiesuan'>
+          <View className='cart-footer__select' onClick={this.changeSelectChecked}>
+            <CheckboxItem
+              checked={isSelectAll}
+            >
+              <Text className='cart-footer__select-txt'>全选</Text>
+            </CheckboxItem>
+          </View>
+          <View className={classNames({
+            'jiesuan-total': true,
+            'jiesuan-disabled': !selectedCount
+          })}
           >
-            <Text className='cart-footer__select-txt'>
-              {!cartInfo.selectedCount ? '全选' : `已选(${cartInfo.selectedCount})`}
+            <Text>合计：</Text>
+            <Text className='jiesuan-total_price'>¥ {parseFloat(totalPrice).toFixed(2)}
             </Text>
-          </CheckboxItem>
-        </View>
-        <View className='cart-footer__amount'>
-          <Text className='cart-footer__amount-txt'>
-            ¥{parseFloat(cartInfo.actualPrice).toFixed(2)}
-          </Text>
-        </View>
-        <View className='cart-footer__btn'>
-          <ButtonItem
-            type='primary'
-            text='下单'
-            onClick={this.handleOrder}
-          />
+          </View>
+          <Button
+            className={classNames({
+              'jiesuan-button': true,
+              'jiesuan-disabled': !selectedCount
+            })}
+            onClick={this.handleConfirm}
+          >
+            <Text>下单({selectedCount})</Text>
+          </Button>
         </View>
       </View>
     )

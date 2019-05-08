@@ -7,37 +7,18 @@ import './index.scss'
 export default class List extends Component {
   static defaultProps = {
     list: [],
-    onUpdate: () => {},
-    onUpdateCheck: () => {}
+    onChangeCount: () => {},
+    onChangeCheckedStatus: () => {}
   }
 
-  getBaseItem = (item) => ({
-    skuId: item.skuId,
-    type: item.type,
-    extId: item.extId,
-    cnt: item.cnt,
-    checked: item.checked,
-    canCheck: true,
-    promId: this.props.promId,
-    promType: this.props.promType
-  })
-
-  handleUpdate = (item, cnt) => {
-    const payload = {
-      skuList: [{ ...this.getBaseItem(item), cnt }]
-    }
-    this.props.onUpdate(payload)
+  // 选择数量
+  changeCount = (index, count) => {
+    this.props.onChangeCount(index, count)
   }
 
-  handleUpdateCheck = (item) => {
-    const payload = {
-      skuList: [{ ...this.getBaseItem(item), checked: !item.checked }]
-    }
-    this.props.onUpdateCheck(payload)
-  }
-
-  handleRemove = () => {
-    // XXX 暂未实现左滑删除
+  handleUpdateCheck = (index) => {
+    console.log("handleUpdateCheck list index",index)
+    this.props.onChangeCheckedStatus(index)
   }
 
   handleClick = (id) => {
@@ -51,14 +32,14 @@ export default class List extends Component {
     console.log("List list",list)
     return (
       <View className='cart-list'>
-        {list.map(item => (
+        {list.map((item,index) => (
           <View
             key={item.id}
             className='cart-list__item'
           >
             <CheckboxItem
               checked={item.checked}
-              onClick={this.handleUpdateCheck.bind(this, item)}
+              onClick={this.handleUpdateCheck.bind(this, index)}
             />
             <Image
               className='cart-list__item-img'
@@ -68,9 +49,7 @@ export default class List extends Component {
             <View className='cart-list__item-info'>
               <View onClick={this.handleClick.bind(this, item.product_id.id)}>
                 <View className='cart-list__item-title'>
-                  {/*{!!item.prefix &&*/}
                   <Text className='cart-list__item-title-tag'>新人专享价</Text>
-                  {/*}*/}
                   <Text className='cart-list__item-title-name' numberOfLines={1}>
                     {item.product_id.name}
                   </Text>
@@ -87,10 +66,10 @@ export default class List extends Component {
                 <Text className='cart-list__item-price'>
                   ¥{item.product_id.price}
                 </Text>
-                <View className='cart-list__item-num' onClick={this.handleClick.bind(this, item.product_id.id)}>
+                <View className='cart-list__item-num'>
                   <InputNumber
                     num={item.count}
-                    onChange={this.handleUpdate.bind(this, item)}
+                    onChange={this.changeCount.bind(this, index)}
                   />
                 </View>
               </View>
