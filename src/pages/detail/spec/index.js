@@ -78,26 +78,30 @@ export default class Spec extends Component {
     // console.log("handleSpec specList",specList)
   }
 
-  // 选择颜色
+  // 选择颜色后更新当前规格选择
   changeColor = (val) => {
     // console.log("changeColor val",val)
     let {specList} = this.state
     let colorSpec = specList.filter(item=>item.color === val)[0].spec
     // console.log("changeColor colorSpec",colorSpec)
-    let specFilter = colorSpec.filter(item=> item.select && item.status > 0)[0]
-    // console.log("changeColor specFilter",specFilter)
 
     this.setState({
       selectColor:val,
-      colorSpec,
-      specFilter
+      colorSpec
+    },()=>{
+      this.changeSize()
     })
   }
 
-  // 选择数量
-  changeCount = (count) => {
-    // console.log("Spec handleUpdate count",count)
-    this.setState({ count })
+  // 选择尺寸后更新当前规格选择
+  changeSize = () => {
+    let {colorSpec} = this.state
+    let specFilter = colorSpec.filter(item=> item.select && item.status > 0)[0]
+    // console.log("select specFilter",specFilter)
+
+    this.setState({
+      specFilter
+    })
   }
 
   // 更新规格选择状态
@@ -111,7 +115,15 @@ export default class Spec extends Component {
         }
         return item
       })
-    }))
+    }),()=>{
+      this.changeSize()
+    })
+  }
+
+  // 选择数量
+  changeCount = (count) => {
+    // console.log("Spec handleUpdate count",count)
+    this.setState({ count })
   }
 
   // 添加至购物袋

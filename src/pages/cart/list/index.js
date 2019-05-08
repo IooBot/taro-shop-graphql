@@ -59,12 +59,18 @@ export default class List extends Component {
                   <Text className='cart-list__item-spec-txt'>
                     {item.specificationStock_id.color}
                   </Text>
+                  <Text className='cart-list__item-spec-txt'>
+                    {item.specificationStock_id.size}
+                  </Text>
                 </View>
               </View>
 
               <View className='cart-list__item-wrap'>
                 <Text className='cart-list__item-price'>
-                  ¥{item.product_id.price}
+                  ￥{(item.product_id.price*item.product_id.discountRate/100).toFixed(2)}
+                </Text>
+                <Text className='cart-list__item-price-origin'>
+                  ￥{(item.product_id.price).toFixed(2)}
                 </Text>
                 <View className='cart-list__item-num'>
                   <InputNumber
