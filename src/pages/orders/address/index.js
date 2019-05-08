@@ -8,8 +8,9 @@ export default class OrdersAddress extends Component {
   }
 
   handleClick = () => {
+    let {dataType} = this.props
     Taro.navigateTo({
-      url: `/pages/address/index?prePage=orders`
+      url: `/pages/address/index?prePage=orders&dataType=${dataType}`
     })
   }
 

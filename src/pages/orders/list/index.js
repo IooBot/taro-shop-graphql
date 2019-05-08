@@ -2,7 +2,6 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import classNames from 'classnames'
 import './index.scss'
-import {findMany} from "../../../utils/crud"
 
 export default class OrdersList extends Component {
   constructor(props) {
@@ -17,20 +16,8 @@ export default class OrdersList extends Component {
   }
 
   componentDidMount() {
-    let user_id = 'ioobot'
-    const fields = [
-      "count",
-      "id",
-      "product_id{id, img, intro, name, price, status, stock, unit, discountRate}",
-      "specificationStock_id{id, color, size, stock, status}"
-    ]
-    findMany({collection:"userCart",condition:{user_id},fields}).then((res)=>{
-      console.log("findMany cartList",res)
-      this.setState({
-        cartList:res
-      });
-      this.handleCartList(res)
-    })
+    let {ordersList} = this.props
+    this.handleCartList(ordersList)
   }
 
   handleCartList = (cartList) => {

@@ -22,8 +22,18 @@ class Orders extends Component {
       totalCount: parseInt(Taro.getStorageSync('totalCount')),
       delivery: ["快递配送"],
       selectAddress: {},
-      remark: ''
+      ordersList:[],
+      remark: '',
+      dataType: this.$router.params.dataType
     }
+  }
+
+  componentWillMount() {
+    let {dataType} = this.state
+    let ordersList = Taro.getStorageSync(dataType)
+    this.setState({
+      ordersList
+    })
   }
 
   componentDidMount() {
@@ -146,16 +156,14 @@ class Orders extends Component {
 
       Promise.all([createOrder, createOrderProduct]).then(()=> {
         // console.log('onSubmitOrderAndProduct data',data)
-        sessionStorage.setItem('payOrder',JSON.stringify(orderContent))
+        Taro.setStorageSync('payOrder',orderContent)
         if(type === 'cartSelected'){
-          let cartCount = JSON.parse(localStorage.getItem("cartCount")) - totalCount
-          localStorage.setItem("cartCount",JSON.stringify(cartCount))
-          localStorage.removeItem("cartList")
+          let cartCount = parseInt(Taro.getStorageSync('cartCount')) - totalCount
+          Taro.setStorageSync('cartCount',cartCount)
+          Taro.removeStorageSync('cartList')
         }
-
-        this.props.history.push({
-          pathname:'/cart/pay',
-          state:{}
+        Taro.navigateTo({
+          url: `/pages/pay/index`
         })
       }).catch((err)=>{
         console.log('submit error',err)
@@ -163,11 +171,10 @@ class Orders extends Component {
     }else {
       console.log('请添加收货地址')
     }
-
   }
 
   render() {
-    let {selectAddress,totalPrice} = this.state
+    let {dataType, selectAddress, totalPrice, ordersList} = this.state
 
     return (
       <View className='orders'>
@@ -177,8 +184,11 @@ class Orders extends Component {
           style={{ height: getWindowHeight() }}
         >
           <View className='orders-content-wrap content-wrap'>
-            <OrdersAddress selectAddress={selectAddress} />
-            <OrdersList />
+            <OrdersAddress
+              dataType={dataType}
+              selectAddress={selectAddress}
+            />
+            <OrdersList ordersList={ordersList} />
             <OrdersDelivery onChangeOrdersState={this.changeOrdersState} />
             <View className='orders__price'>
               <View className='orders__price-wrap'>

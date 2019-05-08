@@ -50,11 +50,12 @@ class Address extends Component {
   changeOrdersAddress = (address) => {
     console.log('address',address)
     Taro.setStorageSync('ordersAddress', address)
+    console.log('changeOrdersAddress',this.$router.params)
 
-    let prePage = this.$router.params.prePage
+    let {prePage, dataType}= this.$router.params
     if(prePage === 'orders') {
       Taro.navigateTo({
-        url: `/pages/orders/index`
+        url: `/pages/orders/index?dataType=${dataType}`
       })
     }
   }
