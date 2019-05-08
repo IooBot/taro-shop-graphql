@@ -14,7 +14,7 @@
   align-items: center;
   width: 60px;
   height: 100%;
-  border: 1px solid #7f7f7f;
+  border: 1px solid #8e8e8e;
   @include hairline(border-width);
   border-left-width: 0;
   border-radius: 0 $border-radius $border-radius 0;
@@ -42,7 +42,7 @@
   align-items: center;
   width: 60px;
   height: 100%;
-  border: 1px solid #7f7f7f;
+  border: 1px solid #8e8e8e;
 
   &-txt {
     color: $text-color;

@@ -1,12 +1,14 @@
 @import "../../../styles/theme.scss";
 
 .cart-empty {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  //margin-top: 20px;
   padding: 140px 0 150px;
-  background: #ffffff;
+  justify-content: center;
+  background-color: $white;
 }
 
 .cart-empty__img {
@@ -15,8 +17,18 @@
 }
 
 .cart-empty__txt {
-  margin-top: -8px;
   color: $text-color-lighter;
   font-size: 28px;
   line-height: 28px;
+  margin: 22px;
+  text-align: center;
+}
+
+.empty-button {
+  width: 220px;
+  color: #fff;
+  background-color: #f44;
+  font-size: 28px;
+  text-align: center;
+  margin-top: 60px;
 }

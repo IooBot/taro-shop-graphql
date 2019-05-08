@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import ButtonItem from '../../components/button'
 import Loading from '../../components/loading'
-import {findMany} from "../../utils/crud"
+import {findMany, remove} from "../../utils/crud"
 import {getWindowHeight} from '../../utils/style'
 import Tip from './tip'
 // import Gift from './gift'
@@ -21,6 +21,7 @@ class Cart extends Component {
     this.state={
       loaded: false,
       login: true,
+      pageType: 'detail',
       cartList:[],
       totalPrice:0,
       isSelectAll:false,
@@ -53,6 +54,12 @@ class Cart extends Component {
         this.sumPrice(false)
       })
     })
+  }
+
+  changeCartPage = () => {
+    this.setState((preState) => ({
+      pageType: preState.pageType === 'detail' ? 'edit' : 'detail'
+    }))
   }
 
   //计算选中总合计金额
@@ -172,8 +179,49 @@ class Cart extends Component {
     })
   }
 
+  // 多选删除
+  delete=()=>{
+    let {cartList, selectedCount} = this.state
+
+    Taro.showModal({
+      title: '',
+      content: `确定要删除这${selectedCount}种商品吗？`,
+      })
+      .then(res =>{
+        if(res.confirm){
+          let deleteList = cartList.filter((item)=> item.checked === true)
+          let cartList1 = cartList.filter((item)=> item.checked === false)
+
+          let deleteIdList = deleteList.map(item => item.id)
+          console.log('delete list',deleteIdList)
+
+          remove({collection:"userCart",condition:{where:{id: {_in: deleteIdList}}}}).then((data)=>{
+            console.log('delete data',data)
+            let num = data.replace(/[^0-9]/ig,"")
+            if(num){
+              Taro.showToast({
+                title: '删除成功',
+                icon: 'none'
+              });
+              setTimeout(() => {
+                Taro.navigateBack();
+              }, 1000);
+
+              let cartCount = parseInt(Taro.getStorageSync('cartCount')) - num
+              Taro.setStorageSync('cartCount',cartCount)
+              this.setState({
+                cartList:cartList1,
+                selectedCount:0,
+                totalPrice:0
+              })
+            }
+          })
+        }
+      })
+  }
+
   render () {
-    let {cartList, totalPrice, selectedCount, isSelectAll} = this.state
+    let {pageType, cartList, totalPrice, selectedCount, isSelectAll} = this.state
     const isEmpty = !cartList.length
     const isShowFooter = !isEmpty
 
@@ -202,37 +250,46 @@ class Cart extends Component {
 
     return (
       <View className='cart'>
-        <ScrollView
-          scrollY
-          className='cart__wrap'
-          style={{ height: getWindowHeight() }}
-        >
-          <Tip />
-          {isEmpty && <Empty />}
+        {isEmpty && <Empty />}
+        {!isEmpty &&
+          <View className='cart__nav'>
+            <View className='cart__nav-left'>购物车</View>
+            <View className='cart__nav-right'  onClick={this.changeCartPage} >
+              {pageType === 'detail' ? "编辑" : "完成"}
+            </View>
+          </View>
+        }
+        {!isEmpty &&
+          <ScrollView
+            scrollY
+            className='cart__wrap'
+            style={{ height: getWindowHeight() }}
+          >
+            <Tip />
 
-          {/*{!isEmpty && <Gift />}*/}
+            {/*{!isEmpty && <Gift />}*/}
 
-          {!isEmpty &&
             <List
               list={cartList}
               onChangeCount={this.changeCount}
               onChangeCheckedStatus={this.changeCheckedStatus}
             />
-          }
 
-          {isShowFooter &&
+            {isShowFooter &&
             <View className='cart__footer--placeholder' />
-          }
-        </ScrollView>
-
+            }
+          </ScrollView>
+        }
         {isShowFooter &&
           <View className='cart__footer'>
             <Footer
+              pageType={pageType}
               isSelectAll={isSelectAll}
               totalPrice={totalPrice}
               selectedCount={selectedCount}
               onCheckedAll={this.checkedAll}
               onSettleAccounts={this.settleAccounts}
+              onDelete={this.delete}
             />
           </View>
         }

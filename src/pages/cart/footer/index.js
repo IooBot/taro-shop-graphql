@@ -6,6 +6,9 @@ import './index.scss'
 
 export default class Footer extends Component {
   static defaultProps = {
+    onCheckedAll: () => {},
+    onSettleAccounts: () => {},
+    onDelete: () => {},
   }
 
   changeSelectChecked = () => {
@@ -13,9 +16,10 @@ export default class Footer extends Component {
   }
 
   handleConfirm = () => {
-    let {selectedCount} = this.props
+    let {selectedCount, pageType} = this.props
+    console.log("footer handleConfirm pageType",pageType)
     if(selectedCount){
-      this.props.onSettleAccounts()
+      pageType === 'detail' ? this.props.onSettleAccounts() : this.props.onDelete()
     }else {
       Taro.showToast({
         title: '请选择商品！',
@@ -25,7 +29,7 @@ export default class Footer extends Component {
   }
 
   render () {
-    let {isSelectAll, totalPrice, selectedCount} = this.props
+    let {isSelectAll, totalPrice, selectedCount, pageType} = this.props
 
     return (
       <View className='footer'>
@@ -37,15 +41,20 @@ export default class Footer extends Component {
               <Text className='cart-footer__select-txt'>全选</Text>
             </CheckboxItem>
           </View>
-          <View className={classNames({
-            'jiesuan-total': true,
-            'jiesuan-disabled': !selectedCount
-          })}
-          >
-            <Text>合计：</Text>
-            <Text className='jiesuan-total_price'>¥ {parseFloat(totalPrice).toFixed(2)}
-            </Text>
-          </View>
+          {
+            pageType === 'detail' ?
+              <View className={classNames({
+                'jiesuan-total': true,
+                'jiesuan-disabled': !selectedCount
+              })}
+              >
+                <Text>合计：</Text>
+                <Text className='jiesuan-total_price'>¥ {parseFloat(totalPrice).toFixed(2)}
+                </Text>
+              </View>
+              :
+              <View className='jiesuan-total' />
+          }
           <Button
             className={classNames({
               'jiesuan-button': true,
@@ -53,7 +62,7 @@ export default class Footer extends Component {
             })}
             onClick={this.handleConfirm}
           >
-            <Text>下单({selectedCount})</Text>
+            <Text>{pageType === 'detail' ? '下单' : '删除' }({selectedCount})</Text>
           </Button>
         </View>
       </View>

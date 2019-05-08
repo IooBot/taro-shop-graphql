@@ -66,12 +66,14 @@ export default class List extends Component {
               </View>
 
               <View className='cart-list__item-wrap'>
-                <Text className='cart-list__item-price'>
-                  ￥{(item.product_id.price*item.product_id.discountRate/100).toFixed(2)}
-                </Text>
-                <Text className='cart-list__item-price-origin'>
-                  ￥{(item.product_id.price).toFixed(2)}
-                </Text>
+                <View>
+                  <Text className='cart-list__item-price'>
+                    ￥{(item.product_id.price*item.product_id.discountRate/100).toFixed(2)}
+                  </Text>
+                  <Text className='cart-list__item-price-origin'>
+                    ￥{(item.product_id.price).toFixed(2)}
+                  </Text>
+                </View>
                 <View className='cart-list__item-num'>
                   <InputNumber
                     num={item.count}

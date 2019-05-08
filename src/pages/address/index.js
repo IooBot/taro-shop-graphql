@@ -63,8 +63,8 @@ class Address extends Component {
   deleteAddress = (deleteId) => {
     console.log("deleteId",deleteId)
     Taro.showModal({
-        title: '',
-        content: '确定要删除这个收货地址吗？',
+      title: '',
+      content: '确定要删除这个收货地址吗？',
       })
       .then(res =>{
         if(res.confirm){
