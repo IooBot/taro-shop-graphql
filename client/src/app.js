@@ -62,10 +62,14 @@ class App extends Component {
         text: "我"
       }
       ]
-    }
+    },
+    cloud: true
   }
 
-  componentDidMount() {
+  componentDidMount () {
+    if (process.env.TARO_ENV === 'weapp') {
+      Taro.cloud.init()
+    }
   }
 
   componentDidShow () {}

@@ -4,6 +4,7 @@ import * as QL from 'graphql-sync-multi-platform/graphql_cache.core'
 import Logo from '../../components/logo'
 import Loading from '../../components/loading'
 import { getWindowHeight } from '../../utils/style'
+import {setGlobalData} from "../../utils/global_data"
 import Banner from './banner'
 import Recommend from './recommend'
 import Category from './category'
@@ -41,7 +42,22 @@ class Home extends Component {
     // });
     this.getGoodsInfo()
     this.auth()
+    this.getLogin()
   }
+
+  getLogin = () => {
+    Taro.cloud
+      .callFunction({
+        name: "login",
+        data: {}
+      })
+      .then(res => {
+        console.log("getLogin res",res)
+        let openid = res.result.openid
+        setGlobalData('openid', openid)
+      })
+  }
+
 
   auth =() =>{
     Taro.login({

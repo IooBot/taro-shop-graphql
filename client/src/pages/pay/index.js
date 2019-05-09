@@ -6,6 +6,7 @@ import {getCookie} from "../../utils/cookie"
 import {getIsWechatBrowser} from "../../utils/func"
 import CheckboxItem from "../../components/checkbox"
 import './index.scss'
+import {getGlobalData} from "../../utils/global_data"
 
 let clicktag = 1;  //微信发起支付点击标志
 class Pay extends Component {
@@ -84,7 +85,8 @@ class Pay extends Component {
     let isWEAPP = Taro.getEnv()
     if (clicktag === 1 && isWEAPP === 'WEAPP') {
       clicktag = 0   //进行标志，防止多次点击
-      let openid = getCookie('openid')
+      let openid = getGlobalData('openid')
+      console.log("getBridgeReady openid",openid)
 
       let $this = this
       Taro.request({
