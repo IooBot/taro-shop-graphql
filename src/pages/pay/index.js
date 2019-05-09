@@ -43,8 +43,15 @@ class Pay extends Component {
 
   // prepay_id微信生成的预支付会话标识，用于后续接口调用中使用，该值有效期为2小时
   jsApiPay = (args, id) => {
-    // console.log('jsApiPay params', args);
+    console.log('jsApiPay params', args);
     let $this = this
+    // Taro.requestPayment({
+    //   'timeStamp': 1,
+    //   'nonceStr': 1,
+    //   'package': 1,
+    //   'signType': 1,
+    //   'paySign': 1,
+    // })
     Taro.requestPayment(args).then((res)=>{
       // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回 ok，但并不保证它绝对可靠。
       if (res.err_msg === "get_brand_wcpay_request:ok") {
@@ -56,9 +63,9 @@ class Pay extends Component {
           orderStatus: '1',
           updatedAt
         }
-        Taro.navigateTo({
-          url: `/pages/my/index`
-        })
+        // Taro.navigateTo({
+        //   url: `/pages/my/index`
+        // })
       }
       else {
         if (res.err_msg === "get_brand_wcpay_request:cancel") {
@@ -73,9 +80,9 @@ class Pay extends Component {
   }
 
   getBridgeReady = (id, needPay) => {
-    // console.log('getBridgeReady params',id,needPay)
-    let isWechat = getIsWechatBrowser()
-    if (clicktag === 1 && isWechat) {
+    console.log('getBridgeReady params',id,needPay)
+    let isWEAPP = Taro.getEnv()
+    if (clicktag === 1 && isWEAPP === 'WEAPP') {
       clicktag = 0   //进行标志，防止多次点击
       let openid = getCookie('openid')
 

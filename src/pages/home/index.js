@@ -39,7 +39,21 @@ class Home extends Component {
     // this.setState({
     //   loaded:true,
     // });
-    this.getGoodsInfo();
+    this.getGoodsInfo()
+    this.auth()
+  }
+
+  auth =() =>{
+    Taro.login({
+      success(res) {
+        if (res.code) {
+          // 发起网络请求
+          console.log("auth res",res)
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    })
   }
 
   getGoodsInfo = () => {
