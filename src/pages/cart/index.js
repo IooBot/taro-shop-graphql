@@ -29,7 +29,7 @@ class Cart extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidShow() {
     this.getCartData()
   }
 
@@ -43,15 +43,13 @@ class Cart extends Component {
       "specificationStock_id{id, color, size, stock, status}"
     ]
     findMany({collection:"userCart",condition:{user_id},fields}).then((res)=>{
-      console.log("cartList",res)
+      console.log(`cartList`,res)
       res.forEach((item)=>{
         item.checked = false
       })
       this.setState({
         loaded:true,
         cartList:res
-      },()=>{
-        this.sumPrice(false)
       })
     })
   }
@@ -193,7 +191,7 @@ class Cart extends Component {
           let cartList1 = cartList.filter((item)=> item.checked === false)
 
           let deleteIdList = deleteList.map(item => item.id)
-          console.log('delete list',deleteIdList)
+          // console.log('delete list',deleteIdList)
 
           remove({collection:"userCart",condition:{where:{id: {_in: deleteIdList}}}}).then((data)=>{
             console.log('delete data',data)

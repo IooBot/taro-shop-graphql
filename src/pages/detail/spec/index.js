@@ -198,7 +198,7 @@ export default class Spec extends Component {
 
     Taro.setStorageSync('buyNowContent',buyNowContent)
     Taro.setStorageSync('totalPrice',totalPrice)
-    Taro.setStorageSync('totalCount',this.state.count)
+    Taro.setStorageSync('totalCount',count)
     this.props.onClose()
     Taro.navigateTo({
       url: `/pages/orders/index?dataType=buyNowContent`

@@ -1,11 +1,11 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
+import { View, Text, Image, Button } from '@tarojs/components'
+import classNames from 'classnames'
 import moment from 'moment'
 import {getCookie} from "../../utils/cookie"
-import './index.scss'
 import {getIsWechatBrowser} from "../../utils/func"
 import CheckboxItem from "../../components/checkbox"
-import ButtonItem from "../../components/button"
+import './index.scss'
 
 let clicktag = 1;  //微信发起支付点击标志
 class Pay extends Component {
@@ -17,7 +17,7 @@ class Pay extends Component {
     super(props)
     this.state = {
       checked: true,
-      payOrder: {id:'1',orderTotalPay:100}
+      payOrder: Taro.getStorageSync('payOrder')
     }
   }
 
@@ -28,16 +28,16 @@ class Pay extends Component {
     });
   }
 
-  changeCheckedStatus = (e) => {
-    this.setState({
-      checked: e.target.checked
-    })
+  changeCheckedStatus = () => {
+    this.setState((preState)=>({
+      checked: !preState.checked
+    }))
   }
 
   pay = () => {
     this.message('支付成功')
     Taro.navigateTo({
-      url: `/pages/my/index`
+      url: `/pages/order/index`
     })
   }
 
@@ -107,9 +107,19 @@ class Pay extends Component {
     }
   }
 
+  handleConfirm = () => {
+    let {checked, payOrder} = this.state
+    // console.log("pay payOrder",payOrder)
+    let {id, orderTotalPay} = payOrder
+    if (checked) {
+      this.getBridgeReady(id, orderTotalPay)
+    }
+  }
+
   render() {
     let {checked, payOrder} = this.state
-    let {id, orderTotalPay} = payOrder
+    // console.log("pay payOrder",payOrder)
+    let {orderTotalPay} = payOrder
 
     return (
       <View className='pay'>
@@ -135,15 +145,15 @@ class Pay extends Component {
           </View>
         </View>
         <View className='pay__footer'>
-          <ButtonItem
-            type='primary'
-            text='确认支付'
-            onClick={() => {
-              if (checked) {
-                this.getBridgeReady(id, orderTotalPay)
-              }
-            }}
-          />
+          <Button
+            className={classNames({
+              'confirm-button': true,
+              'pay-disabled': !checked
+            })}
+            onClick={this.handleConfirm}
+          >
+            <Text>确认支付</Text>
+          </Button>
         </View>
       </View>
     )

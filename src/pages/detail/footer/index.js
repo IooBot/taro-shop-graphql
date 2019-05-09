@@ -55,12 +55,20 @@ export default class Footer extends Component {
             className='item-footer__nav'
             onClick={this.handleNav.bind(this, item)}
           >
-            <AtBadge value={item.key === 'cart' ? cartCount : ''} maxValue={99}>
-              <Image
-                className='item-footer__nav-img'
-                src={item.img}
-              />
-            </AtBadge>
+            {
+              cartCount ?
+                <AtBadge value={item.key === 'cart' ? cartCount : ''} maxValue={99}>
+                  <Image
+                    className='item-footer__nav-img'
+                    src={item.img}
+                  />
+                </AtBadge>
+                :
+                <Image
+                  className='item-footer__nav-img'
+                  src={item.img}
+                />
+            }
           </View>
         ))}
         <View className='item-footer__buy' onClick={this.handleBuy}>

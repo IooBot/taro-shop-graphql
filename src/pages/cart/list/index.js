@@ -17,7 +17,6 @@ export default class List extends Component {
   }
 
   handleUpdateCheck = (index) => {
-    console.log("handleUpdateCheck list index",index)
     this.props.onChangeCheckedStatus(index)
   }
 
@@ -29,7 +28,7 @@ export default class List extends Component {
 
   render () {
     const { list } = this.props
-    console.log("List list",list)
+    // console.log("List list",list)
     return (
       <View className='cart-list'>
         {list.map((item,index) => (

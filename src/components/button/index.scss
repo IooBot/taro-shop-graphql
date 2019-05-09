@@ -21,7 +21,9 @@
   }
 
   &--disabled {
-    background: $disabled-color;
+    background: $primary-color;
+    //background: $disabled-color;
+    //opacity: 0.5;
   }
 }
 
