@@ -43,23 +43,23 @@ const toolsIcon = [
   }
 ]
 
-const shopIcon = [
-  {
-    image: 'https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/shop.png',
-    value: '店铺展示',
-    id: 'shop'
-  },
-  {
-    image: 'https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/goods.png',
-    value: '商品管理',
-    id: 'goods'
-  },
-  {
-    image: 'https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/order.png',
-    value: '订单管理',
-    id: 'orders'
-  }
-];
+// const shopIcon = [
+//   {
+//     image: 'https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/shop.png',
+//     value: '店铺展示',
+//     id: 'shop'
+//   },
+//   {
+//     image: 'https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/goods.png',
+//     value: '商品管理',
+//     id: 'goods'
+//   },
+//   {
+//     image: 'https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/order.png',
+//     value: '订单管理',
+//     id: 'orders'
+//   }
+// ];
 
 class All extends Component {
   constructor(props) {
@@ -106,7 +106,7 @@ class All extends Component {
         <Loading />
       )
     }
-    let user_data = this.state.user_data
+    // let user_data = this.state.user_data
     return (
       <View className='user'>
         <ScrollView
@@ -114,9 +114,13 @@ class All extends Component {
           className='cart__wrap'
           style={{ height: getWindowHeight() }}
         >
-          <View className='avatar-area' onClick={()=>this.navigateTo('/my/profile')}>
-            <View className='avatar' />
-            <View className='nickname'>{user_data.username}</View>
+          <View className='user-info'>
+            <View className='avatar'>
+              <open-data type='userAvatarUrl'></open-data>
+            </View>
+            <View className='nickname'>
+              <open-data type='userNickName' lang='zh_CN'></open-data>
+            </View>
           </View>
 
           <View className='my-card order-card'>
@@ -153,20 +157,20 @@ class All extends Component {
             </View>
           </View>
 
-          <View className='my-card member-card'>
-            <View className='card-title'>
-              商家入口
-            </View>
-            <View className='card-icons'>
-              <AtGrid data={shopIcon}
-                columnNum={4}
-                hasBorder={false}
-                onClick={(shop) => {
-                  this.navigateTo('/manage-shop/index','page',shop.id)
-                }}
-              />
-            </View>
-          </View>
+          {/*<View className='my-card member-card'>*/}
+            {/*<View className='card-title'>*/}
+              {/*商家入口*/}
+            {/*</View>*/}
+            {/*<View className='card-icons'>*/}
+              {/*<AtGrid data={shopIcon}*/}
+                {/*columnNum={4}*/}
+                {/*hasBorder={false}*/}
+                {/*onClick={(shop) => {*/}
+                  {/*this.navigateTo('/manage-shop/index','page',shop.id)*/}
+                {/*}}*/}
+              {/*/>*/}
+            {/*</View>*/}
+          {/*</View>*/}
           <Logo />
         </ScrollView>
       </View>

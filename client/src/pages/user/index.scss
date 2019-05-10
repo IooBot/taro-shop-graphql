@@ -6,7 +6,7 @@
   background: $background-color;
 }
 
-.avatar-area {
+.user-info {
   height: 300px;
   background-image: linear-gradient(to top, #ffdcd2 0%, #ffdbd1 1%, #fd898c 100%);
   position: relative;
@@ -23,6 +23,8 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  border: 2px solid #fff;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .nickname {

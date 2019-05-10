@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text, ScrollView } from '@tarojs/components'
 import * as QL from 'graphql-sync-multi-platform/graphql_cache.core'
+import moment from 'moment'
 import Logo from '../../components/logo'
 import Loading from '../../components/loading'
 import { getWindowHeight } from '../../utils/style'
@@ -10,7 +11,9 @@ import Recommend from './recommend'
 import Category from './category'
 
 import './index.scss'
-import {graphqlEndpoint} from "../../config";
+import {graphqlEndpoint, authUrl} from "../../config";
+import {findMany, insert} from "../../utils/crud"
+import {idGen} from "../../utils/func"
 // graphql
 QL.init(graphqlEndpoint, Taro.request);
 
@@ -55,21 +58,71 @@ class Home extends Component {
         console.log("getLogin res",res)
         let openid = res.result.openid
         setGlobalData('openid', openid)
+        Taro.getSetting().then((res1)=>{
+          console.log("getSetting res",res1)
+        })
       })
   }
 
 
   auth =() =>{
+    let _this = this
     Taro.login({
       success(res) {
         if (res.code) {
           // 发起网络请求
-          console.log("auth res",res)
+          console.log("auth code",res)
+          Taro.request({
+              url: authUrl,
+              method:"POST",
+              data: {
+                code:res.code
+              },
+              header: {
+                'content-type': 'application/json'
+              }
+            })
+            .then((res1) => {
+              console.log('auth res',res1)
+              let openid = res1.data.openid
+              _this.createWxUser(openid)
+            })
+            .catch((error) => {
+              console.log('auth error', error)
+            })
         } else {
           console.log('登录失败！' + res.errMsg)
         }
       }
     })
+  }
+
+  createWxUser = (openid) => {
+    findMany({collection:'user',condition:{openid},fields:['id']})
+      .then(data => {
+        console.log('find user data', data)
+        if (data.length) {
+          setGlobalData('user_id', data)
+        } else {
+          let createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
+          let id = idGen('user')
+          const userContent = {
+            email: "",
+            updatedAt: "",
+            password: "",
+            telephone: "",
+            username: "",
+            createdAt,
+            openid,
+            id,
+            userData_id: ""
+          }
+          insert({collection: 'user',condition: userContent}).then((res)=>{
+            console.log("createWxUser res",res)
+            setGlobalData('user_id', data)
+          })
+        }
+      })
   }
 
   getGoodsInfo = () => {

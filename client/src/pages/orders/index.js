@@ -151,7 +151,7 @@ class Orders extends Component {
         console.log(`orderProduct${index}`,orderProduct)
 
         return insert({collection:'orderProduct',condition:orderProduct}).then((data)=>{
-          // console.log('ok data',index,data)
+          console.log('ok data',index,data)
           return data.data
         })
       })

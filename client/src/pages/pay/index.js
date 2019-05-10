@@ -2,11 +2,10 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
 import classNames from 'classnames'
 import moment from 'moment'
-import {getCookie} from "../../utils/cookie"
-import {getIsWechatBrowser} from "../../utils/func"
 import CheckboxItem from "../../components/checkbox"
 import './index.scss'
 import {getGlobalData} from "../../utils/global_data"
+import {payUrl} from '../../config'
 
 let clicktag = 1;  //微信发起支付点击标志
 class Pay extends Component {
@@ -90,7 +89,7 @@ class Pay extends Component {
 
       let $this = this
       Taro.request({
-        url: '/payinfo',
+        url: payUrl,
         data: {
           needPay: parseInt(needPay * 100, 10),
           openid,
@@ -101,8 +100,8 @@ class Pay extends Component {
         }
         })
         .then((res) => {
-          // console.log('onBridgeReady res',res)
-          $this.jsApiPay(res.data, id)
+          console.log('onBridgeReady res',res)
+          // $this.jsApiPay(res.data, id)
           setTimeout(() => {
             clicktag = 1
           }, 5000)
