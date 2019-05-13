@@ -45,18 +45,13 @@ class Pay extends Component {
   jsApiPay = (args, id) => {
     console.log('jsApiPay params', args);
     let $this = this
-    // Taro.requestPayment({
-    //   'timeStamp': 1,
-    //   'nonceStr': 1,
-    //   'package': 1,
-    //   'signType': 1,
-    //   'paySign': 1,
-    // })
     Taro.requestPayment(args).then((res)=>{
+      console.log("requestPayment res",res)
       // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回 ok，但并不保证它绝对可靠。
-      if (res.err_msg === "get_brand_wcpay_request:ok") {
+      if (res.errMsg === "requestPayment:ok") {
         // 成功完成支付
         $this.message('支付成功，等待发货')
+        // 更新订单状态
         let updatedAt = moment().format('YYYY-MM-DD HH:mm:ss')
         const updateContent = {
           id,
@@ -67,16 +62,15 @@ class Pay extends Component {
         //   url: `/pages/my/index`
         // })
       }
-      else {
-        if (res.err_msg === "get_brand_wcpay_request:cancel") {
+    })
+      .catch((err)=>{
+        console.log("jsApiPay err",err)
+        if (err.errMsg === "requestPayment:fail cancel") {
           $this.message('您的支付已经取消')
-        } else if (res.err_msg === "get_brand_wcpay_request:fail") {
-          $this.message('支付失败，请稍后重试')
         } else {
           $this.message('支付失败，请稍后重试')
         }
-      }
-    })
+      })
   }
 
   getBridgeReady = (id, needPay) => {
@@ -85,7 +79,7 @@ class Pay extends Component {
     if (clicktag === 1 && isWEAPP === 'WEAPP') {
       clicktag = 0   //进行标志，防止多次点击
       let openid = getGlobalData('openid')
-      console.log("getBridgeReady openid",openid)
+      // console.log("getBridgeReady openid",openid)
 
       let $this = this
       Taro.request({
@@ -101,7 +95,7 @@ class Pay extends Component {
         })
         .then((res) => {
           console.log('onBridgeReady res',res)
-          // $this.jsApiPay(res.data, id)
+          $this.jsApiPay(res.data, id)
           setTimeout(() => {
             clicktag = 1
           }, 5000)
@@ -111,7 +105,7 @@ class Pay extends Component {
           console.log('onBridgeReady error', error)
         })
     } else {
-      this.message('当前只支持在微信中打开')
+      this.message('当前只支持小程序支付')
     }
   }
 
