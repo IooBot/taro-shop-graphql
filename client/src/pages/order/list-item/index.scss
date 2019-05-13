@@ -1,0 +1,23 @@
+.order-product {
+  height: 200px;
+  background-color: #f5f5f9;
+  display: flex;
+  padding: 20px 5px;
+}
+
+.order-product__content {
+  display: flex;
+  flex-direction: row;
+
+  &-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 180px;
+    margin-left: 10px;
+    height: 100%;
+  }
+
+  &-name {
+    padding-left: 20px;
+  }
+}

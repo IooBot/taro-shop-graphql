@@ -1,0 +1,48 @@
+@import "../../../styles/theme.scss";
+
+.order-footer {
+
+  &-txt {
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.order-card-button-group {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-top: 2px solid #F3F3F3;
+  height: 90px;
+  line-height: 90px;
+  padding: 10px 20px 10px 0;
+}
+
+.order-footer__button {
+  padding: 10px;
+}
+
+.order-button {
+  border-radius: 100px;
+  background-color: white;
+  height: 56px;
+  line-height: 56px;
+  border: 2px solid #F3F3F3 !important;
+}
+
+.pay-button {
+  border: 2px solid #f44 !important;
+  color: #f44;
+}
+
+.cancel-button {
+  border: 2px solid #f44 !important;
+  color: #f44;
+  width: 85px;
+}
+
+.unbox-button {
+  width: 170px;
+}

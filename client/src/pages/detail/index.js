@@ -69,14 +69,14 @@ class Detail extends Component {
   }
 
   render () {
-    const { detailInfo, detailSpec, buttonType, cartCount} = this.state
+    const {loaded, detailInfo, detailSpec, buttonType, cartCount} = this.state
     let {img, price} = detailInfo
     let sliderImg = detailInfo.img
     let gallery = [detailInfo.img]
     gallery.push(sliderImg)
     const height = getWindowHeight(false)
 
-    if (!this.state.loaded) {
+    if (!loaded) {
       return <Loading />
     }
 

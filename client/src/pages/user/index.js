@@ -125,7 +125,7 @@ class All extends Component {
 
           <View className='my-card order-card'>
             <View className='card-title'>
-              电商订单
+              我的订单
             </View>
             <View className='card-icons'>
               <AtGrid data={orderIcon}

@@ -1,8 +1,13 @@
-import Taro, { Component } from '@tarojs/taro';
-import { View } from '@tarojs/components';
-import './index.scss';
+import Taro, { Component } from '@tarojs/taro'
+import { View } from '@tarojs/components'
+import OrderList from "./list"
+import './index.scss'
 
 class Order extends Component {
+  config = {
+    navigationBarTitleText: '我的订单',
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -28,21 +33,19 @@ class Order extends Component {
     };
   }
 
-  config = {
-    navigationBarTitleText: '我的订单',
-  };
-
   componentWillMount = () => {
+    console.log("order type",this.$router.params.type)
     this.setState({
       activeTypeIndex: this.$router.params.type,
-    });
-  };
+    })
+  }
 
   toggleActiveType = e => {
+    console.log("toggleActiveType e",e)
     this.setState({
       activeTypeIndex: e.currentTarget.dataset.type,
-    });
-  };
+    })
+  }
 
   render() {
     const { orderType, activeTypeIndex } = this.state;
@@ -60,9 +63,9 @@ class Order extends Component {
             </View>
           ))}
         </View>
-        <View className='empty' />
+        <OrderList typeIndex={activeTypeIndex} />
       </View>
-    );
+    )
   }
 }
 
