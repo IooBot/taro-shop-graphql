@@ -6,43 +6,35 @@ import Logo from '../../components/logo'
 import Loading from '../../components/loading'
 import { getWindowHeight } from '../../utils/style'
 import {setGlobalData} from "../../utils/global_data"
+import {findMany, insert} from "../../utils/crud"
+import {idGen} from "../../utils/func"
+import {graphqlEndpoint, authUrl} from "../../config";
 import Banner from './banner'
 import Recommend from './recommend'
 import Category from './category'
-
 import './index.scss'
-import {graphqlEndpoint, authUrl} from "../../config";
-import {findMany, insert} from "../../utils/crud"
-import {idGen} from "../../utils/func"
+
 // graphql
 QL.init(graphqlEndpoint, Taro.request);
 
 class Home extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      swiperList: [
-        'https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/ecslider1.jpg',
-        'https://zos.alipayobjects.com/rmsportal/AiyWuByWklrrUDlFignR.png',
-        'https://zos.alipayobjects.com/rmsportal/TekJlZRVCjLFexlOCuWn.png',
-        // 'https://green-1258802564.cos.ap-beijing.myqcloud.com/shop.jpg',
-        'https://zos.alipayobjects.com/rmsportal/IJOtIlfsYdTyaDTRVrLI.png'
-      ],
-      loaded: false,
-      // category:[],
-      recommend:[],
-      hasMore: false
-    }
-  }
-
   config = {
     navigationBarTitleText: '服装商城'
   }
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      swiperList: [],
+      loaded: false,
+      category:[],
+      recommend:[],
+      hasMore: false,
+    }
+  }
+
   componentDidMount() {
-    // this.setState({
-    //   loaded:true,
-    // });
+    this.getSlideShow()
     this.getGoodsInfo()
     this.auth()
     this.getLogin()
@@ -125,6 +117,21 @@ class Home extends Component {
       })
   }
 
+  getSlideShow = () => {
+    findMany({collection:"slideshow",fields:["id","img"]}).then((res)=>{
+      // console.log("getSlideShow res",res)
+      let swiperList = []
+      res.forEach((item,index)=>{
+         swiperList.push(item.img)
+        if(index === res.length -1){
+          this.setState({
+            swiperList
+          })
+        }
+      })
+    })
+  }
+
   getGoodsInfo = () => {
     const categoryFilter = {
       "status": "1",
@@ -169,6 +176,7 @@ class Home extends Component {
     }
     const { swiperList, category, recommend } = this.state
     console.log('recommend',recommend)
+    console.log('swiperList',swiperList)
     return (
       <View className='home'>
         <ScrollView

@@ -75,7 +75,9 @@ export default class Spec extends Component {
     },()=>{
       this.changeColor(this.state.selectColor)
     })
+    // console.log("handleSpec selectColor",selectColor)
     // console.log("handleSpec specList",specList)
+    // console.log("handleSpec colorList",colorList)
   }
 
   // 选择颜色后更新当前规格选择
@@ -233,7 +235,7 @@ export default class Spec extends Component {
               </View>
               <View className='mid'>
                 <View className='goods_price'> ￥ {price}</View>
-                <View className='selected-type'>已选择： {selectColor} / {selectSize}</View>
+                <View className='selected-type'>已选择： {selectColor ? `${selectColor}+/` : ''}  {selectSize}</View>
               </View>
               <View className='right'>库存
                 {specStock}
@@ -242,47 +244,53 @@ export default class Spec extends Component {
             <View className='scroll-body'>
               <View className='goods_type'>
                 <View className='ul'>
-                  <View className='li'>
-                    <View className='type-title'>颜色</View>
-                    <View className='dl'>
-                      {
-                        colorList.map((spec1)=>(
-                          <View
-                            className={classNames({
-                              'dd':true,
-                              'spec-red': spec1.color === selectColor
-                            })}
-                            key={'color'+spec1.id}
-                            onClick={this.changeColor.bind(this,spec1.color)}
-                          >
-                            {spec1.color}
-                          </View>
-                        ))
-                      }
-                    </View>
-                  </View>
-                  <View className='li'>
-                    <View className='type-title'>规格</View>
-                    <View className='dl'>
-                      {
-                        colorSpec.map((item,index)=>(
-                          <View
-                            className={classNames({
-                              'dd':true,
-                              'spec-gray': item.status < 1,
-                              'spec-red': item.status > 0 && item.select
-                            })}
-                            key={'spec'+item.id}
-                            onClick={()=>{
-                              if(item.status > 0)  this.changeSelectedStatus(index)
-                            }}
-                          >
-                            {item.size}
-                          </View>
-                        ))
-                      }
-                    </View>
-                  </View>
+                  {
+                    selectColor ?
+                      <View className='li'>
+                        <View className='type-title'>颜色</View>
+                        <View className='dl'>
+                          {
+                            colorList.map((spec1)=>(
+                              <View
+                                className={classNames({
+                                  'dd':true,
+                                  'spec-red': spec1.color === selectColor
+                                })}
+                                key={'color'+spec1.id}
+                                onClick={this.changeColor.bind(this,spec1.color)}
+                              >
+                                {spec1.color}
+                              </View>
+                            ))
+                          }
+                        </View>
+                      </View>:''
+                  }
+                  {
+                    colorSpec.length ?
+                      <View className='li'>
+                        <View className='type-title'>规格</View>
+                        <View className='dl'>
+                          {
+                            colorSpec.map((item,index)=>(
+                              <View
+                                className={classNames({
+                                  'dd':true,
+                                  'spec-gray': item.status < 1,
+                                  'spec-red': item.status > 0 && item.select
+                                })}
+                                key={'spec'+item.id}
+                                onClick={()=>{
+                                  if(item.status > 0)  this.changeSelectedStatus(index)
+                                }}
+                              >
+                                {item.size}
+                              </View>
+                            ))
+                          }
+                        </View>
+                      </View>:''
+                  }
                 </View>
               </View>
               <View className='edit-product'>

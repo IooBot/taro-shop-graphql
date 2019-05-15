@@ -4,9 +4,10 @@
 const baseUrl = 'https://ecxcx.ioobot.cn'
 
 // graphql url
+const graphqlEndpoint = 'http://localhost:9000/graphql'     // enhance server mongodb
 // const graphqlEndpoint = 'http://ecommerce.ioobot.cn/graphql'     // enhance server mongodb
 // const graphqlEndpoint = 'http://ecenhance.ioobot.cn/graphql'      // fc mongodb
-const graphqlEndpoint = baseUrl+'/graphql'      // new schema server mongodb
+// const graphqlEndpoint = baseUrl+'/graphql'      // new schema server mongodb
 
 const storeFile = 'http://deploy.ioobot.cn/api/store-file'
 
