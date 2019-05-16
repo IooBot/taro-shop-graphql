@@ -16,12 +16,11 @@ class Address extends Component {
     super(props)
     this.state = {
       loaded:false,
-      shoppingAddress:[],
-      defaultAddress: {}
+      shoppingAddress:[]
     }
   }
 
-  componentDidMount() {
+  componentDidShow() {
     this.getAddressData()
   }
 
@@ -32,8 +31,7 @@ class Address extends Component {
       // console.log('address userAddressData',res)
       this.setState({
         loaded: true,
-        shoppingAddress: res,
-        defaultAddress: res.find(data => data.default === 1) || ''
+        shoppingAddress: res
       });
     })
   }
@@ -75,10 +73,8 @@ class Address extends Component {
               Taro.showToast({
                 title: '删除成功',
                 icon: 'none'
-              });
-              setTimeout(() => {
-                Taro.navigateBack();
-              }, 1000);
+              })
+              this.getAddressData()
             }
           })
         }
@@ -86,9 +82,9 @@ class Address extends Component {
   }
 
   render() {
-    let {shoppingAddress, defaultAddress} = this.state
+    let {shoppingAddress} = this.state
     // console.log("shoppingAddress",shoppingAddress)
-    // console.log("defaultAddress",defaultAddress,defaultAddress.length)
+
     if (!this.state.loaded) {
       return (
         <Loading />

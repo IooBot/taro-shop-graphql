@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Button } from '@tarojs/components'
 import './index.scss'
 import {remove} from "../../../utils/crud"
+import {setGlobalData} from "../../../utils/global_data"
 
 export default class OrderFooter extends Component {
   static defaultProps = {
@@ -25,7 +26,7 @@ export default class OrderFooter extends Component {
   payOrder = () => {
     let {order} = this.props
     // console.log("order payOrder order",order)
-    Taro.setStorageSync('payOrder',order)
+    setGlobalData('payOrder',order)
     Taro.navigateTo({
       url: `/pages/pay/index`
     })

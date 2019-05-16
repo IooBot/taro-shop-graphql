@@ -1,10 +1,11 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, ScrollView } from '@tarojs/components'
+import { AtToast } from "taro-ui"
 import moment from 'moment'
 import {getWindowHeight} from "../../utils/style"
 import {findMany, insert, remove} from "../../utils/crud"
 import {idGen} from "../../utils/func"
-import {getGlobalData} from "../../utils/global_data"
+import {getGlobalData, setGlobalData} from "../../utils/global_data"
 import OrdersAddress from "./address"
 import OrdersList from "./list"
 import OrdersDelivery from "./delivery"
@@ -25,7 +26,8 @@ class Orders extends Component {
       selectAddress: {},
       ordersList:[],
       remark: '',
-      dataType: this.$router.params.dataType
+      dataType: this.$router.params.dataType,
+      createOrderStatus: false
     }
   }
 
@@ -68,6 +70,7 @@ class Orders extends Component {
   }
 
   onSubmitOrderAndProduct = () => {
+    this.changeOrdersState('createOrderStatus', true)
     let user_id = getGlobalData("user_id")
     let ordersAddress = Taro.getStorageSync('ordersAddress')
     // console.log("onSubmitOrderAndProduct ordersAddress",ordersAddress)
@@ -161,7 +164,11 @@ class Orders extends Component {
       Promise.all([createOrder, createOrderLogistics, deleteUserCart, createOrderProduct]).then((data)=> {
         // console.log('onSubmitOrderAndProduct data',data)
         if(data[0].result === "ok") {
-          Taro.setStorageSync('payOrder',orderContent)
+          setGlobalData('payOrder',orderContent)
+          this.changeOrdersState('createOrderStatus', false)
+          Taro.navigateTo({
+            url: `/pages/pay/index`
+          })
           if(dataType === 'cartSelected'){
             let cartCount = parseInt(Taro.getStorageSync('cartCount')) - totalCount
             Taro.setStorageSync('cartCount',cartCount)
@@ -169,7 +176,12 @@ class Orders extends Component {
           }
         }
       }).catch((err)=>{
+        this.changeOrdersState('createOrderStatus', false)
         console.log('submit order error',err)
+        Taro.showToast({
+          title:'订单创建失败，请稍后重试',
+          icon: 'none'
+        })
       })
     }else {
       Taro.showToast({
@@ -180,10 +192,14 @@ class Orders extends Component {
   }
 
   render() {
-    let {dataType, selectAddress, totalPrice, ordersList} = this.state
+    let {dataType, selectAddress, totalPrice, ordersList, createOrderStatus} = this.state
 
     return (
       <View className='orders'>
+        {
+          createOrderStatus ?
+            <AtToast isOpened text='创建订单中...' status='loading' />:''
+        }
         <ScrollView
           scrollY
           className='orders__wrap'
@@ -211,6 +227,7 @@ class Orders extends Component {
         <View className='orders__footer'>
           <OrdersFooter
             totalPrice={totalPrice}
+            createOrderStatus={createOrderStatus}
             onSubmitOrderAndProduct={this.onSubmitOrderAndProduct}
           />
         </View>

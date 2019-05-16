@@ -146,7 +146,7 @@ class Home extends Component {
         <ScrollView
           scrollY
           className='home__wrap'
-          onScrollToLower={this.loadRecommend}
+          // onScrollToLower={this.loadRecommend}
           style={{ height: getWindowHeight() }}
         >
           <View onClick={this.handlePrevent}>

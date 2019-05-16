@@ -15,27 +15,28 @@ class Order extends Component {
     this.state = {
       orderType: [
         {
-          type: '0',
+          type: 0,
           name: '待付款',
         },
         {
-          type: '1',
+          type: 1,
           name: '待发货',
         },
         {
-          type: '2',
+          type: 2,
           name: '待收货',
         },
         {
-          type: '3',
+          type: 3,
           name: '待评价',
         }
       ],
-      activeTypeIndex: '0',
+      activeTypeIndex: 0,
     };
   }
 
   componentWillMount() {
+    // console.log("Order this.$router.params.type",this.$router.params.type)
     this.setState({
       activeTypeIndex: this.$router.params.type,
     })

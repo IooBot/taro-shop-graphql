@@ -9,9 +9,6 @@ export default class OrdersFooter extends Component {
     // console.log("OrdersFooter handleOrder")
     e.stopPropagation()
     this.props.onSubmitOrderAndProduct()
-    Taro.navigateTo({
-      url: `/pages/pay/index`
-    })
   }
 
   render () {

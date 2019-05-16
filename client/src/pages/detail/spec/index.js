@@ -234,7 +234,7 @@ export default class Spec extends Component {
               </View>
               <View className='mid'>
                 <View className='goods_price'> ￥ {price}</View>
-                <View className='selected-type'>已选择： {selectColor ? `${selectColor}+/` : ''}  {selectSize}</View>
+                <View className='selected-type'>已选择： {selectColor ? `${selectColor} / ` : ''}  {selectSize}</View>
               </View>
               <View className='right'>库存
                 {specStock}

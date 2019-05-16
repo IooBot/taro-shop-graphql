@@ -17,12 +17,14 @@ export default class OrderList extends Component {
   }
 
   componentWillMount() {
-    let {typeIndex:orderStatus} = this.props
+    let {typeIndex} = this.props
+    let orderStatus = String(typeIndex)
     this.getOrderByStatus(orderStatus)
   }
 
   componentWillReceiveProps(nextProps) {
-    let {typeIndex:orderStatus} = nextProps
+    let {typeIndex} = nextProps
+    let orderStatus = String(typeIndex)
     this.getOrderByStatus(orderStatus)
   }
 

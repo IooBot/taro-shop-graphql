@@ -69,13 +69,25 @@ class AddressEdit extends Component {
       // let fields = ["address", "telephone","default", "city", "username", "id", "area", "province"]
 
       if(this.$router.params.id === 'add'){
-        insert({collection:'userAddress',condition: addressContent})
-        Taro.setStorageSync('ordersAddress', addressContent)
-        this.goBackPage(1)
+        insert({collection:'userAddress',condition: addressContent}).then((res)=>{
+          if(res.result === "ok"){
+            this.message('地址创建成功')
+            Taro.setStorageSync('ordersAddress', addressContent)
+            this.goBackPage(1)
+          }else{
+            this.message('地址创建失败，请重新创建')
+          }
+        })
       } else if(this.$router.params.id){
-        update({collection: 'userAddress',condition: addressContent})
-        Taro.setStorageSync('ordersAddress', addressContent)
-        this.goBackPage(1)
+        update({collection: 'userAddress',condition: addressContent}).then((res)=>{
+          if(res.result === "ok"){
+            this.message('地址更新成功')
+            Taro.setStorageSync('ordersAddress', addressContent)
+            this.goBackPage(1)
+          }else{
+            this.message('地址更新失败，请重新创建')
+          }
+        })
       }
 
     }else if(!username){
