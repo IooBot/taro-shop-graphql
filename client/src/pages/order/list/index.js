@@ -3,8 +3,8 @@ import { View } from '@tarojs/components';
 import {findMany} from "../../../utils/crud"
 import Loading from "../../detail"
 import OrderListItem from "../list-item"
-import './index.scss'
 import OrderFooter from "../footer"
+import './index.scss'
 
 export default class OrderList extends Component {
   constructor(props) {
@@ -17,8 +17,17 @@ export default class OrderList extends Component {
   }
 
   componentWillMount() {
-    let {typeIndex} = this.props
-    let orderStatus = String(typeIndex)
+    let {typeIndex:orderStatus} = this.props
+    this.getOrderByStatus(orderStatus)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let {typeIndex:orderStatus} = nextProps
+    this.getOrderByStatus(orderStatus)
+  }
+
+  getOrderByStatus = (orderStatus) => {
+    console.log("OrderList orderStatus",orderStatus,typeof  orderStatus)
 
     this.setState({
       orderStatus
@@ -29,8 +38,9 @@ export default class OrderList extends Component {
 
   getOrderData = () => {
     let {orderStatus} = this.state
-    console.log("getOrderData orderStatus",orderStatus)
-    let user_id = 'ioobot'
+    let {user_id} = this.props
+    console.log("getOrderData orderStatus",orderStatus,"user_id",user_id)
+
     let fields = ["orderTotalPay", "createdAt", "orderStatus", "id", "count", "productTotalPay", "user_id.id"]
     findMany({collection:'order',condition:{user_id, orderStatus},fields}).then((res) => {
       console.log("getOrderData res",res)

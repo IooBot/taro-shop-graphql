@@ -4,6 +4,7 @@ import moment from 'moment'
 import {getWindowHeight} from "../../utils/style"
 import {findMany, insert, remove} from "../../utils/crud"
 import {idGen} from "../../utils/func"
+import {getGlobalData} from "../../utils/global_data"
 import OrdersAddress from "./address"
 import OrdersList from "./list"
 import OrdersDelivery from "./delivery"
@@ -48,10 +49,10 @@ class Orders extends Component {
         selectAddress
       })
     }else {
-      let user_id = 'ioobot'
+      let user_id = getGlobalData("user_id")
       let fields = ["id", "default", "username", "telephone", "province", "area", "city", "address"]
       findMany({collection:"userAddress",condition:{user_id: user_id,default:1},fields}).then(res =>{
-        // console.log('userAddressData',res)
+        console.log('orders userAddressData',res)
         this.setState({
           selectAddress: res[0]
         })
@@ -67,8 +68,9 @@ class Orders extends Component {
   }
 
   onSubmitOrderAndProduct = () => {
-    let user_id = 'ioobot'
+    let user_id = getGlobalData("user_id")
     let ordersAddress = Taro.getStorageSync('ordersAddress')
+    console.log("onSubmitOrderAndProduct ordersAddress",ordersAddress)
 
     if(ordersAddress){
       let {totalCount, totalPrice, remark, delivery, dataType} = this.state

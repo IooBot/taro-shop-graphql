@@ -15,8 +15,8 @@ const storeFile = 'http://deploy.ioobot.cn/api/store-file'
 const noConsole = false
 
 //登录
-// const authUrl = 'http://localhost:3000/wx/login'
-const authUrl = baseUrl + '/wx/login'
+const authUrl = 'http://localhost:9000/wx/login'
+// const authUrl = baseUrl + '/wx/login'
 
 //支付
 // const payUrl = 'http://localhost:3000/payinfo'

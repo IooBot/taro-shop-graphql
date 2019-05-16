@@ -6,6 +6,7 @@ import Loading from "../../components/loading"
 import Logo from '../../components/logo'
 import {findOne} from "../../utils/crud"
 import {getWindowHeight} from "../../utils/style"
+import {getGlobalData} from "../../utils/global_data"
 
 const orderIcon = [
   {
@@ -66,12 +67,11 @@ class All extends Component {
     super(props)
     this.state = {
       loaded: false,
-      user_data:{}
     }
   }
 
   componentDidMount() {
-    let user_id = 'ioobot'
+    let user_id = getGlobalData("user_id")
     console.log(user_id)
     this.userInfo(user_id);
   }
@@ -82,7 +82,6 @@ class All extends Component {
       console.log('user data',res)
       this.setState({
         loaded:true,
-        user_data: res
       });
     })
   }
@@ -106,7 +105,7 @@ class All extends Component {
         <Loading />
       )
     }
-    // let user_data = this.state.user_data
+
     return (
       <View className='user'>
         <ScrollView

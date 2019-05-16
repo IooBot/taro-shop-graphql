@@ -1,13 +1,11 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text, ScrollView } from '@tarojs/components'
 import * as QL from 'graphql-sync-multi-platform/graphql_cache.core'
-import moment from 'moment'
 import Logo from '../../components/logo'
 import Loading from '../../components/loading'
 import { getWindowHeight } from '../../utils/style'
 import {setGlobalData} from "../../utils/global_data"
-import {findMany, insert} from "../../utils/crud"
-import {idGen} from "../../utils/func"
+import {findMany} from "../../utils/crud"
 import {graphqlEndpoint, authUrl} from "../../config";
 import Banner from './banner'
 import Recommend from './recommend'
@@ -37,9 +35,10 @@ class Home extends Component {
     this.getSlideShow()
     this.getGoodsInfo()
     this.auth()
-    this.getLogin()
+    // this.getLogin()
   }
 
+  // 小程序云开发云函数获取openid
   getLogin = () => {
     Taro.cloud
       .callFunction({
@@ -58,7 +57,6 @@ class Home extends Component {
 
 
   auth =() =>{
-    let _this = this
     Taro.login({
       success(res) {
         if (res.code) {
@@ -76,8 +74,9 @@ class Home extends Component {
             })
             .then((res1) => {
               console.log('auth res',res1)
-              let openid = res1.data.openid
-              _this.createWxUser(openid)
+              let {openid, user_id} = res1.data
+              setGlobalData('openid', openid)
+              setGlobalData('user_id', user_id)
             })
             .catch((error) => {
               console.log('auth error', error)
@@ -87,34 +86,6 @@ class Home extends Component {
         }
       }
     })
-  }
-
-  createWxUser = (openid) => {
-    findMany({collection:'user',condition:{openid},fields:['id']})
-      .then(data => {
-        console.log('find user data', data)
-        if (data.length) {
-          setGlobalData('user_id', data)
-        } else {
-          let createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
-          let id = idGen('user')
-          const userContent = {
-            email: "",
-            updatedAt: "",
-            password: "",
-            telephone: "",
-            username: "",
-            createdAt,
-            openid,
-            id,
-            userData_id: ""
-          }
-          insert({collection: 'user',condition: userContent}).then((res)=>{
-            console.log("createWxUser res",res)
-            setGlobalData('user_id', data)
-          })
-        }
-      })
   }
 
   getSlideShow = () => {
@@ -137,25 +108,20 @@ class Home extends Component {
       "status": "1",
       "limit": 7,
       // "sort_by": {"order": "asc"}
-    };
+    }
 
-    let category = QL.find_many("category",categoryFilter, ["id", "value:name", "image:img", "status"]).then((res)=>{
-      console.log('category res',res)
-      return res
-    })
+    let category = findMany({collection: "category",condition:categoryFilter,fields:["id", "value:name", "image:img", "status"]})
+    let recommend = findMany({collection:"product",condition: {status: '1', recommend: 1},fields:["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]})
 
-    let recommend = QL.find_many("product",{status: '1', recommend: 1}, ["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]).then((res)=>{
-      console.log('recommend res',res)
-      return res
-    });
     Promise.all([category, recommend]).then((res)=>{
-      console.log('promise data',res)
+      console.log('getGoodsInfo data',res)
       this.setState({
         loaded:true,
         category: res[0],
         recommend: res[1]
-      });
+      })
     })
+
     // QL.find([["category",categoryFilter, ["id", "value:name", "image:img", "status"]],
     //          ["product",{status: '1', recommend: 1}, ["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]]]).then(
     //            res=>{
@@ -166,17 +132,15 @@ class Home extends Component {
     //                  recommend: res[1]
     //                  });
     //          }
-    // );
-
-  };
+    // )
+  }
 
   render() {
     if (!this.state.loaded) {
       return <Loading />
     }
     const { swiperList, category, recommend } = this.state
-    console.log('recommend',recommend)
-    console.log('swiperList',swiperList)
+
     return (
       <View className='home'>
         <ScrollView

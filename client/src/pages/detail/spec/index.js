@@ -209,8 +209,7 @@ export default class Spec extends Component {
 
   // 选择确认
   handleConfirm = () => {
-    let user_id = 'ioobot'
-    let {buttonType} = this.props
+    let {buttonType, user_id} = this.props
 
     if(buttonType === 'add'){
       this.onCreateUserCart(user_id)

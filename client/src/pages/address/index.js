@@ -3,6 +3,7 @@ import { View, ScrollView, Text } from '@tarojs/components'
 import {AtIcon} from "taro-ui"
 import {findMany,remove} from "../../utils/crud"
 import {getWindowHeight} from "../../utils/style"
+import {getGlobalData} from "../../utils/global_data"
 import Loading from "../../components/loading"
 import './index.scss'
 
@@ -25,10 +26,10 @@ class Address extends Component {
   }
 
   getAddressData = () => {
-    let user_id = 'ioobot'
+    let user_id = getGlobalData("user_id")
     let fields = ["address", "telephone", "default", "city", "username", "id", "area", "province"]
     findMany({collection:"userAddress",condition:{user_id: user_id},fields}).then(res =>{
-      console.log('userAddressData',res)
+      console.log('address userAddressData',res)
       this.setState({
         loaded: true,
         shoppingAddress: res,

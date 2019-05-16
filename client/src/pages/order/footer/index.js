@@ -26,7 +26,7 @@ export default class OrderFooter extends Component {
             <View className='order-card-button-group'>
               <View className='order-footer__button'>
                 <Button
-                  className='pay-button order-button'
+                  className='order-button'
                   onClick={this.cancelOrder}
                 >
                   <Text className='order-footer-txt'>取消</Text>
@@ -46,34 +46,36 @@ export default class OrderFooter extends Component {
         {
           orderStatus === '1' ?
             <View className='order-card-button-group'>
-              <Button className='ship-button order-button'>
-                <Text className='order-footer-txt'>催发货</Text>
-              </Button>
-              <Button className='cancel-button order-button'>
-                <Text className='order-footer-txt'>取消订单</Text>
-              </Button>
+              <View className='order-footer__button'>
+                <Button className='ship-button order-button'>
+                  <Text className='order-footer-txt'>催发货</Text>
+                </Button>
+              </View>
             </View>:''
         }
         {
           orderStatus === '2' ?
             <View className='order-card-button-group'>
-              <Button className='unbox-button order-button'>
-                <Text className='order-footer-txt'>查看物流</Text>
-              </Button>
-              <Button className='cancel-button order-button'>
-                <Text className='order-footer-txt'>取消订单</Text>
-              </Button>
+              <View className='order-footer__button'>
+                <Button className='unbox-button order-button'>
+                  <Text className='order-footer-txt'>查看物流</Text>
+                </Button>
+              </View>
             </View>:''
         }
         {
           orderStatus === '3' ?
             <View className='order-card-button-group'>
-              <Button className='judge-button order-button'>
-                <Text className='order-footer-txt'>去评价</Text>
-              </Button>
-              <Button className='more-button order-button'>
-                <Text className='order-footer-txt'>售后</Text>
-              </Button>
+              <View className='order-footer__button'>
+                <Button className='judge-button order-button'>
+                  <Text className='order-footer-txt'>去评价</Text>
+                </Button>
+              </View>
+              <View className='order-footer__button'>
+                <Button className='more-button order-button'>
+                  <Text className='order-footer-txt'>售后</Text>
+                </Button>
+              </View>
             </View>:''
         }
       </View>

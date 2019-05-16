@@ -5,6 +5,7 @@ import moment from 'moment'
 import {idGen} from "../../../utils/func"
 import {insert, update} from "../../../utils/crud"
 import './index.scss'
+import {getGlobalData} from "../../../utils/global_data"
 
 class AddressEdit extends Component {
   config = {
@@ -27,7 +28,7 @@ class AddressEdit extends Component {
     console.log("this.$router.params",this.$router.params)
     if (this.$router.params.id === 'add') {
       this.state = {...state}
-    } else {
+    } else if(this.$router.params.id){
       let addressChose = Taro.getStorageSync('ordersAddress')
       let {province, city, area, address, telephone, username, id, default:default1} = addressChose
       let defaultStatus = default1 ? true : false
@@ -35,7 +36,8 @@ class AddressEdit extends Component {
     }
   }
 
-  saveAddress = (user_id) => {
+  saveAddress = () => {
+    let user_id = getGlobalData("user_id")
     console.log("saveAddress user_id",user_id)
     let createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
     let {username, telephone, province, city, area, address, defaultStatus, id} = this.state
@@ -70,7 +72,7 @@ class AddressEdit extends Component {
         insert({collection:'userAddress',condition: addressContent})
         Taro.setStorageSync('ordersAddress', addressContent)
         this.goBackPage(1)
-      }else {
+      } else if(this.$router.params.id){
         update({collection: 'userAddress',condition: addressContent})
         Taro.setStorageSync('ordersAddress', addressContent)
         this.goBackPage(1)
@@ -123,7 +125,6 @@ class AddressEdit extends Component {
   }
 
   render() {
-    let user_id = 'ioobot'
     let {username, telephone, address, province, city, area, region} = this.state
 
     return (
@@ -177,7 +178,7 @@ class AddressEdit extends Component {
             onChange={this.handleChange.bind(this, 'defaultStatus')}
           />
         </AtForm>
-        <View className='address-add' onClick={this.saveAddress.bind(this, user_id)}>保存并使用</View>
+        <View className='address-add' onClick={this.saveAddress}>保存并使用</View>
       </View>
     )
   }

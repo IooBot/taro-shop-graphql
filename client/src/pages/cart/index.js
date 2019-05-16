@@ -4,6 +4,7 @@ import ButtonItem from '../../components/button'
 import Loading from '../../components/loading'
 import {findMany, remove} from "../../utils/crud"
 import {getWindowHeight} from '../../utils/style'
+import {getGlobalData} from "../../utils/global_data"
 import Tip from './tip'
 // import Gift from './gift'
 import Empty from './empty'
@@ -35,7 +36,7 @@ class Cart extends Component {
 
   // 获取购物车数据
   getCartData = () => {
-    let user_id = 'ioobot'
+    let user_id = getGlobalData("user_id")
     const fields = [
       "count",
       "id",
@@ -50,6 +51,12 @@ class Cart extends Component {
       this.setState({
         loaded:true,
         cartList:res
+      },()=>{
+        if(res.length){
+          this.sumPrice(true)
+        }else {
+          Taro.setStorage({key: 'cartCount', data: 0})
+        }
       })
     })
   }

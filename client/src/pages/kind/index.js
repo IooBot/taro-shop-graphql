@@ -8,14 +8,13 @@ import {findMany} from "../../utils/crud"
 
 class Kind extends Component {
   config = {
-    navigationBarTitleText: ''
+    navigationBarTitleText: "商品分类"
   }
 
   constructor(props) {
     super(props)
     this.state = {
       loaded: false,
-      loading: {},
       detailInfo:{}
     }
     this.categoryId = String(this.$router.params.categoryId)
@@ -23,33 +22,12 @@ class Kind extends Component {
 
   componentDidMount() {
     findMany({collection:"product",condition:{category_id: this.categoryId},fields:["category_id.name", "name", "id", "intro", "price", "img", "stock", "discountRate", "status"]}).then((res)=>{
-      console.log("detailInfo res",res)
+      console.log("Kind res",res)
       this.setState({
         loaded:true,
         detailInfo:res,
-      });
+      })
     })
-
-    // const payload = { categoryId: this.categoryId }
-    // this.props.dispatchSubMenu(payload).then((res) => {
-    //   this.setState({ loaded: true })
-    //
-    //   const { category: { name, subCategoryList } } = res
-    //   Taro.setNavigationBarTitle({ title: name })
-    //   setTimeout(() => {
-    //     const index = subCategoryList.findIndex(item => item.id === this.subId)
-    //     this.handleMenu(index)
-    //   }, 0)
-    // })
-  }
-
-  loadList = (id) => {
-    const { loading } = this.state
-    if (loading[id]) {
-      return
-    }
-
-    this.setState({ loading: { ...loading, [id]: true } })
   }
 
   render () {

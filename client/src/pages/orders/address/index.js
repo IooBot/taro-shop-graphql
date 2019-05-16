@@ -8,20 +8,27 @@ export default class OrdersAddress extends Component {
   }
 
   handleClick = () => {
-    let {dataType} = this.props
-    Taro.navigateTo({
-      url: `/pages/address/index?prePage=orders&dataType=${dataType}`
-    })
+    let {selectAddress, dataType} = this.props
+    if(selectAddress.id){
+      Taro.navigateTo({
+        url: `/pages/address/index?prePage=orders&dataType=${dataType}`
+      })
+    }else {
+      Taro.navigateTo({
+        url: `/pages/address/edit/index?id=add`
+      })
+    }
   }
 
   render () {
     const {selectAddress} = this.props
+    console.log("selectAddress",selectAddress)
     let {default:isDefault, username, telephone, province, area, city, address} = selectAddress
 
     return (
-      <View className='orders-address'>
+      <View className='OrdersAddress orders-address'>
         {
-          selectAddress ?
+          selectAddress.id ?
             <View className='orders-address__item' onClick={this.handleClick}>
               <View className='orders-address__item-detail'>
                 <View className='orders-address__item-wrap'>
