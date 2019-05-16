@@ -29,7 +29,7 @@ class Address extends Component {
     let user_id = getGlobalData("user_id")
     let fields = ["address", "telephone", "default", "city", "username", "id", "area", "province"]
     findMany({collection:"userAddress",condition:{user_id: user_id},fields}).then(res =>{
-      console.log('address userAddressData',res)
+      // console.log('address userAddressData',res)
       this.setState({
         loaded: true,
         shoppingAddress: res,
@@ -44,14 +44,14 @@ class Address extends Component {
     })
     if(id !== 'add'){
       Taro.setStorageSync('ordersAddress', address)
-      console.log('ordersAddress',Taro.getStorageSync('ordersAddress'))
+      // console.log('ordersAddress',Taro.getStorageSync('ordersAddress'))
     }
   }
 
   changeOrdersAddress = (address) => {
-    console.log('address',address)
+    // console.log('address',address)
     Taro.setStorageSync('ordersAddress', address)
-    console.log('changeOrdersAddress',this.$router.params)
+    // console.log('changeOrdersAddress',this.$router.params)
 
     let {prePage, dataType}= this.$router.params
     if(prePage === 'orders') {
@@ -62,7 +62,7 @@ class Address extends Component {
   }
 
   deleteAddress = (deleteId) => {
-    console.log("deleteId",deleteId)
+    // console.log("deleteId",deleteId)
     Taro.showModal({
       title: '',
       content: '确定要删除这个收货地址吗？',
@@ -70,7 +70,7 @@ class Address extends Component {
       .then(res =>{
         if(res.confirm){
           remove({collection:"userAddress",condition:{id:deleteId}}).then((data)=>{
-            console.log('delete userAddress data',data)
+            // console.log('delete userAddress data',data)
             if(data === "ok"){
               Taro.showToast({
                 title: '删除成功',
@@ -87,8 +87,8 @@ class Address extends Component {
 
   render() {
     let {shoppingAddress, defaultAddress} = this.state
-    console.log("shoppingAddress",shoppingAddress)
-    console.log("defaultAddress",defaultAddress,defaultAddress.length)
+    // console.log("shoppingAddress",shoppingAddress)
+    // console.log("defaultAddress",defaultAddress,defaultAddress.length)
     if (!this.state.loaded) {
       return (
         <Loading />

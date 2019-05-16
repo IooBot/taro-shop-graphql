@@ -52,7 +52,7 @@ class Orders extends Component {
       let user_id = getGlobalData("user_id")
       let fields = ["id", "default", "username", "telephone", "province", "area", "city", "address"]
       findMany({collection:"userAddress",condition:{user_id: user_id,default:1},fields}).then(res =>{
-        console.log('orders userAddressData',res)
+        // console.log('orders userAddressData',res)
         this.setState({
           selectAddress: res[0]
         })
@@ -153,18 +153,20 @@ class Orders extends Component {
         // console.log(`orderProduct${index}`,orderProduct)
 
         return insert({collection:'orderProduct',condition:orderProduct}).then((data)=>{
-          console.log('create orderProduct data',data)
+          // console.log('create orderProduct data',data)
           return data
         })
       })
 
       Promise.all([createOrder, createOrderLogistics, deleteUserCart, createOrderProduct]).then((data)=> {
-        console.log('onSubmitOrderAndProduct data',data)
-        Taro.setStorageSync('payOrder',orderContent)
-        if(dataType === 'cartSelected'){
-          let cartCount = parseInt(Taro.getStorageSync('cartCount')) - totalCount
-          Taro.setStorageSync('cartCount',cartCount)
-          Taro.removeStorageSync('cartList')
+        // console.log('onSubmitOrderAndProduct data',data)
+        if(data[0].result === "ok") {
+          Taro.setStorageSync('payOrder',orderContent)
+          if(dataType === 'cartSelected'){
+            let cartCount = parseInt(Taro.getStorageSync('cartCount')) - totalCount
+            Taro.setStorageSync('cartCount',cartCount)
+            Taro.removeStorageSync('cartList')
+          }
         }
       }).catch((err)=>{
         console.log('submit order error',err)

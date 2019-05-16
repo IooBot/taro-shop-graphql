@@ -44,7 +44,7 @@ class Cart extends Component {
       "specificationStock_id{id, color, size, stock, status}"
     ]
     findMany({collection:"userCart",condition:{user_id},fields}).then((res)=>{
-      console.log(`cartList`,res)
+      // console.log(`cartList`,res)
       res.forEach((item)=>{
         item.checked = false
       })
@@ -201,7 +201,7 @@ class Cart extends Component {
           // console.log('delete list',deleteIdList)
 
           remove({collection:"userCart",condition:{where:{id: {_in: deleteIdList}}}}).then((data)=>{
-            console.log('delete userCart data',data)
+            // console.log('delete userCart data',data)
             if(data === "ok"){
               Taro.showToast({
                 title: '删除成功',

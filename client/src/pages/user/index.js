@@ -72,14 +72,13 @@ class All extends Component {
 
   componentDidMount() {
     let user_id = getGlobalData("user_id")
-    console.log(user_id)
     this.userInfo(user_id);
   }
 
   userInfo = (user_id) => {
     let userData = findOne({collection:"user",condition:{id: user_id},fields:["id", "email", "telephone", "username", "openid"]});//,fields:[]
     userData.then(res =>{
-      console.log('user data',res)
+      // console.log('user data',res)
       this.setState({
         loaded:true,
       });

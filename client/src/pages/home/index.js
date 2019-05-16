@@ -61,7 +61,7 @@ class Home extends Component {
       success(res) {
         if (res.code) {
           // 发起网络请求
-          console.log("auth code",res)
+          // console.log("auth code",res)
           Taro.request({
               url: authUrl,
               method:"POST",
@@ -73,7 +73,7 @@ class Home extends Component {
               }
             })
             .then((res1) => {
-              console.log('auth res',res1)
+              // console.log('auth res',res1)
               let {openid, user_id} = res1.data
               setGlobalData('openid', openid)
               setGlobalData('user_id', user_id)
@@ -114,7 +114,7 @@ class Home extends Component {
     let recommend = findMany({collection:"product",condition: {status: '1', recommend: 1},fields:["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]})
 
     Promise.all([category, recommend]).then((res)=>{
-      console.log('getGoodsInfo data',res)
+      // console.log('getGoodsInfo data',res)
       this.setState({
         loaded:true,
         category: res[0],

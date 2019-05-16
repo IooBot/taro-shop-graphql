@@ -25,7 +25,7 @@ class AddressEdit extends Component {
       id: '',
       defaultStatus:false
     }
-    console.log("this.$router.params",this.$router.params)
+    // console.log("this.$router.params",this.$router.params)
     if (this.$router.params.id === 'add') {
       this.state = {...state}
     } else if(this.$router.params.id){
@@ -38,7 +38,7 @@ class AddressEdit extends Component {
 
   saveAddress = () => {
     let user_id = getGlobalData("user_id")
-    console.log("saveAddress user_id",user_id)
+    // console.log("saveAddress user_id",user_id)
     let createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
     let {username, telephone, province, city, area, address, defaultStatus, id} = this.state
     let areaAddress = province + city + area
@@ -64,7 +64,7 @@ class AddressEdit extends Component {
         area,
         province
       }
-      console.log("saveAddress addressContent",addressContent)
+      // console.log("saveAddress addressContent",addressContent)
 
       // let fields = ["address", "telephone","default", "city", "username", "id", "area", "province"]
 
@@ -113,9 +113,9 @@ class AddressEdit extends Component {
   }
 
   bindRegionChange =(e) => {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
     let region = e.detail.value
-    console.log("bindRegionChange region",region)
+    // console.log("bindRegionChange region",region)
     this.setState({
       region,
       province: region[0],

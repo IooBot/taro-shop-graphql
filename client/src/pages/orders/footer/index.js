@@ -6,7 +6,7 @@ import './index.scss'
 export default class OrdersFooter extends Component {
 
   handleOrder = (e) => {
-    console.log("OrdersFooter handleOrder")
+    // console.log("OrdersFooter handleOrder")
     e.stopPropagation()
     this.props.onSubmitOrderAndProduct()
     Taro.navigateTo({

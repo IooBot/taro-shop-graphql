@@ -17,7 +17,7 @@ export default class Footer extends Component {
 
   handleConfirm = () => {
     let {selectedCount, pageType} = this.props
-    console.log("footer handleConfirm pageType",pageType)
+    // console.log("footer handleConfirm pageType",pageType)
     if(selectedCount){
       pageType === 'detail' ? this.props.onSettleAccounts() : this.props.onDelete()
     }else {

@@ -44,10 +44,10 @@ class Pay extends Component {
 
   // prepay_id微信生成的预支付会话标识，用于后续接口调用中使用，该值有效期为2小时
   jsApiPay = (args, id) => {
-    console.log('jsApiPay params', args);
+    // console.log('jsApiPay params', args);
     let $this = this
     Taro.requestPayment(args).then((res)=>{
-      console.log("requestPayment res",res)
+      // console.log("requestPayment res",res)
       // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回 ok，但并不保证它绝对可靠。
       if (res.errMsg === "requestPayment:ok") {
         // 成功完成支付 更新订单状态
@@ -70,7 +70,7 @@ class Pay extends Component {
       }
     })
       .catch((err)=>{
-        console.log("jsApiPay err",err)
+        // console.log("jsApiPay err",err)
         if (err.errMsg === "requestPayment:fail cancel") {
           $this.message('您的支付已经取消')
         } else {
@@ -80,7 +80,7 @@ class Pay extends Component {
   }
 
   getBridgeReady = (id, needPay) => {
-    console.log('getBridgeReady params',id,needPay)
+    // console.log('getBridgeReady params',id,needPay)
     let isWEAPP = Taro.getEnv()
     if (clicktag === 1 && isWEAPP === 'WEAPP') {
       clicktag = 0   //进行标志，防止多次点击
@@ -100,7 +100,7 @@ class Pay extends Component {
         }
         })
         .then((res) => {
-          console.log('onBridgeReady res',res)
+          // console.log('onBridgeReady res',res)
           $this.jsApiPay(res.data, id)
           setTimeout(() => {
             clicktag = 1

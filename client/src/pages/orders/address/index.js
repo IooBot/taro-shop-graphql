@@ -22,7 +22,7 @@ export default class OrdersAddress extends Component {
 
   render () {
     const {selectAddress} = this.props
-    console.log("selectAddress",selectAddress)
+    // console.log("selectAddress",selectAddress)
     let {default:isDefault, username, telephone, province, area, city, address} = selectAddress
 
     return (

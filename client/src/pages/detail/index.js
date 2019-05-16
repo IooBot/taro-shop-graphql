@@ -50,7 +50,7 @@ class Detail extends Component {
   getCartCount = () => {
     let user_id = getGlobalData("user_id")
     findMany({collection:"userCart",condition:{user_id},fields:["id","count"]}).then((res)=>{
-      console.log(`cartList count`,res)
+      // console.log(`cartList count`,res)
       let cartCount=0
       if(res.length){
         res.forEach((item,index)=>{
