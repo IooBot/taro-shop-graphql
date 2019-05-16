@@ -6,6 +6,7 @@ import CheckboxItem from "../../components/checkbox"
 import './index.scss'
 import {getGlobalData} from "../../utils/global_data"
 import {payUrl} from '../../config'
+import {update} from "../../utils/crud"
 
 let clicktag = 1;  //微信发起支付点击标志
 class Pay extends Component {
@@ -49,18 +50,23 @@ class Pay extends Component {
       console.log("requestPayment res",res)
       // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回 ok，但并不保证它绝对可靠。
       if (res.errMsg === "requestPayment:ok") {
-        // 成功完成支付
-        $this.message('支付成功，等待发货')
-        // 更新订单状态
+        // 成功完成支付 更新订单状态
         let updatedAt = moment().format('YYYY-MM-DD HH:mm:ss')
         const updateContent = {
           id,
           orderStatus: '1',
           updatedAt
         }
-        // Taro.navigateTo({
-        //   url: `/pages/my/index`
-        // })
+        update({collection:"order",condition:updateContent,fields:["id"]}).then((date)=>{
+          if(date){
+            $this.message('支付成功，等待发货')
+            Taro.navigateTo({
+              url: `/pages/order/index/type=1`
+            })
+          }else {
+            $this.message('支付成功，订单创建失败，请联系商家')
+          }
+        })
       }
     })
       .catch((err)=>{

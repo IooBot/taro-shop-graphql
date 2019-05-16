@@ -201,18 +201,18 @@ class Cart extends Component {
           // console.log('delete list',deleteIdList)
 
           remove({collection:"userCart",condition:{where:{id: {_in: deleteIdList}}}}).then((data)=>{
-            console.log('delete data',data)
-            let num = data.replace(/[^0-9]/ig,"")
-            if(num){
+            console.log('delete userCart data',data)
+            if(data === "ok"){
               Taro.showToast({
                 title: '删除成功',
                 icon: 'none'
-              });
+              })
+              this.changeCartPage()
               setTimeout(() => {
-                Taro.navigateBack();
-              }, 1000);
+                Taro.navigateBack()
+              }, 1000)
 
-              let cartCount = parseInt(Taro.getStorageSync('cartCount')) - num
+              let cartCount = parseInt(Taro.getStorageSync('cartCount')) - selectedCount
               Taro.setStorageSync('cartCount',cartCount)
               this.setState({
                 cartList:cartList1,

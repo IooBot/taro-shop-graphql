@@ -70,9 +70,8 @@ class Address extends Component {
       .then(res =>{
         if(res.confirm){
           remove({collection:"userAddress",condition:{id:deleteId}}).then((data)=>{
-            console.log('delete data',data)
-            let num = data.replace(/[^0-9]/ig,"")
-            if(num){
+            console.log('delete userAddress data',data)
+            if(data === "ok"){
               Taro.showToast({
                 title: '删除成功',
                 icon: 'none'

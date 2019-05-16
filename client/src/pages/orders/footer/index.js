@@ -5,7 +5,9 @@ import './index.scss'
 
 export default class OrdersFooter extends Component {
 
-  handleOrder = () => {
+  handleOrder = (e) => {
+    console.log("OrdersFooter handleOrder")
+    e.stopPropagation()
     this.props.onSubmitOrderAndProduct()
     Taro.navigateTo({
       url: `/pages/pay/index`
@@ -28,7 +30,7 @@ export default class OrdersFooter extends Component {
           <ButtonItem
             type='primary'
             text='提交订单'
-            onClick={this.handleOrder}
+            onClick={this.handleOrder.bind(this)}
           />
         </View>
       </View>

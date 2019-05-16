@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Button } from '@tarojs/components'
 import './index.scss'
+import {remove} from "../../../utils/crud"
 
 export default class OrderFooter extends Component {
   static defaultProps = {
@@ -8,16 +9,30 @@ export default class OrderFooter extends Component {
   }
 
   cancelOrder = (id) => {
-
+    let deleteOrder = remove({collection: "order",condition: {id}})
+    let deleteOrderProduct = remove({collection: "orderProduct",condition:{order_id:id}})
+    Promise.all([deleteOrder, deleteOrderProduct]).then((res)=>{
+      console.log('delete order res',res)
+      if(res[0] === "ok" && res[1] === "ok"){
+        Taro.showToast({
+          title: '删除成功',
+          icon: 'none'
+        })
+      }
+    })
   }
 
   payOrder = () => {
-
+    let {order} = this.props
+    // console.log("order payOrder order",order)
+    Taro.setStorageSync('payOrder',order)
+    Taro.navigateTo({
+      url: `/pages/pay/index`
+    })
   }
 
-
   render () {
-    let {orderStatus, orderId} = this.props
+    let {orderStatus, order} = this.props
 
     return (
       <View className='order-footer'>
@@ -27,7 +42,7 @@ export default class OrderFooter extends Component {
               <View className='order-footer__button'>
                 <Button
                   className='order-button'
-                  onClick={this.cancelOrder}
+                  onClick={this.cancelOrder.bind(this,order.id)}
                 >
                   <Text className='order-footer-txt'>取消</Text>
                 </Button>

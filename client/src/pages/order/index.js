@@ -1,8 +1,9 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, ScrollView } from '@tarojs/components'
 import OrderList from "./list"
 import './index.scss'
 import {getGlobalData} from "../../utils/global_data"
+import {getWindowHeight} from "../../utils/style"
 
 class Order extends Component {
   config = {
@@ -35,7 +36,6 @@ class Order extends Component {
   }
 
   componentWillMount() {
-    console.log("order type",this.$router.params.type,typeof this.$router.params.type)
     this.setState({
       activeTypeIndex: this.$router.params.type,
     })
@@ -66,7 +66,13 @@ class Order extends Component {
             </View>
           ))}
         </View>
-        <OrderList typeIndex={activeTypeIndex} user_id={user_id} />
+        <ScrollView
+          scrollY
+          className='cart__wrap'
+          style={{ height: getWindowHeight() }}
+        >
+          <OrderList typeIndex={activeTypeIndex} user_id={user_id} />
+        </ScrollView>
       </View>
     )
   }

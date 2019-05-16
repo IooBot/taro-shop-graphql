@@ -27,7 +27,7 @@ export default class OrderList extends Component {
   }
 
   getOrderByStatus = (orderStatus) => {
-    console.log("OrderList orderStatus",orderStatus,typeof  orderStatus)
+    // console.log("OrderList orderStatus",orderStatus,typeof  orderStatus)
 
     this.setState({
       orderStatus
@@ -39,11 +39,11 @@ export default class OrderList extends Component {
   getOrderData = () => {
     let {orderStatus} = this.state
     let {user_id} = this.props
-    console.log("getOrderData orderStatus",orderStatus,"user_id",user_id)
+    // console.log("getOrderData orderStatus",orderStatus,"user_id",user_id)
 
     let fields = ["orderTotalPay", "createdAt", "orderStatus", "id", "count", "productTotalPay", "user_id.id"]
     findMany({collection:'order',condition:{user_id, orderStatus},fields}).then((res) => {
-      console.log("getOrderData res",res)
+      // console.log("getOrderData res",res)
       this.setState({
         loaded:true,
         list: res
@@ -77,7 +77,7 @@ export default class OrderList extends Component {
                     ￥{Math.round(order.productTotalPay * 100) / 100}
                   </View>
                 </View>
-                <OrderFooter orderStatus={orderStatus} orderId={order.id} />
+                <OrderFooter orderStatus={orderStatus} order={order} />
               </View>
             ))
         }

@@ -70,7 +70,7 @@ class Orders extends Component {
   onSubmitOrderAndProduct = () => {
     let user_id = getGlobalData("user_id")
     let ordersAddress = Taro.getStorageSync('ordersAddress')
-    console.log("onSubmitOrderAndProduct ordersAddress",ordersAddress)
+    // console.log("onSubmitOrderAndProduct ordersAddress",ordersAddress)
 
     if(ordersAddress){
       let {totalCount, totalPrice, remark, delivery, dataType} = this.state
@@ -117,7 +117,7 @@ class Orders extends Component {
       let shopping = Taro.getStorageSync(dataType)
       if(dataType === 'cartSelected') deleteIdList = shopping.map(item => item.id)
 
-      console.log('createOrder orderContent',orderContent)
+      // console.log('createOrder orderContent',orderContent)
 
       let createOrder = insert({collection:'order',condition:orderContent})
       let createOrderLogistics = insert({collection:'orderLogistics',condition:orderLogistics})
@@ -150,25 +150,22 @@ class Orders extends Component {
           productPay: price,
           orderPay_id: "",
         }
-        console.log(`orderProduct${index}`,orderProduct)
+        // console.log(`orderProduct${index}`,orderProduct)
 
         return insert({collection:'orderProduct',condition:orderProduct}).then((data)=>{
-          console.log('ok data',index,data)
-          return data.data
+          console.log('create orderProduct data',data)
+          return data
         })
       })
 
-      Promise.all([createOrder, createOrderLogistics, deleteUserCart, createOrderProduct]).then(()=> {
-        // console.log('onSubmitOrderAndProduct data',data)
+      Promise.all([createOrder, createOrderLogistics, deleteUserCart, createOrderProduct]).then((data)=> {
+        console.log('onSubmitOrderAndProduct data',data)
         Taro.setStorageSync('payOrder',orderContent)
         if(dataType === 'cartSelected'){
           let cartCount = parseInt(Taro.getStorageSync('cartCount')) - totalCount
           Taro.setStorageSync('cartCount',cartCount)
           Taro.removeStorageSync('cartList')
         }
-        Taro.navigateTo({
-          url: `/pages/pay/index`
-        })
       }).catch((err)=>{
         console.log('submit order error',err)
       })
