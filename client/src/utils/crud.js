@@ -1,4 +1,4 @@
-import * as QL from "graphql-sync-multi-platform/graphql_cache.core";
+import * as QL from "shortql/graphql_cache.core";
 
 export const findOne = (options = {collection:'', condition:'', fields: '',}) => {
   //console.log("f-many:",options);

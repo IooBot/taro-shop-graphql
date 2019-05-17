@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text, ScrollView } from '@tarojs/components'
-import * as QL from 'graphql-sync-multi-platform/graphql_cache.core'
+import * as QL from 'shortql/graphql_cache.core'
 import Logo from '../../components/logo'
 import Loading from '../../components/loading'
 import { getWindowHeight } from '../../utils/style'
@@ -13,7 +13,7 @@ import Category from './category'
 import './index.scss'
 
 // graphql
-QL.init(graphqlEndpoint, Taro.request, {enable_log : true});
+QL.init(graphqlEndpoint, Taro.request, {enable_log : false});
 
 class Home extends Component {
   config = {

@@ -1,11 +1,7 @@
 import '@tarojs/async-await'
 import Taro, { Component } from '@tarojs/taro'
-//import * as QL from 'graphql-sync-multi-platform/graphql_cache.core'
 import 'taro-ui/dist/style/index.scss'
 import Home from './pages/home'
-
-
-//import {graphqlEndpoint} from './config'
 import './app.scss'
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -28,7 +24,6 @@ class App extends Component {
       'pages/pay/index',
       'pages/order/index',
       'pages/user/index',
-      // 'pages/message/index',
       // 'pages/manage-goods/index',
       // 'pages/manage-orders/index',
       // 'pages/manage-shop/index',

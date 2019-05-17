@@ -1,11 +1,12 @@
 {:source-paths
  ["../recon/modules/frontend/graphql-cache/src"]
+; ["../../../web-services/recon/modules/frontend/graphql-cache/src"]
 
  ; :nrepl {:port 8450}
 
  :dependencies
  [
-   [binaryage/devtools "0.9.10"]
+;   [binaryage/devtools "0.9.10"]
    [vincit/venia "0.2.5"]
    ;[district0x/graphql-query "1.0.5"]
    ]
@@ -13,6 +14,6 @@
 
  :builds
  {:npm {:target :npm-module
-        :output-dir "node_modules/graphql-sync-multi-platform"
+        :output-dir "node_modules/shortql"
         :runtime :browser
         :entries [graphql-cache.core]}}}
