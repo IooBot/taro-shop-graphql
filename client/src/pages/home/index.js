@@ -13,7 +13,7 @@ import Category from './category'
 import './index.scss'
 
 // graphql
-QL.init(graphqlEndpoint, Taro.request);
+QL.init(graphqlEndpoint, Taro.request, {enable_log : true});
 
 class Home extends Component {
   config = {
