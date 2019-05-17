@@ -56,33 +56,28 @@ class Pay extends Component {
     // console.log('jsApiPay params', args, id);
     let $this = this
     Taro.requestPayment(args).then((res)=>{
-      console.log("requestPayment res",res)
+      // console.log("requestPayment res",res)
       // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回 ok，但并不保证它绝对可靠。
       if (res.errMsg === "requestPayment:ok") {
-        // console.log("pay success")
         // 成功完成支付 更新订单状态
-        $this.message('支付成功，等待发货')
-        Taro.navigateTo({
-          url: `/pages/order/index?type=1`
+        let updatedAt = moment().format('YYYY-MM-DD HH:mm:ss')
+        const updateContent = {
+          id,
+          orderStatus: '1',
+          updatedAt
+        }
+        let updateOrderStatus = update({collection:"order",condition:updateContent})
+        updateOrderStatus.then((data)=>{
+          // console.log("update order data",data)
+          if(data.result === "ok"){
+            $this.message('支付成功，等待发货')
+            Taro.navigateTo({
+              url: `/pages/order/index?type=1`
+            })
+          }else {
+            $this.message('支付成功，订单创建失败，请联系商家')
+          }
         })
-        // let updatedAt = moment().format('YYYY-MM-DD HH:mm:ss')
-        // const updateContent = {
-        //   id,
-        //   orderStatus: '1',
-        //   updatedAt
-        // }
-        // let updateOrderStatus = update({collection:"order",condition:updateContent,fields:["id"]})
-        // updateOrderStatus.then((data)=>{
-        //   console.log("update order data",data)
-        //   if(data){
-        //     $this.message('支付成功，等待发货')
-        //     Taro.navigateTo({
-        //       url: `/pages/order/index?type=1`
-        //     })
-        //   }else {
-        //     $this.message('支付成功，订单创建失败，请联系商家')
-        //   }
-        // })
       }
     })
       .catch((err)=>{
@@ -97,12 +92,12 @@ class Pay extends Component {
 
   getBridgeReady = (id, needPay) => {
     // console.log('getBridgeReady params',id,needPay)
+
     let isWEAPP = Taro.getEnv()
     // console.log("isWEAPP",isWEAPP)
     if (clicktag === 1 && isWEAPP === 'WEAPP') {
       clicktag = 0   //进行标志，防止多次点击
       let openid = getGlobalData('openid')
-      // console.log("getBridgeReady openid",openid)
 
       let $this = this
       Taro.request({
