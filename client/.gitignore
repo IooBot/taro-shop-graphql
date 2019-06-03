@@ -12,3 +12,6 @@ node_modules/
 /data
 /schema
 package-lock.json
+mock/data
+mock/schema
+mock/temp
