@@ -11,3 +11,7 @@ Promise.all([detail, detailSpec]).then((res)=>{
     detailSpec: res[1]
   });
 })
+
+// let user_id = getGlobalData("user_id")
+// findMany({collection:"userCart",condition:{user_id},fields:["id","count"]}).then((res)=>{
+// console.log(`cartList count`,res)

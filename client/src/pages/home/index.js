@@ -106,7 +106,7 @@ class Home extends Component {
   render() {
     const { slideshowList, productList, categoryList, effects } = this.props;
 
-    if (effects['productList/fetch']) {  // this.state.loaded
+    if (effects['productList/fetch'] || effects['categoryList/fetch']) {  // this.state.loaded
         return <Loading />
      }
     // const { swiperList , category, recommend} = this.state; //

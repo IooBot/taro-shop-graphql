@@ -3,7 +3,7 @@ import { View, ScrollView } from '@tarojs/components'
 import { connect } from '@tarojs/redux';
 import Loading from '../../components/loading'
 import Popup from '../../components/popup'
-import { findOne, findMany } from "../../utils/crud"
+// import { findOne, findMany } from "../../utils/crud"
 import { getWindowHeight } from '../../utils/style'
 import Gallery from './gallery'
 import InfoBase from './info-base'
@@ -27,10 +27,10 @@ class Detail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      loaded: false,
+      // loaded: false,
       selected: {},
-      detailInfo:{},
-      detailSpec:[],
+      // detailInfo:{},
+      // detailSpec:[],
       buttonType: 'add',
       cartCount: Taro.getStorageSync('cartCount')
     }
@@ -38,30 +38,26 @@ class Detail extends Component {
   }
 
   componentDidMount() {
-    let productId = this.id
+    let productId = this.id;
+    console.log('productId',productId);
     this.props.dispatch({
-      type: 'productList/fetch',
+      type: 'productList/fetchOne',
       payload: {id: productId}
     });
     this.props.dispatch({
       type: 'specificationStockList/fetch',
       payload: {product_id: productId}
     });
+    let user_id = getGlobalData("user_id");
     this.props.dispatch({
       type: 'userCartList/fetch',
-      payload: {status: '1', recommend: 1}
+      payload: { user_id }
     });
-    this.getCartCount()
-
-
   }
 
   // 获取购物车数量更新
-  getCartCount = () => {
-    let user_id = getGlobalData("user_id")
-    findMany({collection:"userCart",condition:{user_id},fields:["id","count"]}).then((res)=>{
-      // console.log(`cartList count`,res)
-      let cartCount=0
+  getCartCount = (res) => {
+      let cartCount=0;
       if(res.length){
         res.forEach((item,index)=>{
           cartCount+=item.count
@@ -72,18 +68,17 @@ class Detail extends Component {
       }else {
         Taro.setStorage({key: 'cartCount', data: cartCount})
       }
-    })
-  }
+  };
 
   handleSelect = (selected) => {
     this.setState({ selected })
-  }
+  };
 
   changeDetailState = (state,val) => {
     this.setState({
       [state]:val
     })
-  }
+  };
 
   toggleVisible = () => {
     this.setState({
@@ -97,20 +92,32 @@ class Detail extends Component {
       buttonType:val
     })
     this.toggleVisible()
-  }
+  };
 
   render () {
-    const {loaded, detailInfo, detailSpec, buttonType, cartCount} = this.state
-    let user_id = getGlobalData("user_id")
-    let {img, price} = detailInfo
-    let sliderImg = detailInfo.img
-    let gallery = [detailInfo.img]
-    gallery.push(sliderImg)
-    const height = getWindowHeight(false)
+    const {buttonType, cartCount} = this.state; //loaded, detailInfo, detailSpec,
+    const { specificationStockList, productList, userCartList, effects }  = this.props;
 
-    if (!loaded) {
+    console.log(effects['productList/fetchOne'] , effects['userCartList/fetch'], effects['specificationStockList/fetch']);
+    console.log(effects['productList/fetchOne'] || effects['userCartList/fetch']);
+
+    if (effects['productList/fetchOne'] || effects['userCartList/fetch']) {
       return <Loading />
     }
+
+    console.log('userCart:', userCartList.list);
+    console.log('productList:', productList.currentProduct);
+    console.log('spec:', specificationStockList.list);
+   // this.getCartCount(userCartList.list);
+    const detailInfo = productList.currentProduct;
+    const detailSpec = specificationStockList.list;
+
+    let user_id = getGlobalData("user_id")
+    let {img, price} = detailInfo;
+    let sliderImg = detailInfo.img;
+    let gallery = [detailInfo.img];
+    gallery.push(sliderImg)
+    const height = getWindowHeight(false)
 
     return (
       <View className='detail'>
