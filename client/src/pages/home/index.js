@@ -12,7 +12,6 @@ import Banner from './banner'
 import Recommend from './recommend'
 import Category from './category'
 import './index.scss'
-import {findMany} from "../../utils/crud";
 
 QL.init(graphqlEndpoint, Taro.request, {enable_log : true});
 
@@ -106,14 +105,11 @@ class Home extends Component {
 
   render() {
     const { slideshowList, productList, categoryList, effects } = this.props;
-    // console.log('pro-effect:',effects['productList/fetch']);
-    // console.log('cat-effect:',effects['categoryList/fetch']);
-    // console.log('slide1',slideshowList.list);
+
     if (effects['productList/fetch']) {  // this.state.loaded
         return <Loading />
      }
     // const { swiperList , category, recommend} = this.state; //
-    // console.log('slide',swiperList);
 
     return (
       <View className='home'>
