@@ -5,6 +5,7 @@ export default {
 
   state: {
     list: [],
+    recommandList:[],
     currentProduct: {},
   },
 
@@ -20,6 +21,13 @@ export default {
       const response = yield call(queryProduct, payload);
       yield put({
         type: 'queryList',
+        payload: Array.isArray(response) ? response : [],
+      });
+    },
+    * fetchRecommand({ payload }, { call, put }) {
+      const response = yield call(queryProduct, payload);
+      yield put({
+        type: 'queryRecommandList',
         payload: Array.isArray(response) ? response : [],
       });
     },
@@ -43,6 +51,12 @@ export default {
       return {
         ...state,
         list: action.payload,
+      };
+    },
+    queryRecommandList(state, action) {
+      return {
+        ...state,
+        recommandList: action.payload,
       };
     },
     appendList(state, action) {

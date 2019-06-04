@@ -48,7 +48,7 @@ class Home extends Component {
       payload: { status: "1", limit: 7}
     });
     this.props.dispatch({
-      type: 'productList/fetch',
+      type: 'productList/fetchRecommand',
       payload: {status: '1', recommend: 1}
     });
     this.auth()
@@ -106,7 +106,7 @@ class Home extends Component {
   render() {
     const { slideshowList, productList, categoryList, effects } = this.props;
 
-    if (effects['productList/fetch'] || effects['categoryList/fetch']) {  // this.state.loaded
+    if (effects['productList/fetchRecommand'] || effects['categoryList/fetch']) {  // this.state.loaded
         return <Loading />
      }
     // const { swiperList , category, recommend} = this.state; //
@@ -126,7 +126,7 @@ class Home extends Component {
           <Category list={categoryList.list} />
 
           {/* 为你推荐 */}
-          <Recommend list={productList.list} />
+          <Recommend list={productList.recommandList} />
 
           {this.state.loading &&
           <View className='home__loading'>
