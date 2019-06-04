@@ -5,11 +5,16 @@ import userCartList from './userCartList';
 import userCartMutate from './userCartMutate';
 import specificationStockList from './specificationStockList';
 import orderList from './orderList';
+import orderMutate from './orderMutate';
+import orderProductList from './orderProductList';
+import orderProductMutate from './orderProductMutate';
 import orderLogisticList from './orderLogisticList';
+import orderLogisticMutate from './orderLogisticMutate';
 import userAddressList from './userAddressList';
 import userAddressMutate from './userAddressMutate';
 import shortList from './shopList';
 
 export default [categoryList, slidshowList, productList, userCartList, specificationStockList,
-  orderList, orderLogisticList, userAddressList, shortList, userCartMutate, userAddressMutate];
+  orderList, orderLogisticList, userAddressList, shortList, userCartMutate, userAddressMutate,
+  orderMutate,orderProductList,orderProductMutate,orderLogisticMutate];
 

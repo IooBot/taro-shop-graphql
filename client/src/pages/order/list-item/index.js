@@ -1,33 +1,28 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Image } from '@tarojs/components';
+import {connect} from "@tarojs/redux";
 import {findMany} from "../../../utils/crud"
 import './index.scss'
 
+@connect(({ orderProductList, loading }) => ({
+  orderProductList,
+  ...loading,
+}))
 export default class OrderListItem extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      product: []
+      // product: []
     }
   }
 
   componentWillMount() {
-    this.getOrderProductData()
-  }
-
-  getOrderProductData = () => {
-    let {orderId} = this.props
-    // console.log("getOrderProductData orderId",orderId)
-    const fields = [
-      "productColor", "unit", "productSize","orderPay", "productImg", "productName", "productPrice", "id", "count", "productPay",
-      "product_id{id, unit, img, intro, name, price, status, stock, unit, discountRate}"
-    ]
-    findMany({collection:'orderProduct',condition:{order_id:orderId},fields}).then((res) => {
-      // console.log("getOrderProductData res",res)
-      this.setState({
-        product: res
-      })
-    })
+    // this.getOrderProductData()
+    let { orderId } = this.props;
+    this.props.dispatch({
+      type: 'orderProductList/fetch',
+      payload: {orderId}
+    });
   }
 
   navigateToOrderDetail = () => {
@@ -38,8 +33,9 @@ export default class OrderListItem extends Component {
   }
 
   render() {
-    let {product} = this.state
-
+    // let {product} = this.state
+    const {orderProductList} = this.props;
+    let product = orderProductList.list;
     return (
       <View className='order-product' onClick={this.navigateToOrderDetail}>
         {
