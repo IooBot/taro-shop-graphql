@@ -17,17 +17,4 @@ Promise.all([detail, detailSpec]).then((res)=>{
 // findMany({collection:"userCart",condition:{user_id},fields:["id","count"]}).then((res)=>{
 // console.log(`cartList count`,res)
 
-// 获取购物车数量更新
-getCartCount = (res) => {
-  let cartCount=0;
-  if(res.length){
-    res.forEach((item,index)=>{
-      cartCount+=item.count
-      if(index === res.length -1){
-        Taro.setStorage({key: 'cartCount', data: cartCount})
-      }
-    })
-  }else {
-    Taro.setStorage({key: 'cartCount', data: cartCount})
-  }
-};
+

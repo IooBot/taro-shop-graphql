@@ -39,7 +39,7 @@ class Detail extends Component {
 
   componentDidMount() {
     let productId = this.id;
-    console.log('productId',productId);
+    // console.log('productId',productId);
     this.props.dispatch({
       type: 'productList/fetchOne',
       payload: {id: productId}
@@ -55,6 +55,20 @@ class Detail extends Component {
     });
   }
 
+// 获取购物车数量更新
+  getCartCount = (res) => {
+    let cartCount=0;
+    if(res.length){
+      res.forEach((item,index)=>{
+        cartCount+=item.count
+        if(index === res.length -1){
+          Taro.setStorage({key: 'cartCount', data: cartCount})
+        }
+      })
+    }else {
+      Taro.setStorage({key: 'cartCount', data: cartCount})
+    }
+  };
 
   handleSelect = (selected) => {
     this.setState({ selected })
@@ -84,17 +98,17 @@ class Detail extends Component {
     const {buttonType, cartCount} = this.state; //loaded, detailInfo, detailSpec,
     const { specificationStockList, productList, userCartList, effects }  = this.props;
 
-    console.log(effects['productList/fetchOne'] , effects['userCartList/fetch'], effects['specificationStockList/fetch']);
-    console.log(effects['productList/fetchOne'] || effects['userCartList/fetch']);
+    // console.log(effects['productList/fetchOne'] , effects['userCartList/fetch'], effects['specificationStockList/fetch']);
+    // console.log(effects['productList/fetchOne'] || effects['userCartList/fetch']);
 
     if (effects['productList/fetchOne'] == undefined ||  effects['specificationStockList/fetch'] == true) {
       return <Loading />
     }
 
-    console.log('userCart:', userCartList);
-    console.log('productList:', productList);
-    console.log('spec:', specificationStockList);
-   // this.getCartCount(userCartList.list);
+    // console.log('userCart:', userCartList);
+    // console.log('productList:', productList);
+    // console.log('spec:', specificationStockList);
+    this.getCartCount(userCartList.list);
     const detailInfo = productList.currentProduct;
     const detailSpec = specificationStockList.list;
 

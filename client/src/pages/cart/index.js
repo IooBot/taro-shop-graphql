@@ -27,7 +27,7 @@ class Cart extends Component {
   constructor(props){
     super(props)
     this.state={
-      loaded: false,
+      // loaded: false,
       login: true,
       pageType: 'detail',
       cartList:[],
@@ -172,7 +172,7 @@ class Cart extends Component {
 
   // 多选删除
   delete=()=>{
-    let {cartList, selectedCount} = this.state
+    let {cartList, selectedCount } = this.state;
 
     Taro.showModal({
       title: '',
@@ -213,12 +213,18 @@ class Cart extends Component {
 
   render () {
     let {pageType, cartList, totalPrice, selectedCount, isSelectAll} = this.state
-    const isEmpty = !cartList.length
-    const isShowFooter = !isEmpty
 
-    if (!this.state.loaded) {
+    const { userCartList, effects }  = this.props;
+    if (effects[userCartList/fetch]) { //!this.state.loaded
       return <Loading />
     }
+    if(cartList.length ==0 && userCartList) {
+      cartList = userCartList.list;
+      this.setState({cartList: cartList});
+    }
+
+    const isEmpty = !cartList.length
+    const isShowFooter = !isEmpty
 
     if (!this.state.login) {
       return (
