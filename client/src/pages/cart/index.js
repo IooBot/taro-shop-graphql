@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
+import {connect} from "@tarojs/redux";
 import ButtonItem from '../../components/button'
 import Loading from '../../components/loading'
 import {findMany, remove} from "../../utils/crud"
@@ -12,10 +13,16 @@ import List from './list'
 import Footer from './footer'
 import './index.scss'
 
+
+@connect(({ userCartList, loading }) => ({
+  userCartList,
+  ...loading,
+}))
+
 class Cart extends Component {
   config = {
     navigationBarTitleText: '购物车'
-  }
+  };
 
   constructor(props){
     super(props)
@@ -31,41 +38,20 @@ class Cart extends Component {
   }
 
   componentDidShow() {
-    this.getCartData()
+    let user_id = getGlobalData("user_id");
+    this.props.dispatch({
+      type: 'userCartList/fetch',
+      payload: { user_id }
+    });
+    // this.getCartData()
   }
 
-  // 获取购物车数据
-  getCartData = () => {
-    let user_id = getGlobalData("user_id")
-    const fields = [
-      "count",
-      "id",
-      "product_id{id, img, intro, name, price, status, stock, unit, discountRate}",
-      "specificationStock_id{id, color, size, stock, status}"
-    ]
-    findMany({collection:"userCart",condition:{user_id},fields}).then((res)=>{
-      // console.log(`cartList`,res)
-      res.forEach((item)=>{
-        item.checked = false
-      })
-      this.setState({
-        loaded:true,
-        cartList:res
-      },()=>{
-        if(res.length){
-          this.sumPrice(true)
-        }else {
-          Taro.setStorage({key: 'cartCount', data: 0})
-        }
-      })
-    })
-  }
 
   changeCartPage = () => {
     this.setState((preState) => ({
       pageType: preState.pageType === 'detail' ? 'edit' : 'detail'
     }))
-  }
+  };
 
   //计算选中总合计金额
   sumPrice = (update) => {

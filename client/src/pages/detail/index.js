@@ -22,10 +22,10 @@ import {getGlobalData} from "../../utils/global_data"
 class Detail extends Component {
   config = {
     navigationBarTitleText: '商品详情'
-  }
+  };
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       // loaded: false,
       selected: {},
@@ -33,7 +33,7 @@ class Detail extends Component {
       // detailSpec:[],
       buttonType: 'add',
       cartCount: Taro.getStorageSync('cartCount')
-    }
+    };
     this.id = String(this.$router.params.id)
   }
 
@@ -55,20 +55,6 @@ class Detail extends Component {
     });
   }
 
-  // 获取购物车数量更新
-  getCartCount = (res) => {
-      let cartCount=0;
-      if(res.length){
-        res.forEach((item,index)=>{
-          cartCount+=item.count
-          if(index === res.length -1){
-            Taro.setStorage({key: 'cartCount', data: cartCount})
-          }
-        })
-      }else {
-        Taro.setStorage({key: 'cartCount', data: cartCount})
-      }
-  };
 
   handleSelect = (selected) => {
     this.setState({ selected })
@@ -85,12 +71,12 @@ class Detail extends Component {
       visible: !this.state.visible,
       selected: {}
     })
-  }
+  };
 
   changeAddOrBuy = (val) => {
     this.setState({
       buttonType:val
-    })
+    });
     this.toggleVisible()
   };
 
@@ -101,13 +87,13 @@ class Detail extends Component {
     console.log(effects['productList/fetchOne'] , effects['userCartList/fetch'], effects['specificationStockList/fetch']);
     console.log(effects['productList/fetchOne'] || effects['userCartList/fetch']);
 
-    if (effects['productList/fetchOne'] || effects['userCartList/fetch']) {
+    if (effects['productList/fetchOne'] == undefined ||  effects['specificationStockList/fetch'] == true) {
       return <Loading />
     }
 
-    console.log('userCart:', userCartList.list);
-    console.log('productList:', productList.currentProduct);
-    console.log('spec:', specificationStockList.list);
+    console.log('userCart:', userCartList);
+    console.log('productList:', productList);
+    console.log('spec:', specificationStockList);
    // this.getCartCount(userCartList.list);
     const detailInfo = productList.currentProduct;
     const detailSpec = specificationStockList.list;

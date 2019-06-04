@@ -32,10 +32,10 @@ export async function deleteCategory (params) {
   return QL.remove('category', params, ['result']);
 }
 export async function queryUsercart (params) {
-  return QL.find_many('userCart', deleteEmptyProperty(params), [  'count',  'id',  'createdAt',  'updatedAt',  'product.recommend',  'product.updatedAt',  'product.unit',  'product.name',  'product.createdAt',  'product.status',  'product.id',  'product.intro',  'product.discountRate',  'product.price',  'product.img',  'product.stock',  'specificationStock_id.updatedAt',  'specificationStock_id.color',  'specificationStock_id.createdAt',  'specificationStock_id.size',  'specificationStock_id.slideImg',  'specificationStock_id.status',  'specificationStock_id.id',  'specificationStock_id.detailImg',  'specificationStock_id.stock',  'user.email',  'user.updatedAt',  'user.password',  'user.telephone',  'user.username',  'user.createdAt',  'user.id',  'user.userData_id',  ]);
+  return QL.find_many('userCart', deleteEmptyProperty(params), [  'count',  'id',  'createdAt',  'updatedAt', "product_id{id, img, intro, name, price, status, stock, unit, discountRate}", "specificationStock_id{id, color, size, stock, status}" ]);
 }
 export async function queryOneUsercart (params) {
-  return QL.find_one('userCart', params, [  'count',  'id',  'createdAt',  'updatedAt',  'product.recommend',  'product.updatedAt',  'product.unit',  'product.name',  'product.createdAt',  'product.status',  'product.id',  'product.intro',  'product.discountRate',  'product.price',  'product.img',  'product.stock',  'specificationStock_id.updatedAt',  'specificationStock_id.color',  'specificationStock_id.createdAt',  'specificationStock_id.size',  'specificationStock_id.slideImg',  'specificationStock_id.status',  'specificationStock_id.id',  'specificationStock_id.detailImg',  'specificationStock_id.stock',  'user.email',  'user.updatedAt',  'user.password',  'user.telephone',  'user.username',  'user.createdAt',  'user.id',  'user.userData_id',  ]);
+  return QL.find_one('userCart', params, [  'count',  'id',  'createdAt',  'updatedAt']);
 }
 export async function createUsercart (params) {
   return QL.insert('userCart', deleteEmptyProperty(params), ['result']);
@@ -110,7 +110,7 @@ export async function queryProduct (params) {
   return QL.find_many('product', deleteEmptyProperty(params), [  'stock',  'img',  'price',  'discountRate',  'intro',  'id',  'status',  'createdAt',  'name',  'unit',  'updatedAt',  'recommend' , "category_id.name"]);
 }
 export async function queryOneProduct (params) {
-  return QL.find_one('product', params, [  'stock',  'img',  'price',  'discountRate',  'intro',  'id',  'status',  'createdAt',  'name',  'unit',  'updatedAt',  'recommend',  'category.updatedAt',  'category.createdAt',  'category.status',  'category.order',  'category.img',  'category.id',  'category.name',  'orderproduct.updatedAt',  'orderproduct.productColor',  'orderproduct.unit',  'orderproduct.productSize',  'orderproduct.orderPay',  'orderproduct.createdAt',  'orderproduct.productImg',  'orderproduct.productName',  'orderproduct.productPrice',  'orderproduct.id',  'orderproduct.count',  'orderproduct.productPay',  'orderproduct.orderPay_id',  'usercart.updatedAt',  'usercart.createdAt',  'usercart.id',  'usercart.count',  'specificationstock.updatedAt',  'specificationstock.color',  'specificationstock.createdAt',  'specificationstock.size',  'specificationstock.slideImg',  'specificationstock.status',  'specificationstock.id',  'specificationstock.detailImg',  'specificationstock.stock',  ]);
+  return QL.find_one('product', params, [  'stock',  'img',  'price',  'discountRate',  'intro',  'id',  'status',  'createdAt',  'name',  'unit',  'updatedAt',  'recommend'  ]);
 }
 export async function createProduct (params) {
   return QL.insert('product', deleteEmptyProperty(params), ['result']);
