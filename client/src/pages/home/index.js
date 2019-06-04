@@ -39,7 +39,7 @@ class Home extends Component {
 
   componentDidMount() {
     // this.getSlideShow()
-    //this.getGoodsInfo()
+    // this.getGoodsInfo()
     this.props.dispatch({
       type: 'slideshowList/fetch',
     });

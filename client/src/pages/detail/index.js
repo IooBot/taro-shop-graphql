@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
+import { connect } from '@tarojs/redux';
 import Loading from '../../components/loading'
 import Popup from '../../components/popup'
 import { findOne, findMany } from "../../utils/crud"
@@ -12,6 +13,12 @@ import Spec from './spec'
 import './index.scss'
 import {getGlobalData} from "../../utils/global_data"
 
+@connect(({ productList, specificationStockList, userCartList, loading }) => ({
+  specificationStockList,
+  productList,
+  userCartList,
+  ...loading,
+}))
 class Detail extends Component {
   config = {
     navigationBarTitleText: '商品详情'
@@ -31,19 +38,22 @@ class Detail extends Component {
   }
 
   componentDidMount() {
-    this.getCartCount()
     let productId = this.id
-    let detail = findOne({collection:"product",condition:{id: productId},fields:["name", "id", "intro", "price", "img", "stock", "discountRate", "status"]})
-    let detailSpec = findMany({collection:"specificationStock",condition:{product_id: productId},fields:["id", "color", "size", "slideImg", "detailImg", "stock", "status"]})
+    this.props.dispatch({
+      type: 'productList/fetch',
+      payload: {id: productId}
+    });
+    this.props.dispatch({
+      type: 'specificationStockList/fetch',
+      payload: {product_id: productId}
+    });
+    this.props.dispatch({
+      type: 'userCartList/fetch',
+      payload: {status: '1', recommend: 1}
+    });
+    this.getCartCount()
 
-    Promise.all([detail, detailSpec]).then((res)=>{
-      // console.log('detail spec data',res)
-      this.setState({
-        loaded:true,
-        detailInfo: res[0],
-        detailSpec: res[1]
-      });
-    })
+
   }
 
   // 获取购物车数量更新
