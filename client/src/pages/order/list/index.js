@@ -1,11 +1,16 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View } from '@tarojs/components';
-import {findMany} from "../../../utils/crud"
+import {connect} from "@tarojs/redux";
+//import {findMany} from "../../../utils/crud"
 import Loading from "../../detail"
 import OrderListItem from "../list-item"
 import OrderFooter from "../footer"
 import './index.scss'
 
+@connect(({ orderList, loading }) => ({
+  orderList,
+  ...loading,
+}))
 export default class OrderList extends Component {
   constructor(props) {
     super(props)
@@ -17,49 +22,34 @@ export default class OrderList extends Component {
   }
 
   componentWillMount() {
-    let {typeIndex} = this.props
-    let orderStatus = String(typeIndex)
-    this.getOrderByStatus(orderStatus)
+    let { typeIndex, user_id } = this.props;
+    let orderStatus = String(typeIndex);
+   // this.getOrderByStatus(orderStatus)
+    this.props.dispatch({
+      type: 'orderList/fetch',
+      payload: {user_id, orderStatus}
+    });
   }
 
   componentWillReceiveProps(nextProps) {
-    let {typeIndex} = nextProps
+    let { typeIndex,user_id } = nextProps
     let orderStatus = String(typeIndex)
-    this.getOrderByStatus(orderStatus)
+    this.props.dispatch({
+      type: 'orderList/fetch',
+      payload: {user_id, orderStatus}
+    });
+    //this.getOrderByStatus(orderStatus)
   }
 
-  getOrderByStatus = (orderStatus) => {
-    // console.log("OrderList orderStatus",orderStatus,typeof  orderStatus)
-
-    this.setState({
-      orderStatus
-    },()=>{
-      this.getOrderData()
-    })
-  }
-
-  getOrderData = () => {
-    let {orderStatus} = this.state
-    let {user_id} = this.props
-    // console.log("getOrderData orderStatus",orderStatus,"user_id",user_id)
-
-    let fields = ["orderTotalPay", "createdAt", "orderStatus", "id", "count", "productTotalPay", "user_id.id"]
-    findMany({collection:'order',condition:{user_id, orderStatus},fields}).then((res) => {
-      // console.log("getOrderData res",res)
-      this.setState({
-        loaded:true,
-        list: res
-      })
-    })
-  }
 
   render() {
-    let {loaded, orderStatus, list} = this.state
-    let content = orderStatus === '0' ? '需付款' : '实付款'
-
-    if (!loaded) {
+    // let {loaded, orderStatus, list} = this.state;
+    const {orderStatus, orderList, effects} = this.props;
+    if ( effects['orderList/fetch']) { //!loaded
       return <Loading />
     }
+    let list = orderList.list;
+    let content = orderStatus === '0' ? '需付款' : '实付款'
 
     return (
       <View className='order-wrap'>

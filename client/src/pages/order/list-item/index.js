@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Image } from '@tarojs/components';
 import {connect} from "@tarojs/redux";
-import {findMany} from "../../../utils/crud"
+// import {findMany} from "../../../utils/crud"
 import './index.scss'
 
 @connect(({ orderProductList, loading }) => ({

@@ -14,3 +14,29 @@ getOrderProductData = () => {
     })
   })
 }
+
+
+getOrderData = () => {
+  let {orderStatus} = this.state
+  let {user_id} = this.props
+  // console.log("getOrderData orderStatus",orderStatus,"user_id",user_id)
+
+  let fields = ["orderTotalPay", "createdAt", "orderStatus", "id", "count", "productTotalPay", "user_id.id"]
+  findMany({collection:'order',condition:{user_id, orderStatus},fields}).then((res) => {
+    // console.log("getOrderData res",res)
+    this.setState({
+      loaded:true,
+      list: res
+    })
+  })
+}
+
+getOrderByStatus = (orderStatus) => {
+  // console.log("OrderList orderStatus",orderStatus,typeof  orderStatus)
+
+  this.setState({
+    orderStatus
+  },()=>{
+    this.getOrderData()
+  })
+}
