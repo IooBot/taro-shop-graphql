@@ -23,6 +23,13 @@ export default {
         payload: Array.isArray(response) ? response : [],
       });
     },
+    * fetchDefault({ payload }, { call, put }) {
+      const response = yield call(queryUseraddress, payload);
+      yield put({
+        type: 'queryOne',
+        payload: Array.isArray(response) ? response[0] : {},
+      });
+    },
     * appendFetch({ payload }, { call, put }) {
       const response = yield call(queryUseraddress, payload);
       yield put({

@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text, ScrollView } from '@tarojs/components'
 import { AtToast } from "taro-ui"
 import moment from 'moment'
+import {connect} from "@tarojs/redux";
 import {getWindowHeight} from "../../utils/style"
 import {findMany, insert, remove} from "../../utils/crud"
 import {idGen} from "../../utils/func"
@@ -12,10 +13,16 @@ import OrdersDelivery from "./delivery"
 import OrdersFooter from "./footer"
 import './index.scss'
 
+
+@connect(({ userAddressList, orderMutate, loading }) => ({
+  createResult: orderMutate.createResult,
+  userAddressList,
+  ...loading,
+}))
 class Orders extends Component {
   config = {
     navigationBarTitleText: '订单确认'
-  }
+  };
 
   constructor(props) {
     super(props)
@@ -23,7 +30,7 @@ class Orders extends Component {
       totalPrice: parseFloat(Taro.getStorageSync('totalPrice')),
       totalCount: parseInt(Taro.getStorageSync('totalCount')),
       delivery: ["快递配送"],
-      selectAddress: {},
+      // selectAddress: {},
       ordersList:[],
       remark: '',
       dataType: this.$router.params.dataType,
@@ -40,34 +47,19 @@ class Orders extends Component {
   }
 
   componentDidMount() {
-    this.getUserAddressData()
-  }
-
-  // 获取用户收货地址，缓存无则重新获取
-  getUserAddressData = () => {
-    let selectAddress = Taro.getStorageSync('ordersAddress')
-    if(selectAddress){
-      this.setState({
-        selectAddress
-      })
-    }else {
-      let user_id = getGlobalData("user_id")
-      let fields = ["id", "default", "username", "telephone", "province", "area", "city", "address"]
-      findMany({collection:"userAddress",condition:{user_id: user_id,default:1},fields}).then(res =>{
-        // console.log('orders userAddressData',res)
-        this.setState({
-          selectAddress: res[0]
-        })
-        Taro.setStorage({ key: 'ordersAddress', data: res[0] })
-      })
-    }
+    // this.getUserAddressData()
+    let user_id = getGlobalData("user_id");
+    this.props.dispatch({
+      type: 'userAddressList/fetchDefault',
+      payload:{user_id},
+    });
   }
 
   changeOrdersState = (state,val) => {
     this.setState({
       [state]: val,
     })
-  }
+  };
 
   onSubmitOrderAndProduct = () => {
     this.changeOrdersState('createOrderStatus', true)
@@ -192,8 +184,9 @@ class Orders extends Component {
   }
 
   render() {
-    let {dataType, selectAddress, totalPrice, ordersList, createOrderStatus} = this.state
-
+    let {dataType,  totalPrice, ordersList, createOrderStatus} = this.state;
+    const {userAddressList } = this.props;
+    let selectAddress = userAddressList.currentUseraddress;
     return (
       <View className='orders'>
         {

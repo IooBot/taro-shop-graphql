@@ -29,8 +29,10 @@ class Address extends Component {
 
   componentDidShow() {
     // this.getAddressData()
+    let user_id = getGlobalData("user_id");
     this.props.dispatch({
       type: 'userAddressList/fetch',
+      payload:{user_id},
     });
   }
 
