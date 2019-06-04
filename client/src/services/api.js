@@ -152,10 +152,10 @@ export async function deleteOrder (params) {
   return QL.remove('order', params, ['result']);
 }
 export async function queryUseraddress (params) {
-  return QL.find_many('userAddress', deleteEmptyProperty(params), [  'province',  'area',  'address',  'updatedAt',  'telephone',  'default',  'city',  'username',  'postcode',  'createdAt',  'deletedAt',  'id',  'order.remark',  'order.updatedAt',  'order.orderLogistics_id',  'order.orderTotalPay',  'order.createdAt',  'order.orderStatus',  'order.id',  'order.count',  'order.productTotalPay',  'order.orderPay_id',  'user.email',  'user.updatedAt',  'user.password',  'user.telephone',  'user.username',  'user.createdAt',  'user.id',  'user.userData_id',  ]);
+  return QL.find_many('userAddress', deleteEmptyProperty(params), [  'province',  'area',  'address',  'updatedAt',  'telephone',  'default',  'city',  'username',  'postcode',  'createdAt',  'deletedAt',  'id']);
 }
 export async function queryOneUseraddress (params) {
-  return QL.find_one('userAddress', params, [  'province',  'area',  'address',  'updatedAt',  'telephone',  'default',  'city',  'username',  'postcode',  'createdAt',  'deletedAt',  'id',  'order.remark',  'order.updatedAt',  'order.orderLogistics_id',  'order.orderTotalPay',  'order.createdAt',  'order.orderStatus',  'order.id',  'order.count',  'order.productTotalPay',  'order.orderPay_id',  'user.email',  'user.updatedAt',  'user.password',  'user.telephone',  'user.username',  'user.createdAt',  'user.id',  'user.userData_id',  ]);
+  return QL.find_one('userAddress', params, [  'province',  'area',  'address',  'updatedAt',  'telephone',  'default',  'city',  'username',  'postcode',  'createdAt',  'deletedAt',  'id']);
 }
 export async function createUseraddress (params) {
   return QL.insert('userAddress', deleteEmptyProperty(params), ['result']);

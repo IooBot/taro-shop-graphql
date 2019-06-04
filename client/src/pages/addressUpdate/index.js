@@ -1,12 +1,18 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Picker, Text } from '@tarojs/components'
 import { AtForm, AtInput, AtSwitch } from 'taro-ui'
+import {getGlobalData} from "../../utils/global_data"
+import {connect} from "@tarojs/redux";
 import moment from 'moment'
 import {idGen} from "../../utils/func"
 import {insert, update} from "../../utils/crud"
 import './index.scss'
-import {getGlobalData} from "../../utils/global_data"
 
+@connect(({ userAddressMutate, loading }) => ({
+  createResult: userAddressMutate.createResult,
+  updateResult: userAddressMutate.updateResult,
+  ...loading,
+}))
 class AddressUpdate extends Component {
   config = {
     navigationBarTitleText: '编辑地址'

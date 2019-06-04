@@ -14,7 +14,8 @@ import Footer from './footer'
 import './index.scss'
 
 
-@connect(({ userCartList, loading }) => ({
+@connect(({ userCartList, userCartMutate, loading }) => ({
+  deleteResult: userCartMutate.deleteResult,
   userCartList,
   ...loading,
 }))
@@ -185,7 +186,7 @@ class Cart extends Component {
 
           let deleteIdList = deleteList.map(item => item.id)
           // console.log('delete list',deleteIdList)
-
+          // todo change to dispatch
           remove({collection:"userCart",condition:{where:{id: {_in: deleteIdList}}}}).then((data)=>{
             // console.log('delete userCart data',data)
             if(data === "ok"){

@@ -1,12 +1,19 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView, Text } from '@tarojs/components'
 import {AtIcon} from "taro-ui"
+import {connect} from "@tarojs/redux";
 import {findMany,remove} from "../../utils/crud"
 import {getWindowHeight} from "../../utils/style"
 import {getGlobalData} from "../../utils/global_data"
 import Loading from "../../components/loading"
 import './index.scss'
 
+
+@connect(({ userAddressList, userAddressMutate, loading }) => ({
+  deleteResult: userAddressMutate.deleteResult,
+  userAddressList,
+  ...loading,
+}))
 class Address extends Component {
   config = {
     navigationBarTitleText: '地址管理'
@@ -21,19 +28,10 @@ class Address extends Component {
   }
 
   componentDidShow() {
-    this.getAddressData()
-  }
-
-  getAddressData = () => {
-    let user_id = getGlobalData("user_id")
-    let fields = ["address", "telephone", "default", "city", "username", "id", "area", "province"]
-    findMany({collection:"userAddress",condition:{user_id: user_id},fields}).then(res =>{
-      // console.log('address userAddressData',res)
-      this.setState({
-        loaded: true,
-        shoppingAddress: res
-      });
-    })
+    // this.getAddressData()
+    this.props.dispatch({
+      type: 'userAddressList/fetch',
+    });
   }
 
   navigateToAddressEdit = (id,address) => {
@@ -84,11 +82,15 @@ class Address extends Component {
   render() {
     let {shoppingAddress} = this.state
     // console.log("shoppingAddress",shoppingAddress)
-
-    if (!this.state.loaded) {
+    const { userAdressList, effects }  = this.props;
+    if (effects[userAdressList/fetch]) { //!this.state.loaded
       return (
         <Loading />
       )
+    }
+    if(shoppingAddress.length ==0 && userAdressList) {
+      shoppingAddress = userAdressList.list;
+      this.setState({shoppingAddress: shoppingAddress});
     }
     return (
       <View className='address'>

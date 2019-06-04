@@ -7,8 +7,9 @@ import specificationStockList from './specificationStockList';
 import orderList from './orderList';
 import orderLogisticList from './orderLogisticList';
 import userAddressList from './userAddressList';
+import userAddressMutate from './userAddressMutate';
 import shortList from './shopList';
 
 export default [categoryList, slidshowList, productList, userCartList, specificationStockList,
-  orderList, orderLogisticList, userAddressList, shortList, userCartMutate];
+  orderList, orderLogisticList, userAddressList, shortList, userCartMutate, userAddressMutate];
 
