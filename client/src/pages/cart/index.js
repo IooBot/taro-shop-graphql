@@ -64,7 +64,7 @@ class Cart extends Component {
     cartList.forEach((item,index)=>{
       cartCount+=item.count
       if(item.checked===true){
-        totalPrice+=item.count*(item.product_id.price*item.product_id.discountRate/100).toFixed(2)
+        totalPrice+=item.count*(item.product.price*item.product.discountRate/100).toFixed(2)
         selectedCount+=item.count
         checkedCount++
       }

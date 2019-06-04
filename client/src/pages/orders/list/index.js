@@ -53,12 +53,12 @@ export default class OrdersList extends Component {
               <View key={'cart__orders-'+item.id}>
                 <View className='cart__orders'>
                   <View className='cart__orders-image'>
-                    <Image src={item.product_id.img || "https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png"} alt='' />
+                    <Image src={item.product.img || "https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png"} alt='' />
                   </View>
                   <View className='cart__orders-intro'>
-                    <View className='cart__orders-intro-name'>{item.product_id.name}</View>
+                    <View className='cart__orders-intro-name'>{item.product.name}</View>
                     <View className='cart__orders-intro-spec'>{item.specificationStock_id.color}  {item.specificationStock_id.size}</View>
-                    <View className='cart__orders-intro-price'>¥ {item.product_id.price}</View>
+                    <View className='cart__orders-intro-price'>¥ {item.product.price}</View>
                   </View>
                   <View className='cart__orders-count'>
                     x {item.count}
@@ -86,12 +86,12 @@ export default class OrdersList extends Component {
                       <View key={index}>
                         <View className='cart__orders'>
                           <View className='cart__orders-image'>
-                            <Image src={item.product_id.img} alt='img' />
+                            <Image src={item.product.img} alt='img' />
                           </View>
                           <View className='cart__orders-intro'>
-                            <View className='cart__orders-intro-name'>{item.product_id.name}</View>
+                            <View className='cart__orders-intro-name'>{item.product.name}</View>
                             <View className='cart__orders-intro-spec'>{item.specificationStock_id.color}  {item.specificationStock_id.size}</View>
-                            <View className='cart__orders-intro-price'>¥ {item.product_id.price}</View>
+                            <View className='cart__orders-intro-price'>¥ {item.product.price}</View>
                           </View>
                           <View className='cart__orders-count'>
                             x {item.count}

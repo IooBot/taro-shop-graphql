@@ -41,13 +41,13 @@ export default class OrderListItem extends Component {
         {
           product.length === 1 ?
             <View className='order-product__content'>
-              <Image className='order-product__content-img' src={product[0].product_id.img} />
+              <Image className='order-product__content-img' src={product[0].product.img} />
               <View className='order-product__content-name'>
-                {product[0].product_id.name}
+                {product[0].product.name}
               </View>
             </View>:
             product.map(item => (
-              <Image className='order-product__content-img' key={item.id} src={item.product_id.img} />
+              <Image className='order-product__content-img' key={item.id} src={item.product.img} />
           ))
         }
       </View>

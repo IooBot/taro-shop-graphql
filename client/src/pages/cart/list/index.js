@@ -42,15 +42,15 @@ export default class List extends Component {
             />
             <Image
               className='cart-list__item-img'
-              src={item.product_id.img}
-              onClick={this.handleClick.bind(this, item.product_id.id)}
+              src={item.product.img}
+              onClick={this.handleClick.bind(this, item.product.id)}
             />
             <View className='cart-list__item-info'>
-              <View onClick={this.handleClick.bind(this, item.product_id.id)}>
+              <View onClick={this.handleClick.bind(this, item.product.id)}>
                 <View className='cart-list__item-title'>
                   <Text className='cart-list__item-title-tag'>新人专享价</Text>
                   <Text className='cart-list__item-title-name' numberOfLines={1}>
-                    {item.product_id.name}
+                    {item.product.name}
                   </Text>
                 </View>
 
@@ -67,10 +67,10 @@ export default class List extends Component {
               <View className='cart-list__item-wrap'>
                 <View>
                   <Text className='cart-list__item-price'>
-                    ￥{(item.product_id.price*item.product_id.discountRate/100).toFixed(2)}
+                    ￥{(item.product.price*item.product.discountRate/100).toFixed(2)}
                   </Text>
                   <Text className='cart-list__item-price-origin'>
-                    ￥{(item.product_id.price).toFixed(2)}
+                    ￥{(item.product.price).toFixed(2)}
                   </Text>
                 </View>
                 <View className='cart-list__item-num'>

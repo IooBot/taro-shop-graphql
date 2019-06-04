@@ -72,12 +72,12 @@ class Detail extends Component {
                 <div key={'orders-detail-'+data.id}>
                     <div className="cart-list">
                         <div className="cart-list-image">
-                            <img src={data.product_id.img} alt=""/>
+                            <img src={data.product.img} alt=""/>
                         </div>
                         <div className="cart-orders-intro">
-                            <div className='hide-extra-text'>{data.product_id.name}</div>
+                            <div className='hide-extra-text'>{data.product.name}</div>
                             <div>{data.productColor}  {data.productSize}</div>
-                            <div>¥ {data.product_id.price}</div>
+                            <div>¥ {data.product.price}</div>
                         </div>
                         <div className="cart-orders-count">
                             x {data.count}

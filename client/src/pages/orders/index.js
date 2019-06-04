@@ -50,7 +50,7 @@ class Orders extends Component {
     // this.getUserAddressData()
     let user_id = getGlobalData("user_id");
     this.props.dispatch({
-      type: 'userAddressList/fetchDefault',
+      type: 'userAddressList/fetchCurrent',
       payload:{user_id},
     });
   }

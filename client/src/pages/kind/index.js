@@ -52,7 +52,7 @@ class Kind extends Component {
         <ItemList list={ detailInfo }>
           <View className='cate-sub__list-title'>
             <Text className='cate-sub__list-title-txt'>
-              {detailInfo[0]? detailInfo[0].category_id.name : ''}
+              {detailInfo[0]? detailInfo[0].category.name : ''}
             </Text>
           </View>
         </ItemList>
