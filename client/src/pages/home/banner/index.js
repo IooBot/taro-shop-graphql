@@ -28,7 +28,7 @@ export default class SwiperBanner extends Component {
             >
               <Image
                 className='home-banner__swiper-item-img'
-                src={item}
+                src={item.img}
               />
             </SwiperItem>
           ))}

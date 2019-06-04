@@ -1,4 +1,26 @@
-{:category
+{:slideshow
+ [{:id "1",
+  :name "1",
+  :img
+  "https://fz-1254337200.cos.ap-chengdu.myqcloud.com/lbt/slide1.jpg",
+  :status "1",
+  :createdAt "2019-03-11 12:45:01",
+  :updatedAt ""}
+ {:id "2",
+  :name "2",
+  :img
+  "https://fz-1254337200.cos.ap-chengdu.myqcloud.com/lbt/slide2.jpg",
+  :status "1",
+  :createdAt "2019-03-11 12:45:01",
+  :updatedAt ""}
+ {:id "3",
+  :name "3",
+  :img
+  "https://fz-1254337200.cos.ap-chengdu.myqcloud.com/lbt/slide3.jpg",
+  :status "1",
+  :createdAt "2019-03-11 12:45:01",
+  :updatedAt ""}]
+ :category
  [{:id "jacket",
    :name "夹克",
    :img
