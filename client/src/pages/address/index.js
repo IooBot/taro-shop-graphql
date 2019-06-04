@@ -38,7 +38,7 @@ class Address extends Component {
 
   navigateToAddressEdit = (id,address) => {
     Taro.navigateTo({
-      url: `/pages/address/edit/index?id=${id}`
+      url: `/pages/addressUpdate/index?id=${id}`
     })
     if(id !== 'add'){
       Taro.setStorageSync('ordersAddress', address)

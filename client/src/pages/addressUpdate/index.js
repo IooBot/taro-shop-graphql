@@ -7,7 +7,7 @@ import {insert, update} from "../../../utils/crud"
 import './index.scss'
 import {getGlobalData} from "../../../utils/global_data"
 
-class AddressEdit extends Component {
+class AddressUpdate extends Component {
   config = {
     navigationBarTitleText: '编辑地址'
   }
@@ -196,4 +196,4 @@ class AddressEdit extends Component {
   }
 }
 
-export default AddressEdit
+export default AddressUpdate
