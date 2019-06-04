@@ -1,19 +1,19 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Text, ScrollView } from '@tarojs/components'
 import { connect } from '@tarojs/redux';
-import * as QL from 'shortql/graphql_cache.core'
+// import * as QL from 'shortql/graphql_cache.core'
 import Logo from '../../components/logo'
 import Loading from '../../components/loading'
 import { getWindowHeight } from '../../utils/style'
 import {setGlobalData} from "../../utils/global_data"
 // import {findMany} from "../../utils/crud"
-import { graphqlEndpoint, authUrl } from "../../config";
+import { authUrl } from "../../config"; // graphqlEndpoint
 import Banner from './banner'
 import Recommend from './recommend'
 import Category from './category'
 import './index.scss'
 
-QL.init(graphqlEndpoint, Taro.request, {enable_log : true});
+// QL.init(graphqlEndpoint, Taro.request, {enable_log : true});
 
 @connect(({ slideshowList, productList, categoryList, loading }) => ({
   slideshowList,

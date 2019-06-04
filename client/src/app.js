@@ -1,11 +1,13 @@
 import '@tarojs/async-await'
 import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux';
+import * as QL from 'shortql/graphql_cache.core'
 import 'taro-ui/dist/style/index.scss'
 import Home from './pages/home'
 import './app.scss'
 import dva from './utils/dva';
 import models from './models';
+import {graphqlEndpoint} from "./config";
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -70,6 +72,7 @@ class App extends Component {
   }
 
   componentDidMount () {
+    QL.init(graphqlEndpoint, Taro.request, {enable_log : true});
     if (process.env.TARO_ENV === 'weapp') {
       Taro.cloud.init()
     }
