@@ -171,6 +171,26 @@ class Cart extends Component {
     })
   }
 
+  onDeleteSucess = () =>{
+    Taro.showToast({
+      title: '删除成功',
+      icon: 'none'
+    });
+    let {cartList, selectedCount } = this.state;
+    let cartList1 = cartList.filter((item)=> item.checked === false)
+    this.changeCartPage()
+    setTimeout(() => {
+      Taro.navigateBack()
+    }, 1000)
+
+    let cartCount = parseInt(Taro.getStorageSync('cartCount')) - selectedCount
+    Taro.setStorageSync('cartCount',cartCount)
+    this.setState({
+      cartList:cartList1,
+      selectedCount:0,
+      totalPrice:0
+    })
+  }
   // 多选删除
   delete=()=>{
     let {cartList, selectedCount } = this.state;
@@ -182,32 +202,15 @@ class Cart extends Component {
       .then(res =>{
         if(res.confirm){
           let deleteList = cartList.filter((item)=> item.checked === true)
-          let cartList1 = cartList.filter((item)=> item.checked === false)
+          // let cartList1 = cartList.filter((item)=> item.checked === false)
 
           let deleteIdList = deleteList.map(item => item.id)
           // console.log('delete list',deleteIdList)
-          // todo change to dispatch
-          remove({collection:"userCart",condition:{where:{id: {_in: deleteIdList}}}}).then((data)=>{
-            // console.log('delete userCart data',data)
-            if(data === "ok"){
-              Taro.showToast({
-                title: '删除成功',
-                icon: 'none'
-              })
-              this.changeCartPage()
-              setTimeout(() => {
-                Taro.navigateBack()
-              }, 1000)
 
-              let cartCount = parseInt(Taro.getStorageSync('cartCount')) - selectedCount
-              Taro.setStorageSync('cartCount',cartCount)
-              this.setState({
-                cartList:cartList1,
-                selectedCount:0,
-                totalPrice:0
-              })
-            }
-          })
+          this.props.dispatch({
+            type: 'userCartMutate/delete',
+            payload: {where:{id: {_in: deleteIdList}}},
+          });
         }
       })
   }
@@ -215,13 +218,16 @@ class Cart extends Component {
   render () {
     let {pageType, cartList, totalPrice, selectedCount, isSelectAll} = this.state
 
-    const { userCartList, effects }  = this.props;
+    const { userCartList, deleteResult, effects }  = this.props;
     if (effects[userCartList/fetch]) { //!this.state.loaded
       return <Loading />
     }
     if(cartList.length ==0 && userCartList) {
       cartList = userCartList.list;
       this.setState({cartList: cartList});
+    }
+    if(deleteResult && deleteResult == 'ok'){
+      this.onDeleteSucess();
     }
 
     const isEmpty = !cartList.length

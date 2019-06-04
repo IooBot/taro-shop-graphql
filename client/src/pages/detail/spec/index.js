@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
+import {connect} from "@tarojs/redux";
 import classNames from 'classnames'
 import moment from 'moment'
 import InputNumber from '../../../components/input-number'
@@ -8,6 +9,11 @@ import {idGen} from '../../../utils/func'
 import {insert} from "../../../utils/crud"
 import './index.scss'
 
+
+@connect(({ userCartMutate, loading }) => ({
+  createResult: userCartMutate.createResult,
+  ...loading,
+}))
 export default class Spec extends Component {
   static defaultProps = {
     detailSpec:[],
@@ -36,17 +42,19 @@ export default class Spec extends Component {
     let {detailSpec} = this.props
     let flag = true, selectFlag = true
     let specObject = {}, i = 0, specList = []
-    let colorObject = {}, j = 0, colorList = [], selectColor = ''
+    let colorObject = {}, j = 0, colorList = [], selectColor = '';
+    console.log('detail:',detailSpec);
     detailSpec.map((item) => {
       let {id,color,size,stock,status} = item
       if(flag && status > 0) {
         selectColor = color
         flag = false
       }
-      specObject[color] ? specList[specObject[color] - 1].spec.push({id, size, stock, status}) : specObject[color] = ++i && specList.push({
-        color,
-        spec: [{id, size, stock, status}],
-      })
+      // todo : not understand
+      // specObject[color] ? specList[specObject[color] - 1].spec.push({id, size, stock, status}) : specObject[color] = ++i && specList.push({
+      //   color,
+      //   spec: [{id, size, stock, status}],
+      // })
       if(!colorObject[color]) {
         colorObject[color] = ++j
         colorList.push({
@@ -84,12 +92,13 @@ export default class Spec extends Component {
   changeColor = (val) => {
     // console.log("changeColor val",val)
     let {specList} = this.state
-    let colorSpec = specList.filter(item=>item.color === val)[0].spec
+    // todo : undefine
+     // let colorSpec =  specList.filter(item=>item.color === val)[0].spec;
     // console.log("changeColor colorSpec",colorSpec)
 
     this.setState({
       selectColor:val,
-      colorSpec
+      //   colorSpec
     },()=>{
       this.changeSize()
     })
@@ -134,7 +143,7 @@ export default class Spec extends Component {
     let {detailInfo} = this.props
     let product_id = detailInfo.id
     let {count, specFilter} = this.state
-    let specificationStock_id =  specFilter.id
+    let specificationStock_id = specFilter? specFilter.id : '';
     let createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
 
     const cartContent = {
@@ -148,21 +157,25 @@ export default class Spec extends Component {
     }
     // console.log('cartContent',cartContent)
 
-    this.props.onClose()
-    insert({collection:'userCart',condition:cartContent}).then(()=>{
-      // console.log('create_userCart data',data)
-      let preCartCount = parseInt(Taro.getStorageSync('cartCount')) || 0
-      let cartCount = preCartCount + count
+    this.props.onClose();
+    this.props.dispatch({
+      type: 'userCartMutate/create',
+      payload: cartContent,
+    });
+  };
+  updateCartCout = () => {
+    let { count } = this.state;
+    let preCartCount = parseInt(Taro.getStorageSync('cartCount')) || 0
+    let cartCount = preCartCount + count;
 
-      // 购物车数量显示更新
-      this.props.onChangeDetailState('cartCount',cartCount)
-      Taro.showToast({
-        title: '成功添加至购物车',
-        icon: 'none'
-      })
-      Taro.setStorageSync('cartCount',cartCount)
+// 购物车数量显示更新
+    this.props.onChangeDetailState('cartCount',cartCount)
+    Taro.showToast({
+      title: '成功添加至购物车',
+      icon: 'none'
     })
-  }
+    Taro.setStorageSync('cartCount',cartCount)
+  };
 
   // 立即购买
   buyNow = () => {
@@ -219,10 +232,14 @@ export default class Spec extends Component {
   }
 
   render() {
-    let {price, img} = this.props
+    let {price, img, createResult} = this.props
     let {count, selectColor, colorList, colorSpec, specFilter} = this.state
-    let specStock =  specFilter.stock || 0
-    let selectSize =  specFilter.size
+    console.log('specFilter:',specFilter)
+    let specStock = specFilter ? specFilter.stock || 0 : 0;
+    let selectSize = specFilter ? specFilter.size : 0;
+    if(createResult && createResult.result== 'ok'){
+      this.updateCartCout();
+    }
 
     return(
       <View className='popup-box' >
