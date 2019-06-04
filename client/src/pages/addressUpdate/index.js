@@ -2,10 +2,10 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Picker, Text } from '@tarojs/components'
 import { AtForm, AtInput, AtSwitch } from 'taro-ui'
 import moment from 'moment'
-import {idGen} from "../../../utils/func"
-import {insert, update} from "../../../utils/crud"
+import {idGen} from "../../utils/func"
+import {insert, update} from "../../utils/crud"
 import './index.scss'
-import {getGlobalData} from "../../../utils/global_data"
+import {getGlobalData} from "../../utils/global_data"
 
 class AddressUpdate extends Component {
   config = {
