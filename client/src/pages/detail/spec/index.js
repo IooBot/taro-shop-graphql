@@ -50,11 +50,11 @@ export default class Spec extends Component {
         selectColor = color
         flag = false
       }
-      // todo : not understand
-      // specObject[color] ? specList[specObject[color] - 1].spec.push({id, size, stock, status}) : specObject[color] = ++i && specList.push({
-      //   color,
-      //   spec: [{id, size, stock, status}],
-      // })
+
+      specObject[color] ? specList[specObject[color] - 1].spec.push({id, size, stock, status}) : specObject[color] = ++i && specList.push({
+        color,
+        spec: [{id, size, stock, status}],
+      })
       if(!colorObject[color]) {
         colorObject[color] = ++j
         colorList.push({
@@ -82,19 +82,19 @@ export default class Spec extends Component {
       colorList
     },()=>{
       this.changeColor(this.state.selectColor)
-    })
-    // console.log("handleSpec selectColor",selectColor)
-    // console.log("handleSpec specList",specList)
-    // console.log("handleSpec colorList",colorList)
-  }
+    });
+     console.log("handleSpec selectColor",selectColor)
+     console.log("handleSpec specList",specList)
+     console.log("handleSpec colorList",colorList)
+  };
 
   // 选择颜色后更新当前规格选择
   changeColor = (val) => {
     // console.log("changeColor val",val)
     let {specList} = this.state
     // todo : undefine
-     // let colorSpec =  specList.filter(item=>item.color === val)[0].spec;
-    // console.log("changeColor colorSpec",colorSpec)
+      let colorSpec =  specList.filter(item=>item.color === val)[0].spec;
+     console.log("changeColor colorSpec",colorSpec)
 
     this.setState({
       selectColor:val,
@@ -108,7 +108,7 @@ export default class Spec extends Component {
   changeSize = () => {
     let {colorSpec} = this.state
     let specFilter = colorSpec.filter(item=> item.select && item.status > 0)[0]
-    // console.log("select specFilter",specFilter)
+     console.log("select specFilter",specFilter)
 
     this.setState({
       specFilter
@@ -235,8 +235,8 @@ export default class Spec extends Component {
     let {price, img, createResult} = this.props
     let {count, selectColor, colorList, colorSpec, specFilter} = this.state
     console.log('specFilter:',specFilter)
-    let specStock = specFilter ? specFilter.stock || 0 : 0;
-    let selectSize = specFilter ? specFilter.size : 0;
+    let specStock = specFilter && specFilter.stock || 0;
+    let selectSize = specFilter && specFilter.size ;
     if(createResult && createResult.result== 'ok'){
       this.props.dispatch({
         type: 'userCartMutate/saveCreateResult',
