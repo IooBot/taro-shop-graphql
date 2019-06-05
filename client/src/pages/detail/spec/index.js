@@ -93,14 +93,14 @@ export default class Spec extends Component {
     // console.log("changeColor val",val)
     let {specList} = this.state
     // todo : undefine
-      let colorSpec =  specList.filter(item=>item.color === val)[0].spec;
+     let colorSpec =  specList.filter(item=>item.color === val)[0].spec;
      console.log("changeColor colorSpec",colorSpec)
 
     this.setState({
       selectColor:val,
-      //   colorSpec
+      colorSpec
     },()=>{
-      this.changeSize()
+      this.changeSize(colorSpec)
     })
   }
 
@@ -127,7 +127,7 @@ export default class Spec extends Component {
         return item
       })
     }),()=>{
-      this.changeSize()
+      this.changeSize(this.state.colorSpec)
     })
   }
 
