@@ -10,9 +10,8 @@ import {idGen} from '../../../utils/func'
 import './index.scss'
 
 
-@connect(({ userCartMutate, loading }) => ({
+@connect(({ userCartMutate }) => ({
   createResult: userCartMutate.createResult,
-  ...loading,
 }))
 export default class Spec extends Component {
   static defaultProps = {
@@ -22,12 +21,14 @@ export default class Spec extends Component {
 
   constructor(props) {
     super(props)
+    const { detailSpec } = this.props;
+    const specification = detailSpec[0];
     this.state = {
       count: 1,
       selectColor: '',
-      stockList: [],
-      modelList:[],
-      colorList: [],
+      stockList: specification? specification.stock :[],
+      modelList: specification? specification.model :[],
+      colorList: specification? specification.color :[],
       // colorSpec:[],
       specFilter:{}
     }
@@ -243,7 +244,7 @@ export default class Spec extends Component {
 
   render() {
     let {price, img, createResult} = this.props
-    let {count, selectColor, colorList, colorSpec, specFilter} = this.state
+    let {count, selectColor, colorList, modelList, stockList, specFilter} = this.state; //colorSpec
     console.log('specFilter:',specFilter)
     let specStock = specFilter && specFilter.stock || 0;
     let selectSize = specFilter && specFilter.size ;
@@ -254,7 +255,7 @@ export default class Spec extends Component {
       });
       this.updateCartCout();
     }
-
+   console.log('color:',colorList,'model',modelList,'',stockList);
     return(
       <View className='popup-box' >
         <View className='main-goods-box'>
@@ -280,16 +281,16 @@ export default class Spec extends Component {
                         <View className='type-title'>颜色</View>
                         <View className='dl'>
                           {
-                            colorList.map((spec1)=>(
+                            colorList.map((item,index)=>(
                               <View
                                 className={classNames({
                                   'dd':true,
-                                  'spec-red': spec1.color === selectColor
+                                  'spec-red': item === selectColor
                                 })}
-                                key={'color'+spec1.id}
-                                onClick={this.changeColor.bind(this,spec1.color)}
+                                key={'color'+index}
+                                onClick={this.changeColor.bind(this,item)}
                               >
-                                {spec1.color}
+                                {item}
                               </View>
                             ))
                           }
@@ -297,24 +298,24 @@ export default class Spec extends Component {
                       </View>:''
                   }
                   {
-                    colorSpec.length ?
+                    modelList.length ?
                       <View className='li'>
                         <View className='type-title'>规格</View>
                         <View className='dl'>
                           {
-                            colorSpec.map((item,index)=>(
+                            modelList.map((item,index)=>(
                               <View
                                 className={classNames({
                                   'dd':true,
                                   'spec-gray': item.status < 1,
                                   'spec-red': item.status > 0 && item.select
                                 })}
-                                key={'spec'+item.id}
+                                key={'model'+index}
                                 onClick={()=>{
-                                  if(item.status > 0)  this.changeSelectedStatus(index)
+                                  if(item.status > 0)  this.changeSelectedStatus(item)
                                 }}
                               >
-                                {item.size}
+                                {item}
                               </View>
                             ))
                           }

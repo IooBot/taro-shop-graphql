@@ -13,10 +13,9 @@ import Spec from './spec'
 import './index.scss'
 // import {getGlobalData} from "../../utils/global_data"
 
-@connect(({ productList, specificationList, stockList, userCartList, common, loading }) => ({
+@connect(({ productList, specificationList, userCartList, common, loading }) => ({
   user_id: common.user_id,
   specificationList,
-  stockList,
   productList,
   userCartList,
   ...loading,
@@ -100,20 +99,19 @@ class Detail extends Component {
     const {buttonType, cartCount} = this.state; //loaded, detailInfo, detailSpec,
     const { specificationList, productList, userCartList, effects }  = this.props;
 
-    // console.log(effects['productList/fetchOne'] , effects['userCartList/fetch'], effects['specificationStockList/fetch']);
-    // console.log(effects['productList/fetchOne'] || effects['userCartList/fetch']);
+     console.log(effects['productList/fetchOne'] , effects['userCartList/fetch'], effects['specificationList/fetch']);
 
     if (effects['productList/fetchOne'] == undefined ||  effects['specificationList/fetch'] == true) {
       return <Loading />
     }
 
-    // console.log('userCart:', userCartList);
+    console.log('userCart:', userCartList.list);
     // console.log('productList:', productList);
     // console.log('spec:', specificationList);
     this.getCartCount(userCartList.list);
     const detailInfo = productList.currentProduct;
     const detailSpec = specificationList.list;
-
+    console.log('info',detailInfo,'spec:',detailSpec);
     const { user_id } = this.props;// getGlobalData("user_id")
     let {img, price} = detailInfo;
     let sliderImg = detailInfo.img;
