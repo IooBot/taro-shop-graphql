@@ -32,7 +32,7 @@ export async function deleteCategory (params) {
   return QL.remove('category', params, ['result']);
 }
 export async function queryUsercart (params) {
-  return QL.find_many('userCart', deleteEmptyProperty(params), [  'count',  'id',  'createdAt',  'updatedAt', "product{id, img, intro, name, price, status, stock, unit, discountRate}", "specificationStock_id{id, color, size, stock, status}" ]);
+  return QL.find_many('userCart', deleteEmptyProperty(params), [  'count',  'id',  'createdAt',  'updatedAt', "product{id, img, intro, name, price, status, stock, unit, discountRate}", "stock{id, color, model, account, status}" ]);
 }
 export async function queryOneUsercart (params) {
   return QL.find_one('userCart', params, [  'count',  'id',  'createdAt',  'updatedAt']);
@@ -50,7 +50,7 @@ export async function queryOrderproduct (params) {
   return QL.find_many('orderProduct', deleteEmptyProperty(params), [  'orderPay_id',  'productPay',  'count',  'id',  'productPrice',  'updatedAt',  'productColor',  'unit',  'productSize',  'orderPay',  'createdAt',  'productImg',  'productName', 'product{id, unit, img, intro, name, price, status, stock, unit, discountRate}']);
 }
 export async function queryOneOrderproduct (params) {
-  return QL.find_one('orderProduct', params, [  'orderPay_id',  'productPay',  'count',  'id',  'productPrice',  'updatedAt',  'productColor',  'unit',  'productSize',  'orderPay',  'createdAt',  'productImg',  'productName',  'specificationStock_id.updatedAt',  'specificationStock_id.color',  'specificationStock_id.createdAt',  'specificationStock_id.size',  'specificationStock_id.slideImg',  'specificationStock_id.status',  'specificationStock_id.id',  'specificationStock_id.detailImg',  'specificationStock_id.stock',  'product.recommend',  'product.updatedAt',  'product.unit',  'product.name',  'product.createdAt',  'product.status',  'product.id',  'product.intro',  'product.discountRate',  'product.price',  'product.img',  'product.stock',  'order.remark',  'order.updatedAt',  'order.orderLogistics_id',  'order.orderTotalPay',  'order.createdAt',  'order.orderStatus',  'order.id',  'order.count',  'order.productTotalPay',  'order.orderPay_id',  'user.email',  'user.updatedAt',  'user.password',  'user.telephone',  'user.username',  'user.createdAt',  'user.id',  'user.userData_id',  ]);
+  return QL.find_one('orderProduct', params, [  'orderPay_id',  'productPay',  'count',  'id',  'productPrice',  'updatedAt',  'productColor',  'unit',  'productSize',  'orderPay',  'createdAt',  'productImg',  'productName', 'product{id, unit, img, intro, name, price, status, stock, unit, discountRate}' ]);
 }
 export async function createOrderproduct (params) {
   return QL.insert('orderProduct', deleteEmptyProperty(params), ['result']);
@@ -181,18 +181,33 @@ export async function updateUser ({ condition, data}) {
 export async function deleteUser (params) {
   return QL.remove('user', params, ['result']);
 }
-export async function querySpecificationstock (params) {
-  return QL.find_many('specificationStock', deleteEmptyProperty(params), [  'stock',  'detailImg',  'id',  'status',  'slideImg',  'size',  'createdAt',  'updatedAt',  'color']);
+export async function queryStock (params) {
+  return QL.find_many('stock', deleteEmptyProperty(params), [  'model',  'color',  'account',  'id' ]);
 }
-export async function queryOneSpecificationstock (params) {
-  return QL.find_one('specificationStock', params, [  'stock',  'detailImg',  'id',  'status',  'slideImg',  'size',  'createdAt',  'updatedAt',  'color'  ]);
+export async function queryOneStock (params) {
+  return QL.find_one('stock', params, [  'model',  'color',  'account',  'id']);
 }
-export async function createSpecificationstock (params) {
-  return QL.insert('specificationStock', deleteEmptyProperty(params), ['result']);
+export async function createStock (params) {
+  return QL.insert('stock', deleteEmptyProperty(params), ['result']);
 }
-export async function updateSpecificationstock ({ condition, data}) {
-  return QL.update('specificationStock', condition, deleteEmptyProperty(data) , ['result']);
+export async function updateStock ({ condition, data}) {
+  return QL.update('stock', condition, deleteEmptyProperty(data) , ['result']);
 }
-export async function deleteSpecificationstock (params) {
-  return QL.remove('specificationStock', params, ['result']);
+export async function deleteStock (params) {
+  return QL.remove('stock', params, ['result']);
+}
+export async function querySpecification (params) {
+  return QL.find_many('specification', deleteEmptyProperty(params), [  'stock{id,color,model,account}',  'detailImg',  'id',  'status',  'slideImg',  'model',  'createdAt',  'updatedAt',  'color']);
+}
+export async function queryOneSpecification (params) {
+  return QL.find_one('specification', params, [  'stock{id}',  'detailImg',  'id',  'status',  'slideImg',  'model',  'createdAt',  'updatedAt',  'color'  ]);
+}
+export async function createSpecification (params) {
+  return QL.insert('specification', deleteEmptyProperty(params), ['result']);
+}
+export async function updateSpecification ({ condition, data}) {
+  return QL.update('specification', condition, deleteEmptyProperty(data) , ['result']);
+}
+export async function deleteSpecification (params) {
+  return QL.remove('specification', params, ['result']);
 }

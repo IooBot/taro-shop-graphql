@@ -134,7 +134,7 @@ class Orders extends Component {
       let createOrderProduct = shopping.map((item,index) => {
         let createdAt1 = moment().format('YYYY-MM-DD HH:mm:ss')
         let orderProductId =  createdAt1.replace(/[^0-9]/ig, "").substr(2) + tag +index
-        let {count, product_id:productData, specificationStock_id:specData} = item
+        let {count, product_id:productData, stock_id:specData} = item
         let {id:product_id, img, name, price, unit} = productData
         let {id:specId, color, size} = specData
         // console.log('product',index,item,product_id)
@@ -144,7 +144,7 @@ class Orders extends Component {
           productColor: color,
           unit,
           product_id,
-          specificationStock_id:specId,
+          stock_id:specId,
           productSize:size,
           orderPay: price,
           createdAt:createdAt1,
@@ -184,7 +184,7 @@ class Orders extends Component {
     const { dispatch } = this.props;
     dispatch({
       type: 'common/save',
-      payload: {orderContent}});
+      payload: {payOrder: orderContent}});
 
     this.changeOrdersState('createOrderStatus', false)
     Taro.navigateTo({

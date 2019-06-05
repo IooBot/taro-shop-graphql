@@ -56,10 +56,10 @@ export default class List extends Component {
 
                 <View className='cart-list__item-spec'>
                   <Text className='cart-list__item-spec-txt'>
-                    {item.specificationStock_id.color}
+                    {item.stock.color}
                   </Text>
                   <Text className='cart-list__item-spec-txt'>
-                    {item.specificationStock_id.size}
+                    {item.stock.size}
                   </Text>
                 </View>
               </View>

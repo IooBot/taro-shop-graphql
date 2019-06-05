@@ -1,30 +1,30 @@
-import { querySpecificationstock, queryOneSpecificationstock } from '../services/api';
+import { querySpecification, queryOneSpecification } from '../services/api';
 
 export default {
-  namespace: 'specificationStockList',
+  namespace: 'specificationList',
 
   state: {
     list: [],
-    currentSpecificationstock: {},
+    currentSpecification: {},
   },
 
   effects: {
     * fetchOne({ payload }, { call, put }) {
-      const response = yield call(queryOneSpecificationstock, payload);
+      const response = yield call(queryOneSpecification, payload);
       yield put({
         type: 'queryOne',
         payload: response,
       });
     },
     * fetch({ payload }, { call, put }) {
-      const response = yield call(querySpecificationstock, payload);
+      const response = yield call(querySpecification, payload);
       yield put({
         type: 'queryList',
         payload: Array.isArray(response) ? response : [],
       });
     },
     * appendFetch({ payload }, { call, put }) {
-      const response = yield call(querySpecificationstock, payload);
+      const response = yield call(querySpecification, payload);
       yield put({
         type: 'appendList',
         payload: Array.isArray(response) ? response : [],
@@ -36,7 +36,7 @@ export default {
     queryOne(state, action) {
       return {
         ...state,
-        currentSpecificationstock: action.payload,
+        currentSpecification: action.payload,
       };
     },
     queryList(state, action) {

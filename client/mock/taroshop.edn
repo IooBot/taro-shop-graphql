@@ -63,130 +63,110 @@
    :status "1",
    :createdAt "2019-03-26 10:32:42",
    :updatedAt ""}
-  {:id "category_1553568204313_28485353",
-   :name "半身长裙",
-   :img "",
-   :order 11,
-   :status "1",
-   :createdAt "2019-03-26 10:43:24",
-   :updatedAt ""}
-  {:id "category_1555052953392_80782046",
-   :name "哈伦裤",
-   :img "",
-   :order 11,
-   :status "1",
-   :createdAt "2019-04-12 15:09:13",
-   :updatedAt ""}
-  {:id "category_1555378460399_92500977",
-   :name "马甲裙",
-   :img "",
-   :order 11,
-   :status "1",
-   :createdAt "2019-04-16 09:34:20",
-   :updatedAt ""}],
+  ],
  :userCart
  [{:id "cart_1557718717372_07617742",
    :user_id "ioobot",
    :product_id "1",
-   :specificationStock_id "3",
+   :stock_id "3",
    :count 1,
    :createdAt "2019-05-13 11:38:37",
    :updatedAt ""}
   {:id "cart_1557718728636_91401876",
    :user_id "ioobot",
    :product_id "2",
-   :specificationStock_id "4",
+   :stock_id "4",
    :count 1,
    :createdAt "2019-05-13 11:38:48",
    :updatedAt ""}
   {:id "cart_1557825616150_76483964",
    :user_id "user_1556085732950_50288036",
    :product_id "1",
-   :specificationStock_id "3",
+   :stock_id "3",
    :count 1,
    :createdAt "2019-05-14 17:20:16",
    :updatedAt ""}
   {:id "cart_1557887445619_04604703",
    :user_id "ioobot",
    :product_id "1",
-   :specificationStock_id "3",
+   :stock_id "3",
    :count 1,
    :createdAt "2019-05-15 10:30:45",
    :updatedAt ""}
   {:id "cart_1557887445619_04604702",
    :user_id "ioobot",
    :product_id "1",
-   :specificationStock_id "3",
+   :stock_id "3",
    :count 1,
    :createdAt "2019-05-15 10:30:45",
    :updatedAt ""}
   {:id "cart_1557887445619_04604701",
    :user_id "ioobot",
    :product_id "1",
-   :specificationStock_id "3",
+   :stock_id "3",
    :count 1,
    :createdAt "2019-05-15 10:30:45",
    :updatedAt ""}
   {:id "cart_1557898587106_97925064",
    :user_id "ioobot",
    :product_id "1",
-   :specificationStock_id "3",
+   :stock_id "3",
    :count 1,
    :createdAt "2019-05-15 13:36:27",
    :updatedAt ""}
   {:id "cart_1557898587106_97925068",
    :user_id "ioobot",
    :product_id "1",
-   :specificationStock_id "3",
+   :stock_id "3",
    :count 1,
    :createdAt "2019-05-15 13:36:27",
    :updatedAt ""}
   {:id "cart_1557898587106_97925061",
    :user_id "ioobot",
    :product_id "1",
-   :specificationStock_id "3",
+   :stock_id "3",
    :count 1,
    :createdAt "2019-05-15 13:36:27",
    :updatedAt ""}
   {:id "cart_1557996114455_70428769",
    :user_id "5113853649947531",
    :product_id "2",
-   :specificationStock_id "4",
+   :stock_id "4",
    :count 1,
    :createdAt "2019-05-16 16:41:54",
    :updatedAt ""}
   {:id "cart_1557996371501_18331031",
    :user_id "5113853649947531",
    :product_id "2",
-   :specificationStock_id "4",
+   :stock_id "4",
    :count 1,
    :createdAt "2019-05-16 16:46:11",
    :updatedAt ""}
   {:id "cart_1558008797515_46093749",
    :user_id "9858625544",
    :product_id "2",
-   :specificationStock_id "4",
+   :stock_id "4",
    :count 1,
    :createdAt "2019-05-16 20:13:17",
    :updatedAt ""}
   {:id "cart_1558061444141_05568884",
    :user_id "87247449347",
    :product_id "5",
-   :specificationStock_id "12",
+   :stock_id "12",
    :count 1,
    :createdAt "2019-05-17 10:50:44",
    :updatedAt ""}
   {:id "cart_1558070605888_50672329",
    :user_id "894741998113",
    :product_id "2",
-   :specificationStock_id "4",
+   :stock_id "4",
    :count 1,
    :createdAt "2019-05-17 13:23:25",
    :updatedAt ""}
   {:id "cart_1558225715927_31430211",
    :user_id "5263829895657974",
    :product_id "1",
-   :specificationStock_id "3",
+   :stock_id "3",
    :count 1,
    :createdAt "2019-05-19 08:28:35",
    :updatedAt ""}],
@@ -201,7 +181,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1904151053021111",
    :productPrice 0.01,
    :id "19041510530211110",
@@ -219,7 +199,7 @@
    :productImg
    "https://case-1254337200.cos.ap-beijing.myqcloud.com/e-commerce/images/good_id_goods_1553567936140_92021434.jpeg",
    :productName "爆款长裙",
-   :specificationStock_id "spec_1553735732612_26093183",
+   :stock_id "spec_1553735732612_26093183",
    :order_id "1904151057461111",
    :productPrice 199.0,
    :id "19041510574611110",
@@ -237,7 +217,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1904151058111111",
    :productPrice 0.01,
    :id "19041510581111110",
@@ -255,7 +235,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1904151104181111",
    :productPrice 0.01,
    :id "19041511041811110",
@@ -273,7 +253,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1904151104301111",
    :productPrice 0.01,
    :id "19041511043011110",
@@ -291,7 +271,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/bsq.jpg",
    :productName "仙女裙裙子网纱裙中长款纱裙百褶裙网纱半身裙秋冬女半身长裙春秋",
-   :specificationStock_id "10",
+   :stock_id "10",
    :order_id "1904151120376480",
    :productPrice 0.01,
    :id "19041511203764800",
@@ -309,7 +289,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "15",
+   :stock_id "15",
    :order_id "1904151122566480",
    :productPrice 0.01,
    :id "19041511225664800",
@@ -327,7 +307,7 @@
    :productImg
    "https://case-1254337200.cos.ap-beijing.myqcloud.com/e-commerce/images/good_id_goods_1553567825788_65495665.jpeg",
    :productName "浅色裤腿裤",
-   :specificationStock_id "spec_1553733421470_01010128",
+   :stock_id "spec_1553733421470_01010128",
    :order_id "1904170918346480",
    :productPrice 188.0,
    :id "19041709183464800",
@@ -345,7 +325,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1904241406172125",
    :productPrice 0.01,
    :id "19042414061721250",
@@ -363,7 +343,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/xs.jpg",
    :productName "打底衫内搭2019新款纯色打底针织衫带帽宽松慵懒风毛衣",
-   :specificationStock_id "14",
+   :stock_id "14",
    :order_id "1904301352505632",
    :productPrice 150.0,
    :id "19043013525056320",
@@ -381,7 +361,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/wt.jpg",
    :productName "新款双面羊绒大衣 女 短款 赫本大衣小个子 高端羊毛呢子外套",
-   :specificationStock_id "7",
+   :stock_id "7",
    :order_id "1904301352505632",
    :productPrice 320.0,
    :id "19043013525056321",
@@ -399,7 +379,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1904301352505632",
    :productPrice 0.01,
    :id "19043013525056323",
@@ -417,7 +397,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1904301352505632",
    :productPrice 0.01,
    :id "19043013525056322",
@@ -435,7 +415,7 @@
    :productImg
    "https://case-1254337200.cos.ap-beijing.myqcloud.com/e-commerce/images/good_id_goods_1553567936140_92021434.jpeg",
    :productName "爆款长裙",
-   :specificationStock_id "spec_1553735732612_26093183",
+   :stock_id "spec_1553735732612_26093183",
    :order_id "1904301507195632",
    :productPrice 199.0,
    :id "19043015071956320",
@@ -453,7 +433,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/cs.jpg",
    :productName "春新款牛津纺衬衫长袖纯棉袖部条纹装饰潮流休闲衬衣",
-   :specificationStock_id "4",
+   :stock_id "4",
    :order_id "1905061704542324",
    :productPrice 130.0,
    :id "19050617045423240",
@@ -471,7 +451,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/wt.jpg",
    :productName "新款双面羊绒大衣 女 短款 赫本大衣小个子 高端羊毛呢子外套",
-   :specificationStock_id "8",
+   :stock_id "8",
    :order_id "1905091139302324",
    :productPrice 320.0,
    :id "19050911393123240",
@@ -489,7 +469,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/cs.jpg",
    :productName "春新款牛津纺衬衫长袖纯棉袖部条纹装饰潮流休闲衬衣",
-   :specificationStock_id "5",
+   :stock_id "5",
    :order_id "1905091139302324",
    :productPrice 130.0,
    :id "19050911393123241",
@@ -507,7 +487,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/cs.jpg",
    :productName "春新款牛津纺衬衫长袖纯棉袖部条纹装饰潮流休闲衬衣",
-   :specificationStock_id "5",
+   :stock_id "5",
    :order_id "1905091146382324",
    :productPrice 130.0,
    :id "19050911463823240",
@@ -525,7 +505,7 @@
    :productImg
    "https://case-1254337200.cos.ap-beijing.myqcloud.com/e-commerce/images/good_id_goods_1553567825788_65495665.jpeg",
    :productName "浅色裤腿裤",
-   :specificationStock_id "spec_1553733421470_01010128",
+   :stock_id "spec_1553733421470_01010128",
    :order_id "1905091147132321",
    :productPrice 188.0,
    :id "19050911471323210",
@@ -543,7 +523,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/cs.jpg",
    :productName "春新款牛津纺衬衫长袖纯棉袖部条纹装饰潮流休闲衬衣",
-   :specificationStock_id "4",
+   :stock_id "4",
    :order_id "1905091148422324",
    :productPrice 130.0,
    :id "19050911484223240",
@@ -561,7 +541,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905091151502324",
    :productPrice 0.01,
    :id "19050911515023240",
@@ -579,7 +559,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905091157242324",
    :productPrice 0.01,
    :id "19050911572423240",
@@ -597,7 +577,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/cs.jpg",
    :productName "春新款牛津纺衬衫长袖纯棉袖部条纹装饰潮流休闲衬衣",
-   :specificationStock_id "4",
+   :stock_id "4",
    :order_id "1905091159552324",
    :productPrice 130.0,
    :id "19050911595523240",
@@ -615,7 +595,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/cs.jpg",
    :productName "春新款牛津纺衬衫长袖纯棉袖部条纹装饰潮流休闲衬衣",
-   :specificationStock_id "4",
+   :stock_id "4",
    :order_id "1905091325322324",
    :productPrice 130.0,
    :id "19050913253223240",
@@ -633,7 +613,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905091328412324",
    :productPrice 0.01,
    :id "19050913284123240",
@@ -651,7 +631,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/cs.jpg",
    :productName "春新款牛津纺衬衫长袖纯棉袖部条纹装饰潮流休闲衬衣",
-   :specificationStock_id "4",
+   :stock_id "4",
    :order_id "1905091332302324",
    :productPrice 130.0,
    :id "19050913323023240",
@@ -669,7 +649,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/xs.jpg",
    :productName "打底衫内搭2019新款纯色打底针织衫带帽宽松慵懒风毛衣",
-   :specificationStock_id "14",
+   :stock_id "14",
    :order_id "1905091335432324",
    :productPrice 150.0,
    :id "19050913354323240",
@@ -687,7 +667,7 @@
    :productImg
    "https://case-1254337200.cos.ap-beijing.myqcloud.com/e-commerce/images/good_id_goods_1553567936140_92021434.jpeg",
    :productName "爆款长裙",
-   :specificationStock_id "spec_1553735732612_26093183",
+   :stock_id "spec_1553735732612_26093183",
    :order_id "1905091337512324",
    :productPrice 199.0,
    :id "19050913375123240",
@@ -705,7 +685,7 @@
    :productImg
    "https://case-1254337200.cos.ap-beijing.myqcloud.com/e-commerce/images/good_id_goods_1553567936140_92021434.jpeg",
    :productName "爆款长裙",
-   :specificationStock_id "spec_1553735732612_26093183",
+   :stock_id "spec_1553735732612_26093183",
    :order_id "1905091337562324",
    :productPrice 199.0,
    :id "19050913375623240",
@@ -723,7 +703,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905091354142324",
    :productPrice 0.01,
    :id "19050913541423240",
@@ -741,7 +721,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905091414102324",
    :productPrice 0.01,
    :id "19050914141023240",
@@ -759,7 +739,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/cs.jpg",
    :productName "春新款牛津纺衬衫长袖纯棉袖部条纹装饰潮流休闲衬衣",
-   :specificationStock_id "4",
+   :stock_id "4",
    :order_id "1905091420572324",
    :productPrice 130.0,
    :id "19050914205723240",
@@ -777,7 +757,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "19",
+   :stock_id "19",
    :order_id "1905091423122324",
    :productPrice 0.01,
    :id "19050914231223240",
@@ -795,7 +775,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/cs.jpg",
    :productName "春新款牛津纺衬衫长袖纯棉袖部条纹装饰潮流休闲衬衣",
-   :specificationStock_id "4",
+   :stock_id "4",
    :order_id "1905091759042324",
    :productPrice 130.0,
    :id "19050917590423240",
@@ -813,7 +793,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905100948352324",
    :productPrice 0.01,
    :id "19051009483523240",
@@ -831,7 +811,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905100952532324",
    :productPrice 0.01,
    :id "19051009525323240",
@@ -849,7 +829,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905100953582324",
    :productPrice 0.01,
    :id "19051009535823240",
@@ -867,7 +847,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905100959002324",
    :productPrice 0.01,
    :id "19051009590023240",
@@ -885,7 +865,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905101356142324",
    :productPrice 0.01,
    :id "19051013561423240",
@@ -903,7 +883,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905101356572324",
    :productPrice 0.01,
    :id "19051013565723240",
@@ -921,7 +901,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905101523442324",
    :productPrice 0.01,
    :id "19051015234423240",
@@ -939,7 +919,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905101532222324",
    :productPrice 0.01,
    :id "19051015322223240",
@@ -957,7 +937,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905101541132324",
    :productPrice 0.01,
    :id "19051015411323240",
@@ -975,7 +955,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/cs.jpg",
    :productName "春新款牛津纺衬衫长袖纯棉袖部条纹装饰潮流休闲衬衣",
-   :specificationStock_id "4",
+   :stock_id "4",
    :order_id "1905101542542125",
    :productPrice 130.0,
    :id "19051015425421250",
@@ -993,7 +973,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905101550402125",
    :productPrice 0.01,
    :id "19051015504021250",
@@ -1011,7 +991,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905101553302125",
    :productPrice 0.01,
    :id "19051015533021250",
@@ -1029,7 +1009,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905101554272125",
    :productPrice 0.01,
    :id "19051015542721250",
@@ -1047,7 +1027,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161112462123",
    :productPrice 0.01,
    :id "19051611124621230",
@@ -1065,7 +1045,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161115012123",
    :productPrice 0.01,
    :id "19051611150121230",
@@ -1083,7 +1063,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161150532125",
    :productPrice 0.01,
    :id "19051611505321250",
@@ -1101,7 +1081,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161517372125",
    :productPrice 0.01,
    :id "19051615173721250",
@@ -1119,7 +1099,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161537442125",
    :productPrice 0.01,
    :id "19051615374421250",
@@ -1137,7 +1117,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/cs.jpg",
    :productName "春新款牛津纺衬衫长袖纯棉袖部条纹装饰潮流休闲衬衣",
-   :specificationStock_id "4",
+   :stock_id "4",
    :order_id "1905161539582125",
    :productPrice 130.0,
    :id "19051615395821250",
@@ -1155,7 +1135,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161539582125",
    :productPrice 0.01,
    :id "19051615395821251",
@@ -1173,7 +1153,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/xs.jpg",
    :productName "打底衫内搭2019新款纯色打底针织衫带帽宽松慵懒风毛衣",
-   :specificationStock_id "12",
+   :stock_id "12",
    :order_id "1905161541052125",
    :productPrice 150.0,
    :id "19051615410521250",
@@ -1191,7 +1171,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161548332125",
    :productPrice 0.01,
    :id "19051615483321250",
@@ -1209,7 +1189,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161552292125",
    :productPrice 0.01,
    :id "19051615522921250",
@@ -1227,7 +1207,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/cs.jpg",
    :productName "春新款牛津纺衬衫长袖纯棉袖部条纹装饰潮流休闲衬衣",
-   :specificationStock_id "4",
+   :stock_id "4",
    :order_id "1905161555232125",
    :productPrice 130.0,
    :id "19051615552321250",
@@ -1245,7 +1225,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161615062125",
    :productPrice 0.01,
    :id "19051616150621250",
@@ -1263,7 +1243,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161618052125",
    :productPrice 0.01,
    :id "19051616180521250",
@@ -1281,7 +1261,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161720512125",
    :productPrice 0.01,
    :id "19051617205121250",
@@ -1299,7 +1279,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161730282324",
    :productPrice 0.01,
    :id "19051617302823240",
@@ -1317,7 +1297,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161739152324",
    :productPrice 0.01,
    :id "19051617391523240",
@@ -1335,7 +1315,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "18",
+   :stock_id "18",
    :order_id "1905161741312324",
    :productPrice 0.01,
    :id "19051617413123240",
@@ -1353,7 +1333,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161748212125",
    :productPrice 0.01,
    :id "19051617482221250",
@@ -1371,7 +1351,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161752292125",
    :productPrice 0.01,
    :id "19051617522921250",
@@ -1389,7 +1369,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161752502125",
    :productPrice 0.01,
    :id "19051617525021250",
@@ -1407,7 +1387,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161754302125",
    :productPrice 0.01,
    :id "19051617543021250",
@@ -1425,7 +1405,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161756292125",
    :productPrice 0.01,
    :id "19051617562921250",
@@ -1443,7 +1423,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161758312125",
    :productPrice 0.01,
    :id "19051617583121250",
@@ -1461,7 +1441,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161802472125",
    :productPrice 0.01,
    :id "19051618024821250",
@@ -1479,7 +1459,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161822242125",
    :productPrice 0.01,
    :id "19051618222421250",
@@ -1497,7 +1477,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161822542125",
    :productPrice 0.01,
    :id "19051618225421250",
@@ -1515,7 +1495,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161826212324",
    :productPrice 0.01,
    :id "19051618262123240",
@@ -1533,7 +1513,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161831492125",
    :productPrice 0.01,
    :id "19051618314921250",
@@ -1551,7 +1531,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161834042324",
    :productPrice 0.01,
    :id "19051618340423240",
@@ -1569,7 +1549,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161838052324",
    :productPrice 0.01,
    :id "19051618380523240",
@@ -1587,7 +1567,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161842502324",
    :productPrice 0.01,
    :id "19051618425023240",
@@ -1605,7 +1585,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161850592324",
    :productPrice 0.01,
    :id "19051618505923240",
@@ -1623,7 +1603,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161853052324",
    :productPrice 0.01,
    :id "19051618530523240",
@@ -1641,7 +1621,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "18",
+   :stock_id "18",
    :order_id "1905161859382125",
    :productPrice 0.01,
    :id "19051618593821250",
@@ -1659,7 +1639,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "17",
+   :stock_id "17",
    :order_id "1905161900052324",
    :productPrice 0.01,
    :id "19051619000523240",
@@ -1677,7 +1657,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161928212324",
    :productPrice 0.01,
    :id "19051619282123240",
@@ -1695,7 +1675,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905161953262127",
    :productPrice 0.01,
    :id "19051619532621270",
@@ -1713,7 +1693,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171042122136",
    :productPrice 0.01,
    :id "19051710421221360",
@@ -1731,7 +1711,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171046442136",
    :productPrice 0.01,
    :id "19051710464421360",
@@ -1749,7 +1729,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171049352136",
    :productPrice 0.01,
    :id "19051710493521360",
@@ -1767,7 +1747,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171051002139",
    :productPrice 0.01,
    :id "19051710510021390",
@@ -1785,7 +1765,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171052192139",
    :productPrice 0.01,
    :id "19051710521921390",
@@ -1803,7 +1783,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171053012139",
    :productPrice 0.01,
    :id "19051710530121390",
@@ -1821,7 +1801,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171057112139",
    :productPrice 0.01,
    :id "19051710571121390",
@@ -1839,7 +1819,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171102132139",
    :productPrice 0.01,
    :id "19051711021321390",
@@ -1857,7 +1837,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171104082139",
    :productPrice 0.01,
    :id "19051711040921390",
@@ -1875,7 +1855,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171106012139",
    :productPrice 0.01,
    :id "19051711060121390",
@@ -1893,7 +1873,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171107532139",
    :productPrice 0.01,
    :id "19051711075321390",
@@ -1911,7 +1891,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171112362139",
    :productPrice 0.01,
    :id "19051711123621390",
@@ -1929,7 +1909,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171126502136",
    :productPrice 0.01,
    :id "19051711265021360",
@@ -1947,7 +1927,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171131322139",
    :productPrice 0.01,
    :id "19051711313221390",
@@ -1965,7 +1945,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171321492125",
    :productPrice 0.01,
    :id "19051713214921250",
@@ -1983,7 +1963,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171331212125",
    :productPrice 0.01,
    :id "19051713312221250",
@@ -2001,7 +1981,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg",
    :productName "春季新款进口绵羊皮机车夹克立领真皮皮衣女外套短款修身显瘦",
-   :specificationStock_id "3",
+   :stock_id "3",
    :order_id "1905171337136907",
    :productPrice 0.01,
    :id "19051713371369070",
@@ -2019,7 +1999,7 @@
    :productImg
    "https://case-1254337200.cos.ap-beijing.myqcloud.com/e-commerce/images/good_id_goods_1553567825788_65495665.jpeg",
    :productName "浅色裤腿裤",
-   :specificationStock_id "spec_1553733421470_01010128",
+   :stock_id "spec_1553733421470_01010128",
    :order_id "1905171613336480",
    :productPrice 0.01,
    :id "19051716133464800",
@@ -2037,7 +2017,7 @@
    :productImg
    "https://case-1254337200.cos.ap-beijing.myqcloud.com/e-commerce/images/good_id_goods_1553567936140_92021434.jpeg",
    :productName "爆款长裙",
-   :specificationStock_id "spec_1553735732612_26093183",
+   :stock_id "spec_1553735732612_26093183",
    :order_id "1905171614466480",
    :productPrice 0.01,
    :id "19051716144664800",
@@ -2055,7 +2035,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/cs.jpg",
    :productName "春新款牛津纺衬衫长袖纯棉袖部条纹装饰潮流休闲衬衣",
-   :specificationStock_id "4",
+   :stock_id "4",
    :order_id "1905171810192139",
    :productPrice 0.01,
    :id "19051718101921390",
@@ -2073,7 +2053,7 @@
    :productImg
    "https://case-1254337200.cos.ap-beijing.myqcloud.com/e-commerce/images/good_id_goods_1553567936140_92021434.jpeg",
    :productName "爆款长裙",
-   :specificationStock_id "spec_1553735732612_26093183",
+   :stock_id "spec_1553735732612_26093183",
    :order_id "1905231125136907",
    :productPrice 0.01,
    :id "19052311251369070",
@@ -2091,7 +2071,7 @@
    :productImg
    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/cs.jpg",
    :productName "春新款牛津纺衬衫长袖纯棉袖部条纹装饰潮流休闲衬衣",
-   :specificationStock_id "4",
+   :stock_id "4",
    :order_id "1906031707488901",
    :productPrice 0.01,
    :id "19060317074889010",
@@ -6812,6 +6792,79 @@
    :user_id "7458196293",
    :area "东城区",
    :province "北京市"}],
+ :specification
+ [{:id "1",
+   :product_id "1",
+   :createdAt "2019-03-05 09:11:15",
+   :updatedAt "2019-03-28 09:21:34",
+   :color ["土黄" "卡其"],
+   :model
+   ["170/92A(XL)"
+    "165/88A(L)"
+    "155/80A(S)"
+    "160/84A(M)"
+    "175/96A(XXL)"],
+   :slideImg
+   ["https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg"
+    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg"],
+   :detailImg
+   ["https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg"
+    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg"]
+   :status "1"}
+  {:id "2",
+   :product_id "2",
+   :createdAt "2019-03-05 09:11:15",
+   :updatedAt "",
+   :color ["漂白"],
+   :model ["155/80A(S)" "160/84A(M)"],
+   :slideImg [],
+   :detailImg []
+   :status "1"}
+  {:id "3",
+   :product_id "3",
+   :createdAt "2019-03-05 09:11:15",
+   :updatedAt "",
+   :color ["卡其"],
+   :model ["165/88A(L)" "155/80A(S)" "160/84A(M)"],
+   :slideImg [],
+   :detailImg []
+   :status "1"}
+  {:id "4",
+   :product_id "4",
+   :createdAt "2019-03-05 09:11:15",
+   :updatedAt "",
+   :color ["浅灰"],
+   :model ["165/88A(L)" "155/80A(S)" "160/84A(M)"],
+   :slideImg [],
+   :detailImg []
+   :status "1"}
+  {:id "5",
+   :product_id "5",
+   :createdAt "2019-03-05 09:11:15",
+   :updatedAt "",
+   :color ["米白"],
+   :model ["165/88A(L)" "155/80A(S)" "160/84A(M)"],
+   :slideImg [],
+   :detailImg []
+   :status "1"}
+  {:id "goods_1553567829081_43201549",
+   :product_id "goods_1553567829081_43201549",
+   :createdAt "2019-03-28 08:37:09",
+   :updatedAt "2019-03-28 08:38:31",
+   :color ["米色"],
+   :model ["180/76(M)"],
+   :slideImg [],
+   :detailImg []
+   :status "-1"}
+  {:id "goods_1553567941378_14013433",
+   :product_id "goods_1553567941378_14013433",
+   :createdAt "2019-03-28 09:15:53",
+   :updatedAt "",
+   :color ["黄色"],
+   :model ["170/70A(S)"],
+   :slideImg [],
+   :detailImg []
+   :status "-1"}],
  :user
  [{:email "",
    :updatedAt "",
@@ -7119,218 +7172,124 @@
    :openid "obR_j5Fa4P1t07FwXMaYlmeUNxe4",
    :id "3163282551654",
    :userData_id ""}],
- :specificationStock
- [{:updatedAt "2019-03-28 09:21:34",
+ :stock
+ [{:id "1",
+   :specification_id "1",
    :color "土黄",
-   :product_id "1",
-   :createdAt "2019-03-05 09:11:15",
-   :size "155/80A(S)",
-   :slideImg
-   ["https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg"
-    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg"],
-   :status "-1",
-   :id "1",
-   :detailImg
-   ["https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg"
-    "https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/jk.jpg"],
-   :stock 79}
-  {:updatedAt "",
+   :model "155/80A(S)",
+   :status "1"
+   :account 79}
+  {:id "2",
+   :specification_id "1",
    :color "土黄",
-   :product_id "1",
-   :createdAt "2019-03-05 09:11:15",
-   :size "160/84A(M)",
-   :slideImg [],
-   :status "-1",
-   :id "2",
-   :detailImg [],
-   :stock 70.0}
-  {:updatedAt "",
+   :model "160/84A(M)",
+   :status "1"
+   :account 70.0}
+  {:id "3",
+   :specification_id "1",
    :color "土黄",
-   :product_id "1",
-   :createdAt "2019-03-05 09:11:15",
-   :size "165/88A(L)",
-   :slideImg [],
-   :status "1",
-   :id "3",
-   :detailImg [],
-   :stock 60.0}
-  {:updatedAt "",
+   :model "165/88A(L)",
+   :status "1"
+   :account 60.0}
+  {:id "15",
+   :specification_id "1",
+   :color "卡其",
+   :model "155/80A(S)",
+   :status "1"
+   :account 67.0}
+  {:id "16",
+   :specification_id "1",
+   :color "卡其",
+   :model "160/84A(M)",
+   :account 52.0}
+  {:id "17",
+   :specification_id "1",
+   :color "卡其",
+   :model "165/88A(L)",
+   :status "1"
+   :account 44}
+  {:id "18",
+   :specification_id "1",
+   :color "土黄",
+   :model "170/92A(XL)",
+   :account 30.0}
+  {:id "19",
+   :specification_id "1",
+   :color "土黄",
+   :model "175/96A(XXL)",
+   :status "1"
+   :account 50.0}
+  {:id "4",
+   :specification_id "2",
    :color "漂白",
-   :product_id "2",
-   :createdAt "2019-03-05 09:11:15",
-   :size "155/80A(S)",
-   :slideImg [],
-   :status "1",
-   :id "4",
-   :detailImg [],
-   :stock 82.0}
-  {:updatedAt "",
+   :model "155/80A(S)",
+   :account 82.0}
+  {:id "5",
+   :specification_id "2",
    :color "漂白",
-   :product_id "2",
-   :createdAt "2019-03-05 09:11:15",
-   :size "160/84A(M)",
-   :slideImg [],
-   :status "1",
-   :id "5",
-   :detailImg [],
-   :stock 66.0}
-  {:updatedAt "",
+   :model "160/84A(M)",
+   :status "1"
+   :account 66.0}
+  {:id "6",
+   :specification_id "3",
    :color "卡其",
-   :product_id "3",
-   :createdAt "2019-03-05 09:11:15",
-   :size "155/80A(S)",
-   :slideImg [],
-   :status "1",
-   :id "6",
-   :detailImg [],
-   :stock 32.0}
-  {:updatedAt "",
+   :model "155/80A(S)",
+   :account 32.0}
+  {:id "7",
+   :specification_id "3",
    :color "卡其",
-   :product_id "3",
-   :createdAt "2019-03-05 09:11:15",
-   :size "160/84A(M)",
-   :slideImg [],
-   :status "1",
-   :id "7",
-   :detailImg [],
-   :stock 25.0}
-  {:updatedAt "",
+   :model "160/84A(M)",
+   :status "1"
+   :account 25.0}
+  {:id "8",
+   :specification_id "3",
    :color "卡其",
-   :product_id "3",
-   :createdAt "2019-03-05 09:11:15",
-   :size "165/88A(L)",
-   :slideImg [],
-   :status "1",
-   :id "8",
-   :detailImg [],
-   :stock 46.0}
-  {:updatedAt "",
+   :model "165/88A(L)",
+   :account 46.0}
+  {:id "9",
+   :specification_id "4",
    :color "浅灰",
-   :product_id "4",
-   :createdAt "2019-03-05 09:11:15",
-   :size "155/80A(S)",
-   :slideImg [],
-   :status "1",
-   :id "9",
-   :detailImg [],
-   :stock 95.0}
-  {:updatedAt "",
+   :model "155/80A(S)",
+   :status "1"
+   :account 95.0}
+  {:id "10",
+   :specification_id "4",
    :color "浅灰",
-   :product_id "4",
-   :createdAt "2019-03-05 09:11:15",
-   :size "160/84A(M)",
-   :slideImg [],
-   :status "1",
-   :id "10",
-   :detailImg [],
-   :stock 65.0}
-  {:updatedAt "",
+   :model "160/84A(M)",
+   :account 65.0}
+  {:id "11",
+   :specification_id "4",
    :color "浅灰",
-   :product_id "4",
-   :createdAt "2019-03-05 09:11:15",
-   :size "165/88A(L)",
-   :slideImg [],
-   :status "1",
-   :id "11",
-   :detailImg [],
-   :stock 53.0}
-  {:updatedAt "",
+   :model "165/88A(L)",
+   :status "1"
+   :account 53.0}
+  {:id "12",
+   :specification_id "5",
    :color "米白",
-   :product_id "5",
-   :createdAt "2019-03-05 09:11:15",
-   :size "155/80A(S)",
-   :slideImg [],
-   :status "1",
-   :id "12",
-   :detailImg [],
-   :stock 69.0}
-  {:updatedAt "",
+   :model "155/80A(S)",
+   :status "1"
+   :account 69.0}
+  {:id "13",
+   :specification_id "5",
    :color "米白",
-   :product_id "5",
-   :createdAt "2019-03-05 09:11:15",
-   :size "160/84A(M)",
-   :slideImg [],
-   :status "2",
-   :id "13",
-   :detailImg [],
-   :stock 0.0}
-  {:updatedAt "",
+   :model "160/84A(M)",
+   :status "1"
+   :account 0.0}
+  {:id "14",
+   :specification_id "5",
    :color "米白",
-   :product_id "5",
-   :createdAt "2019-03-05 09:11:15",
-   :size "165/88A(L)",
-   :slideImg [],
-   :status "1",
-   :id "14",
-   :detailImg [],
-   :stock 76.0}
-  {:updatedAt "",
-   :color "卡其",
-   :product_id "1",
-   :createdAt "2019-03-05 09:11:15",
-   :size "155/80A(S)",
-   :slideImg [],
-   :status "1",
-   :id "15",
-   :detailImg [],
-   :stock 67.0}
-  {:updatedAt "",
-   :color "卡其",
-   :product_id "1",
-   :createdAt "2019-03-05 09:11:15",
-   :size "160/84A(M)",
-   :slideImg [],
-   :status "-1",
-   :id "16",
-   :detailImg [],
-   :stock 52.0}
-  {:updatedAt "2019-03-28 09:23:16",
-   :color "卡其",
-   :product_id "1",
-   :createdAt "2019-03-05 09:11:15",
-   :size "165/88A(L)",
-   :slideImg [],
-   :status "1",
-   :id "17",
-   :detailImg [],
-   :stock 44}
-  {:updatedAt "",
-   :color "土黄",
-   :product_id "1",
-   :createdAt "2019-03-05 09:11:15",
-   :size "170/92A(XL)",
-   :slideImg [],
-   :status "1",
-   :id "18",
-   :detailImg [],
-   :stock 30.0}
-  {:updatedAt "",
-   :color "土黄",
-   :product_id "1",
-   :createdAt "2019-03-05 09:11:15",
-   :size "175/96A(XXL)",
-   :slideImg [],
-   :status "1",
-   :id "19",
-   :detailImg [],
-   :stock 50.0}
-  {:updatedAt "2019-03-28 08:38:31",
+   :model "165/88A(L)",
+   :status "1"
+   :account 76.0}
+  {:id "spec_1553733421470_01010128",
+   :specification_id "goods_1553567829081_43201549",
    :color "米色",
-   :product_id "goods_1553567829081_43201549",
-   :createdAt "2019-03-28 08:37:09",
-   :size "180/76(M)",
-   :slideImg [],
-   :status "1",
-   :id "spec_1553733421470_01010128",
-   :detailImg [],
-   :stock 15}
-  {:updatedAt "",
+   :model "180/76(M)",
+   :status "-1"
+   :account 15}
+  {:id "spec_1553735732612_26093183",
+   :specification_id "goods_1553567941378_14013433",
    :color "黄色",
-   :product_id "goods_1553567941378_14013433",
-   :createdAt "2019-03-28 09:15:53",
-   :size "170/70A(S)",
-   :slideImg [],
-   :status "1",
-   :id "spec_1553735732612_26093183",
-   :detailImg [],
-   :stock 30}]}
+   :model "170/70A(S)",
+   :status "-1"
+   :account 30}]}

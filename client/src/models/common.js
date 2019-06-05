@@ -4,7 +4,7 @@ export default {
   namespace: 'common',
   state: {
     openid:   Taro.getStorageSync('openid'),
-    user_id:  Taro.getStorageSync('user_id'),
+    user_id:  'ioobot', // Taro.getStorageSync('user_id'), // for debug
     payOrder: Taro.getStorageSync('payOrder'),
   },
 

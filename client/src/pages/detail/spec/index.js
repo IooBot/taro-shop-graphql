@@ -25,9 +25,10 @@ export default class Spec extends Component {
     this.state = {
       count: 1,
       selectColor: '',
-      specList: [],
+      stockList: [],
+      modelList:[],
       colorList: [],
-      colorSpec:[],
+      // colorSpec:[],
       specFilter:{}
     }
   }
@@ -37,81 +38,90 @@ export default class Spec extends Component {
     this.handleSpec()
   }
 
-  // specificationStock 规格库存表处理，目前按颜色进行分类，更新默认选择的规格
+  // specification stock 规格库存表处理，目前按颜色进行分类，更新默认选择的规格
   handleSpec = () => {
     let {detailSpec} = this.props
     let flag = true, selectFlag = true
     let specObject = {}, i = 0, specList = []
     let colorObject = {}, j = 0, colorList = [], selectColor = '';
-    console.log('detail:',detailSpec);
-    detailSpec.map((item) => {
-      let {id,color,size,stock,status} = item
-      if(flag && status > 0) {
-        selectColor = color
-        flag = false
-      }
 
-      specObject[color] ? specList[specObject[color] - 1].spec.push({id, size, stock, status}) : specObject[color] = ++i && specList.push({
-        color,
-        spec: [{id, size, stock, status}],
-      })
-      if(!colorObject[color]) {
-        colorObject[color] = ++j
-        colorList.push({
-          id,
-          color
-        })
-      }
-    })
+    // detailSpec.map((item) => {
+    //   let {id,color,size,stock,status} = item
+    //   if(flag && status > 0) {
+    //     selectColor = color
+    //     flag = false
+    //   }
+    //
+    //   specObject[color] ? specList[specObject[color] - 1].spec.push({id, size, stock, status}) : specObject[color] = ++i && specList.push({
+    //     color,
+    //     spec: [{id, size, stock, status}],
+    //   })
+    //   if(!colorObject[color]) {
+    //     colorObject[color] = ++j
+    //     colorList.push({
+    //       id,
+    //       color
+    //     })
+    //   }
+    // })
 
-    specList.map((items)=>{
-      let {spec} = items
-      spec.map((item)=>{
-        item.select = false
-        if(selectFlag && item.status > 0) {
-          item.select = true
-          selectFlag = false
-        }
-      })
-      selectFlag = true
-    })
+    // specList.map((items)=>{
+    //   let {spec} = items
+    //   spec.map((item)=>{
+    //     item.select = false
+    //     if(selectFlag && item.status > 0) {
+    //       item.select = true
+    //       selectFlag = false
+    //     }
+    //   })
+    //   selectFlag = true
+    // })
+    const specification = detailSpec[0];
+    console.log('detail:',specification);
+    if(specification){
+      this.setState({
+        selectColor: specification.color[0],
+        selectModel: specification.model[0],
+        modelList: specification.model,
+        colorList: specification.color,
+        stockList: specification.stock
+      },()=>{
+        this.changeColor(this.state.selectColor)
+      });
+    }
 
-    this.setState({
-      selectColor,
-      specList,
-      colorList
-    },()=>{
-      this.changeColor(this.state.selectColor)
-    });
-     console.log("handleSpec selectColor",selectColor)
-     console.log("handleSpec specList",specList)
-     console.log("handleSpec colorList",colorList)
+     // console.log("handleSpec selectColor",selectColor)
+     // console.log("handleSpec specList",specList)
+     // console.log("handleSpec colorList",colorList)
   };
 
   // 选择颜色后更新当前规格选择
   changeColor = (val) => {
     // console.log("changeColor val",val)
-    let {specList} = this.state
-    // todo : undefine
-     let colorSpec =  specList.filter(item=>item.color === val)[0].spec;
-     console.log("changeColor colorSpec",colorSpec)
+    //  let {specList} = this.state
+    // // todo : undefine
+    //  let colorSpec =  specList.filter(item=>item.color === val)[0].spec;
+    //  console.log("changeColor colorSpec",colorSpec)
 
     this.setState({
       selectColor:val,
-      colorSpec
-    },()=>{
-      this.changeSize(colorSpec)
-    })
+      // colorSpec
+    }
+    // ,()=>{
+    //   this.changeSize(colorSpec)
+    // }
+    )
   }
 
   // 选择尺寸后更新当前规格选择
-  changeSize = () => {
-    let {colorSpec} = this.state
-    let specFilter = colorSpec.filter(item=> item.select && item.status > 0)[0]
-     console.log("select specFilter",specFilter)
+  changeSize = (val) => {
+    // let {colorSpec} = this.state
+    // let specFilter = colorSpec.filter(item=> item.select && item.status > 0)[0]
+    //  console.log("select specFilter",specFilter)
 
     this.setState({
-      specFilter
+      //specFilter
+      selectModel:val,
     })
   }
 
@@ -143,14 +153,14 @@ export default class Spec extends Component {
     let {detailInfo} = this.props
     let product_id = detailInfo.id
     let {count, specFilter} = this.state
-    let specificationStock_id = specFilter? specFilter.id : '';
+    let stock_id = specFilter? specFilter.id : '';
     let createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
 
     const cartContent = {
       id,
       user_id,
       product_id,
-      specificationStock_id,
+      stock_id,
       count,
       createdAt,
       updatedAt: ""
@@ -184,7 +194,7 @@ export default class Spec extends Component {
     let id = idGen('cart')
     let {detailInfo} = this.props
     let {id:product_id, img, intro, name, price, status, stock, unit} = detailInfo
-    let {id:specificationStock_id, size, stock:specStock, status:specStatus} =  specFilter
+    let {id:stock_id, size, stock:specStock, status:specStatus} =  specFilter
     let totalPrice = price * count
 
     let buyNowContent = [{
@@ -201,8 +211,8 @@ export default class Spec extends Component {
         stock,
         unit
       },
-      specificationStock_id:{
-        id:specificationStock_id,
+      stock_id:{
+        id:stock_id,
         color:selectColor,
         size,
         stock:specStock,

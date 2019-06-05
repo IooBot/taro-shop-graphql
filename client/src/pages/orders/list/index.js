@@ -57,7 +57,7 @@ export default class OrdersList extends Component {
                   </View>
                   <View className='cart__orders-intro'>
                     <View className='cart__orders-intro-name'>{item.product.name}</View>
-                    <View className='cart__orders-intro-spec'>{item.specificationStock_id.color}  {item.specificationStock_id.size}</View>
+                    <View className='cart__orders-intro-spec'>{item.stock.color}  {item.specificationStock_id.size}</View>
                     <View className='cart__orders-intro-price'>¥ {item.product.price}</View>
                   </View>
                   <View className='cart__orders-count'>
@@ -90,7 +90,7 @@ export default class OrdersList extends Component {
                           </View>
                           <View className='cart__orders-intro'>
                             <View className='cart__orders-intro-name'>{item.product.name}</View>
-                            <View className='cart__orders-intro-spec'>{item.specificationStock_id.color}  {item.specificationStock_id.size}</View>
+                            <View className='cart__orders-intro-spec'>{item.stock.color}  {item.specificationStock_id.size}</View>
                             <View className='cart__orders-intro-price'>¥ {item.product.price}</View>
                           </View>
                           <View className='cart__orders-count'>

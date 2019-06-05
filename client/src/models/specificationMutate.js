@@ -1,7 +1,7 @@
-import { createSpecificationstock, updateSpecificationstock, deleteSpecificationstock } from '../services/api';
+import { createSpecification, updateSpecification, deleteSpecification } from '../services/api';
 
 export default {
-  namespace: 'specificationStockMutate',
+  namespace: 'specificationMutate',
 
   state: {
     createResult: '',
@@ -11,21 +11,21 @@ export default {
 
   effects: {
     * create({ payload }, { call, put }) {
-      const response = yield call(createSpecificationstock, payload);
+      const response = yield call(createSpecification, payload);
       yield put({
         type: 'saveCreateResult',
         payload: response,
       });
     },
     * update({ payload }, { call, put }) {
-      const response = yield call(updateSpecificationstock, payload);
+      const response = yield call(updateSpecification, payload);
       yield put({
         type: 'saveUpdateResult',
         payload: response,
       });
     },
     * delete({ payload }, { call, put }) {
-      const response = yield call(deleteSpecificationstock, payload);
+      const response = yield call(deleteSpecification, payload);
       yield put({
         type: 'saveDeleteResult',
         payload: response,
