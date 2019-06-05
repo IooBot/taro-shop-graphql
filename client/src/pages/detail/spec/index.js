@@ -6,7 +6,7 @@ import moment from 'moment'
 import InputNumber from '../../../components/input-number'
 import ButtonItem from "../../../components/button"
 import {idGen} from '../../../utils/func'
-import {insert} from "../../../utils/crud"
+// import {insert} from "../../../utils/crud"
 import './index.scss'
 
 
@@ -238,6 +238,10 @@ export default class Spec extends Component {
     let specStock = specFilter ? specFilter.stock || 0 : 0;
     let selectSize = specFilter ? specFilter.size : 0;
     if(createResult && createResult.result== 'ok'){
+      this.props.dispatch({
+        type: 'userCartMutate/saveCreateResult',
+        payload: '',
+      });
       this.updateCartCout();
     }
 

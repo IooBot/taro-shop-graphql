@@ -227,6 +227,10 @@ class Cart extends Component {
       this.setState({cartList: cartList});
     }
     if(deleteResult && deleteResult == 'ok'){
+      this.props.dispatch({
+        type: 'userCartMutate/saveDeleteResult',
+        payload: '',
+      });
       this.onDeleteSucess();
     }
 

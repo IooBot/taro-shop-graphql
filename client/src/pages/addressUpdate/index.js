@@ -5,7 +5,7 @@ import {getGlobalData} from "../../utils/global_data"
 import {connect} from "@tarojs/redux";
 import moment from 'moment'
 import {idGen} from "../../utils/func"
-import {insert, update} from "../../utils/crud"
+// import {insert, update} from "../../utils/crud"
 import './index.scss'
 
 @connect(({ userAddressMutate, loading }) => ({
@@ -29,6 +29,7 @@ class AddressUpdate extends Component {
       area: '',
       address: '',
       id: '',
+      addressContent: {},
       defaultStatus:false
     }
     // console.log("this.$router.params",this.$router.params)
@@ -43,11 +44,11 @@ class AddressUpdate extends Component {
   }
 
   saveAddress = () => {
-    let user_id = getGlobalData("user_id")
+    let user_id = getGlobalData("user_id");
     // console.log("saveAddress user_id",user_id)
-    let createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
-    let {username, telephone, province, city, area, address, defaultStatus, id} = this.state
-    let areaAddress = province + city + area
+    let createdAt = moment().format('YYYY-MM-DD HH:mm:ss');
+    let {username, telephone, province, city, area, address, defaultStatus, id} = this.state;
+    let areaAddress = province + city + area;
     const testPhoneNum = /^1[0-9]{10}$/;
     let isPoneAvailable = testPhoneNum.test(telephone);
 
@@ -73,27 +74,18 @@ class AddressUpdate extends Component {
       // console.log("saveAddress addressContent",addressContent)
 
       // let fields = ["address", "telephone","default", "city", "username", "id", "area", "province"]
-
+      this.setState({addressContent});
       if(this.$router.params.id === 'add'){
-        insert({collection:'userAddress',condition: addressContent}).then((res)=>{
-          if(res.result === "ok"){
-            this.message('地址创建成功')
-            Taro.setStorageSync('ordersAddress', addressContent)
-            this.goBackPage(1)
-          }else{
-            this.message('地址创建失败，请重新创建')
-          }
-        })
+        this.props.dispatch({
+          type: 'userAddressMutate/create',
+          payload: addressContent,
+        });
+
       } else if(this.$router.params.id){
-        update({collection: 'userAddress',condition: addressContent}).then((res)=>{
-          if(res.result === "ok"){
-            this.message('地址更新成功')
-            Taro.setStorageSync('ordersAddress', addressContent)
-            this.goBackPage(1)
-          }else{
-            this.message('地址更新失败，请重新创建')
-          }
-        })
+        this.props.dispatch({
+          type: 'userAddressMutate/update',
+          payload: { condition: {id: this.$router.params.id}, data: addressContent},
+        });
       }
 
     }else if(!username){
@@ -143,8 +135,34 @@ class AddressUpdate extends Component {
   }
 
   render() {
-    let {username, telephone, address, province, city, area, region} = this.state
-
+    let {username, telephone, address, province, city, area, region, addressContent} = this.state
+    const { createResult, updateResult, dispatch } = this.props;
+    if(createResult){
+      if(createResult.result == 'ok'){
+        this.message('地址创建成功')
+        Taro.setStorageSync('ordersAddress', addressContent)
+        this.goBackPage(1)
+      }else{
+        this.message('地址创建失败，请重新创建')
+      }
+      dispatch({
+        type: 'userAddressMutate/saveCreateResult',
+        payload: ''
+      });
+    }
+    if(updateResult){
+      if(updateResult.result == 'ok'){
+        this.message('地址更新成功')
+        Taro.setStorageSync('ordersAddress', addressContent)
+        this.goBackPage(1)
+      }else{
+        this.message('地址更新失败，请再试')
+      }
+      dispatch({
+        type: 'userAddressMutate/saveUpdateResult',
+        payload: ''
+      });
+    }
     return (
       <View className='address-edit'>
         <AtForm>

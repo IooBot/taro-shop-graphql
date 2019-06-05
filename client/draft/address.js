@@ -1,5 +1,5 @@
 import {getGlobalData} from "../src/utils/global_data";
-import {findMany} from "../src/utils/crud";
+import {findMany, insert, update} from "../src/utils/crud";
 import Taro from "@tarojs/taro";
 
 getAddressData = () => {
@@ -34,3 +34,23 @@ getUserAddressData = () => {
     })
   }
 }
+
+insert({collection:'userAddress',condition: addressContent}).then((res)=>{
+  if(res.result === "ok"){
+    this.message('地址创建成功')
+    Taro.setStorageSync('ordersAddress', addressContent)
+    this.goBackPage(1)
+  }else{
+    this.message('地址创建失败，请重新创建')
+  }
+})
+
+update({collection: 'userAddress',condition: addressContent}).then((res)=>{
+  if(res.result === "ok"){
+    this.message('地址更新成功')
+    Taro.setStorageSync('ordersAddress', addressContent)
+    this.goBackPage(1)
+  }else{
+    this.message('地址更新失败，请重新创建')
+  }
+})

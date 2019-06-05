@@ -4,7 +4,7 @@ import { AtToast } from "taro-ui"
 import moment from 'moment'
 import {connect} from "@tarojs/redux";
 import {getWindowHeight} from "../../utils/style"
-import {findMany, insert, remove} from "../../utils/crud"
+// import {findMany, insert, remove} from "../../utils/crud"
 import {idGen} from "../../utils/func"
 import {getGlobalData, setGlobalData} from "../../utils/global_data"
 import OrdersAddress from "./address"
@@ -14,8 +14,11 @@ import OrdersFooter from "./footer"
 import './index.scss'
 
 
-@connect(({ userAddressList, orderMutate, loading }) => ({
-  createResult: orderMutate.createResult,
+@connect(({ userAddressList, orderMutate, orderProductMutate, orderLogisticMutate, userCartMutate, loading }) => ({
+  orderCreateResult: orderMutate.createResult,
+  orderProductCreateResult: orderProductMutate.createResult,
+  orderLogisticCreateResult: orderLogisticMutate.createResult,
+  userCartDeleteResult: userCartMutate.deleteResult,
   userAddressList,
   ...loading,
 }))
@@ -31,6 +34,7 @@ class Orders extends Component {
       totalCount: parseInt(Taro.getStorageSync('totalCount')),
       delivery: ["快递配送"],
       // selectAddress: {},
+      orderContent:{},
       ordersList:[],
       remark: '',
       dataType: this.$router.params.dataType,
@@ -68,7 +72,7 @@ class Orders extends Component {
     // console.log("onSubmitOrderAndProduct ordersAddress",ordersAddress)
 
     if(ordersAddress){
-      let {totalCount, totalPrice, remark, delivery, dataType} = this.state
+      let {totalCount, totalPrice, remark, delivery, dataType} = this.state;
       let createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
       let {id:userAddress_id, telephone, username, province, city, area, address} = ordersAddress
       let addressData = String(province + city + area + address)
@@ -89,7 +93,7 @@ class Orders extends Component {
         user_id,
         productTotalPay: totalPrice,
         orderPay_id: ""
-      }
+      };
 
       const orderLogistics = {
         updatedAt: "",
@@ -106,17 +110,26 @@ class Orders extends Component {
         LogisticsStatus: "0",
         user_id,
         consigneeName: username
-      }
-
-      let deleteIdList = []
+      };
+      this.setState({orderContent});
+      let deleteIdList = [];
       let shopping = Taro.getStorageSync(dataType)
-      if(dataType === 'cartSelected') deleteIdList = shopping.map(item => item.id)
+      if(dataType === 'cartSelected') deleteIdList = shopping.map(item => item.id);
 
       // console.log('createOrder orderContent',orderContent)
-
-      let createOrder = insert({collection:'order',condition:orderContent})
-      let createOrderLogistics = insert({collection:'orderLogistics',condition:orderLogistics})
-      let deleteUserCart = remove({collection:"userCart",condition:{where:{id: {_in: deleteIdList}}}})
+      const {dispatch} = this.props;
+      dispatch({
+        type: 'orderMutate/create',
+        payload: orderContent,
+      });
+      dispatch({
+        type: 'orderLogisticsMutate/create',
+        payload: orderLogistics,
+      });
+      dispatch({
+        type: 'userCartMutate/delete',
+        payload: {where:{id: {_in: deleteIdList}}},
+      });
 
       let createOrderProduct = shopping.map((item,index) => {
         let createdAt1 = moment().format('YYYY-MM-DD HH:mm:ss')
@@ -144,49 +157,82 @@ class Orders extends Component {
           count,
           productPay: price,
           orderPay_id: "",
-        }
+        };
         // console.log(`orderProduct${index}`,orderProduct)
-
-        return insert({collection:'orderProduct',condition:orderProduct}).then((data)=>{
-          // console.log('create orderProduct data',data)
-          return data
-        })
-      })
-
-      Promise.all([createOrder, createOrderLogistics, deleteUserCart, createOrderProduct]).then((data)=> {
-        // console.log('onSubmitOrderAndProduct data',data)
-        if(data[0].result === "ok") {
-          setGlobalData('payOrder',orderContent)
-          this.changeOrdersState('createOrderStatus', false)
-          Taro.navigateTo({
-            url: `/pages/pay/index`
-          })
-          if(dataType === 'cartSelected'){
-            let cartCount = parseInt(Taro.getStorageSync('cartCount')) - totalCount
-            Taro.setStorageSync('cartCount',cartCount)
-            Taro.removeStorageSync('cartList')
-          }
-        }
-      }).catch((err)=>{
-        this.changeOrdersState('createOrderStatus', false)
-        console.log('submit order error',err)
-        Taro.showToast({
-          title:'订单创建失败，请稍后重试',
-          icon: 'none'
-        })
-      })
+        dispatch({
+          type: 'orderProductMutate/create',
+          payload: orderProduct,
+        });
+      });
     }else {
       Taro.showToast({
         title:'请先添加收货地址',
         icon: 'none'
       })
     }
-  }
+  };
+
+  onCreateOrderSucess = () => {
+    let { totalCount, dataType, orderContent } = this.state;
+    if(dataType === 'cartSelected'){
+      let cartCount = parseInt(Taro.getStorageSync('cartCount')) - totalCount;
+      Taro.setStorageSync('cartCount',cartCount);
+      Taro.removeStorageSync('cartList')
+    }
+    // todo check here
+    setGlobalData('payOrder',orderContent);
+    this.changeOrdersState('createOrderStatus', false)
+    Taro.navigateTo({
+      url: `/pages/pay/index`
+    });
+  };
+
+  onCreateOrderFailed = (err) => {
+    this.changeOrdersState('createOrderStatus', false);
+    console.log('submit order error',err);
+    Taro.showToast({
+      title:'订单创建失败，请稍后重试',
+      icon: 'none'
+    })
+  };
 
   render() {
     let {dataType,  totalPrice, ordersList, createOrderStatus} = this.state;
-    const {userAddressList } = this.props;
+    const { userAddressList, orderCreateResult, orderProductCreateResult,
+      orderLogisticCreateResult, userCartDeleteResult, dispatch } = this.props;
     let selectAddress = userAddressList.currentUseraddress;
+    if(orderCreateResult){
+      if(orderCreateResult.result =='ok'){
+        this.onCreateOrderSucess();
+      }else{
+        this.onCreateOrderFailed(orderCreateResult.result);
+      }
+      dispatch({
+        type: 'orderMutate/saveCreateResult',
+        payload: ''
+      });
+    }
+    if(orderProductCreateResult){
+      console.log('orderProduct create:',orderProductCreateResult.result);
+      dispatch({
+        type: 'orderProductMutate/saveCreateResult',
+        payload: ''
+      });
+    }
+    if(orderLogisticCreateResult){
+      console.log('orderLogisticCreate:',orderLogisticCreateResult.result);
+      dispatch({
+        type: 'orderLogisticMutate/saveCreateResult',
+        payload: ''
+      });
+    }
+    if(userCartDeleteResult){
+      console.log('userCart remove:',userCartDeleteResult);
+      dispatch({
+        type: 'userCartMutate/saveDeleteResult',
+        payload: ''
+      });
+    }
     return (
       <View className='orders'>
         {
