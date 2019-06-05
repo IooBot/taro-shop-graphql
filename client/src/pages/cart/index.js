@@ -205,13 +205,19 @@ class Cart extends Component {
           let deleteList = cartList.filter((item)=> item.checked === true)
           // let cartList1 = cartList.filter((item)=> item.checked === false)
 
-          let deleteIdList = deleteList.map(item => item.id)
-          // console.log('delete list',deleteIdList)
-
-          this.props.dispatch({
-            type: 'userCartMutate/delete',
-            payload: {where:{id: {_in: deleteIdList}}},
+          deleteList.map(item => {
+            this.props.dispatch({
+              type: 'userCartMutate/delete',
+              payload: {id: item.id},
+            });
           });
+          // let deleteIdList = deleteList.map(item => item.id)
+          // // console.log('delete list',deleteIdList)
+          //
+          // this.props.dispatch({
+          //   type: 'userCartMutate/delete',
+          //   payload: {where:{id: {_in: deleteIdList}}},
+          // });
         }
       })
   }

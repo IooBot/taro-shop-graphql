@@ -113,9 +113,16 @@ class Orders extends Component {
         consigneeName: username
       };
       this.setState({orderContent});
-      let deleteIdList = [];
+      // let deleteIdList = [];
       let shopping = Taro.getStorageSync(dataType)
-      if(dataType === 'cartSelected') deleteIdList = shopping.map(item => item.id);
+      if(dataType === 'cartSelected') {
+        shopping.map(item => {
+          dispatch({
+            type: 'userCartMutate/delete',
+            payload: {id: item.id},
+          });
+        });
+      }
 
       // console.log('createOrder orderContent',orderContent)
       dispatch({
@@ -126,10 +133,7 @@ class Orders extends Component {
         type: 'orderLogisticsMutate/create',
         payload: orderLogistics,
       });
-      dispatch({
-        type: 'userCartMutate/delete',
-        payload: {where:{id: {_in: deleteIdList}}},
-      });
+
 
       let createOrderProduct = shopping.map((item,index) => {
         let createdAt1 = moment().format('YYYY-MM-DD HH:mm:ss')
