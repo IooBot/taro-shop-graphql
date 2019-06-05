@@ -5,7 +5,7 @@ import { connect } from '@tarojs/redux';
 import Logo from '../../components/logo'
 import Loading from '../../components/loading'
 import { getWindowHeight } from '../../utils/style'
-import {setGlobalData} from "../../utils/global_data"
+// import {setGlobalData} from "../../utils/global_data"
 // import {findMany} from "../../utils/crud"
 import { authUrl } from "../../config"; // graphqlEndpoint
 import Banner from './banner'
@@ -62,9 +62,13 @@ class Home extends Component {
         data: {}
       })
       .then(res => {
-        console.log("getLogin res",res)
-        let openid = res.result.openid
-        setGlobalData('openid', openid)
+        console.log("getLogin res",res);
+        let openid = res.result.openid;
+        // setGlobalData('openid', openid)
+        this.props.dispatch({
+          type: 'common/save',
+          payload: { openid }
+        });
         Taro.getSetting().then((res1)=>{
           console.log("getSetting res",res1)
         })
@@ -89,9 +93,13 @@ class Home extends Component {
             })
             .then((res1) => {
               // console.log('auth res',res1)
-              let {openid, user_id} = res1.data
-              setGlobalData('openid', openid)
-              setGlobalData('user_id', user_id)
+              let {openid, user_id} = res1.data;
+              this.props.dispatch({
+                type: 'common/save',
+                payload: { openid,user_id }
+              });
+              // setGlobalData('openid', openid)
+              // setGlobalData('user_id', user_id)
             })
             .catch((error) => {
               console.log('auth error', error)

@@ -2,9 +2,9 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView, Text } from '@tarojs/components'
 import {AtIcon} from "taro-ui"
 import {connect} from "@tarojs/redux";
-import {findMany,remove} from "../../utils/crud"
+// import {findMany,remove} from "../../utils/crud"
 import {getWindowHeight} from "../../utils/style"
-import {getGlobalData} from "../../utils/global_data"
+//import {getGlobalData} from "../../utils/global_data"
 import Loading from "../../components/loading"
 import './index.scss'
 
@@ -29,8 +29,8 @@ class Address extends Component {
 
   componentDidShow() {
     // this.getAddressData()
-    let user_id = getGlobalData("user_id");
-    this.props.dispatch({
+    const {user_id, dispatch} = this.props; // getGlobalData("user_id");
+    dispatch({
       type: 'userAddressList/fetch',
       payload:{user_id},
     });
@@ -67,16 +67,10 @@ class Address extends Component {
       })
       .then(res =>{
         if(res.confirm){
-          remove({collection:"userAddress",condition:{id:deleteId}}).then((data)=>{
-            // console.log('delete userAddress data',data)
-            if(data === "ok"){
-              Taro.showToast({
-                title: '删除成功',
-                icon: 'none'
-              })
-              this.getAddressData()
-            }
-          })
+          this.props.dispatch({
+            type:'userAddress/delete',
+            payload: {id:deleteId}
+          });
         }
       })
   }
@@ -84,8 +78,8 @@ class Address extends Component {
   render() {
     let {shoppingAddress} = this.state
     // console.log("shoppingAddress",shoppingAddress)
-    const { userAdressList, effects }  = this.props;
-    if (effects[userAdressList/fetch]) { //!this.state.loaded
+    const { userAdressList, deleteResult, effects, dispatch }  = this.props;
+    if (effects['userAdressList/fetch']) { //!this.state.loaded
       return (
         <Loading />
       )
@@ -93,6 +87,17 @@ class Address extends Component {
     if(shoppingAddress.length ==0 && userAdressList) {
       shoppingAddress = userAdressList.list;
       this.setState({shoppingAddress: shoppingAddress});
+    }
+    if(deleteResult && deleteResult == 'ok'){
+      Taro.showToast({
+        title: '删除成功',
+        icon: 'none'
+      });
+      this.getAddressData();
+      dispatch({
+        type: 'userAdressMutate/saveDeleteResult',
+        payload:''
+      })
     }
     return (
       <View className='address'>

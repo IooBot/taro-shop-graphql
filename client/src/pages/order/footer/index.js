@@ -1,32 +1,38 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Button } from '@tarojs/components'
+import {connect} from "@tarojs/redux";
 import './index.scss'
-import {remove} from "../../../utils/crud"
-import {setGlobalData} from "../../../utils/global_data"
+// import {remove} from "../../../utils/crud"
 
+// import {setGlobalData} from "../../../utils/global_data"
+@connect(({ orderMutate, orderProductMutate  }) => ({
+  orderDeleteResult: orderMutate.deleteResult,
+  orderProdcutDeleteResult: orderProductMutate.deleteResult,
+}))
 export default class OrderFooter extends Component {
   static defaultProps = {
     orderStatus: '0'
   }
 
   cancelOrder = (id) => {
-    let deleteOrder = remove({collection: "order",condition: {id}})
-    let deleteOrderProduct = remove({collection: "orderProduct",condition:{order_id:id}})
-    Promise.all([deleteOrder, deleteOrderProduct]).then((res)=>{
-      // console.log('delete order res',res)
-      if(res[0] === "ok" && res[1] === "ok"){
-        Taro.showToast({
-          title: '删除成功',
-          icon: 'none'
-        })
-      }
-    })
-  }
+    this.props.dispatch({
+      type:'orderMutate/delete',
+      payload:{id}
+    });
+    this.props.dispatch({
+      type:'orderProductMutate/delete',
+      payload:{order_id:id}
+    });
+  };
 
   payOrder = () => {
-    let {order} = this.props
+    let {order} = this.props;
     // console.log("order payOrder order",order)
-    setGlobalData('payOrder',order)
+    // setGlobalData('payOrder',order)
+    this.props.dispatch({
+      type: 'common/save',
+      payload: { payOrder: order }
+    });
     Taro.navigateTo({
       url: `/pages/pay/index`
     })
@@ -34,7 +40,29 @@ export default class OrderFooter extends Component {
 
   render () {
     let {orderStatus, order} = this.props
+    const {orderDeleteResult, orderProdcutDeleteResult, dispatch} = this.props;
+    if(orderDeleteResult && orderProdcutDeleteResult){
+      if(orderProdcutDeleteResult == 'ok' && orderDeleteResult == 'ok'){
+        Taro.showToast({
+          title: '删除成功',
+          icon: 'none'
+        });
+      }else{
+        Taro.showToast({
+          title: '删除失败',
+          icon: 'none'
+        });
+      }
+      dispatch({
+        type: 'orderMutate/saveDeleteResult',
+        payload:''
+      })
+      dispatch({
+        type: 'orderProductMutate/saveDeleteResult',
+        payload:''
+      })
 
+    }
     return (
       <View className='order-footer'>
         {

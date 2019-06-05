@@ -2,13 +2,21 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
 import classNames from 'classnames'
 import moment from 'moment'
+import {connect} from "@tarojs/redux";
 import CheckboxItem from "../../components/checkbox"
 import './index.scss'
-import {getGlobalData} from "../../utils/global_data"
+// import {getGlobalData} from "../../utils/global_data"
 import {update} from "../../utils/crud"
 import {payUrl} from '../../config'
 
+
 let clicktag = 1;  //微信发起支付点击标志
+
+@connect(({ common, orderMutate }) => ({
+  payOrder: common.payOrder,
+  openid:   common.openid,
+  updateResult: orderMutate.updateResult
+}))
 class Pay extends Component {
   config = {
     navigationBarTitleText: '订单支付'
@@ -18,17 +26,17 @@ class Pay extends Component {
     super(props)
     this.state = {
       checked: true,
-      payOrder: {}
+      // payOrder: {}
     }
   }
 
   componentWillMount(){
-    let payOrder = getGlobalData('payOrder')
-    // console.log("Pay payOrder",payOrder)
-
-    this.setState({
-      payOrder
-    })
+    // let payOrder = getGlobalData('payOrder')
+    // // console.log("Pay payOrder",payOrder)
+    //
+    // this.setState({
+    //   payOrder
+    // })
   }
 
   message = (title) => {
@@ -65,19 +73,11 @@ class Pay extends Component {
           id,
           orderStatus: '1',
           updatedAt
-        }
-        let updateOrderStatus = update({collection:"order",condition:updateContent})
-        updateOrderStatus.then((data)=>{
-          // console.log("update order data",data)
-          if(data.result === "ok"){
-            $this.message('支付成功，等待发货')
-            Taro.navigateTo({
-              url: `/pages/order/index?type=1`
-            })
-          }else {
-            $this.message('支付成功，订单创建失败，请联系商家')
-          }
-        })
+        };
+        this.props.dispatch({
+          type:'orderMutate/update',
+          payload: updateContent
+        });
       }
     })
       .catch((err)=>{
@@ -97,7 +97,8 @@ class Pay extends Component {
     // console.log("isWEAPP",isWEAPP)
     if (clicktag === 1 && isWEAPP === 'WEAPP') {
       clicktag = 0   //进行标志，防止多次点击
-      let openid = getGlobalData('openid')
+      // let openid = getGlobalData('openid');
+      const { openid } = this.props;
 
       let $this = this
       Taro.request({
@@ -132,7 +133,8 @@ class Pay extends Component {
   }
 
   handleConfirm = () => {
-    let {checked, payOrder} = this.state
+    let {checked } = this.state;
+    const { payOrder } = this.props;
     // console.log("pay payOrder",payOrder)
     let {id, orderTotalPay} = payOrder
     if (checked) {
@@ -141,9 +143,24 @@ class Pay extends Component {
   }
 
   render() {
-    let {checked, payOrder} = this.state
+    let {checked} = this.state
+    const { payOrder, updateResult, dispatch } = this.props;
+    if(updateResult){
+        if(updateResult.result == 'ok'){
+          this.message('支付成功，等待发货')
+          Taro.navigateTo({
+            url: `/pages/order/index?type=1`
+          })
+        }else{
+          this.message('支付成功，但订单创建失败，请联系商家')
+        }
+      dispatch({
+        type:'orderMutate/saveUpdateResult',
+        payload:''
+      })
+    }
     // console.log("pay payOrder",payOrder)
-    let {orderTotalPay} = payOrder
+    let {orderTotalPay} = payOrder;
 
     return (
       <View className='pay'>

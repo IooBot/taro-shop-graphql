@@ -1,12 +1,13 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, ScrollView } from '@tarojs/components'
 import { AtGrid } from "taro-ui"
+import {connect} from "@tarojs/redux";
 import './index.scss'
 import Loading from "../../components/loading"
 import Logo from '../../components/logo'
-import {findOne} from "../../utils/crud"
+// import {findOne} from "../../utils/crud"
 import {getWindowHeight} from "../../utils/style"
-import {getGlobalData} from "../../utils/global_data"
+// import {getGlobalData} from "../../utils/global_data"
 
 const orderIcon = [
   {
@@ -62,27 +63,26 @@ const toolsIcon = [
 //   }
 // ];
 
+@connect(({ common, userList, loading }) => ({
+  user_id:   common.user_id,
+  userList,
+  ... loading
+}))
 class All extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      loaded: false,
+     // loaded: false,
     }
   }
 
   componentDidMount() {
-    let user_id = getGlobalData("user_id")
-    this.userInfo(user_id);
-  }
-
-  userInfo = (user_id) => {
-    let userData = findOne({collection:"user",condition:{id: user_id},fields:["id", "email", "telephone", "username", "openid"]});//,fields:[]
-    userData.then(res =>{
-      // console.log('user data',res)
-      this.setState({
-        loaded:true,
-      });
-    })
+    const { user_id, dispatch } = this.props; // getGlobalData("user_id")
+    dispatch({
+      type:'userList/fetchOne',
+      payload: {id: user_id}
+    });
+    //this.userInfo(user_id);
   }
 
   navigateTo = (page,type,id) => {
@@ -99,7 +99,8 @@ class All extends Component {
   }
 
   render() {
-    if (!this.state.loaded) {
+    const { effects }  = this.props;
+    if (effects['userList/fetchOne']) { //!this.state.loaded
       return (
         <Loading />
       )

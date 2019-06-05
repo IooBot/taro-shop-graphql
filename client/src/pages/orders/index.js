@@ -6,7 +6,7 @@ import {connect} from "@tarojs/redux";
 import {getWindowHeight} from "../../utils/style"
 // import {findMany, insert, remove} from "../../utils/crud"
 import {idGen} from "../../utils/func"
-import {getGlobalData, setGlobalData} from "../../utils/global_data"
+// import {getGlobalData, setGlobalData} from "../../utils/global_data"
 import OrdersAddress from "./address"
 import OrdersList from "./list"
 import OrdersDelivery from "./delivery"
@@ -14,11 +14,12 @@ import OrdersFooter from "./footer"
 import './index.scss'
 
 
-@connect(({ userAddressList, orderMutate, orderProductMutate, orderLogisticMutate, userCartMutate, loading }) => ({
+@connect(({ userAddressList, orderMutate, orderProductMutate, orderLogisticMutate, userCartMutate, common, loading }) => ({
   orderCreateResult: orderMutate.createResult,
   orderProductCreateResult: orderProductMutate.createResult,
   orderLogisticCreateResult: orderLogisticMutate.createResult,
   userCartDeleteResult: userCartMutate.deleteResult,
+  user_id: common.user_id,
   userAddressList,
   ...loading,
 }))
@@ -52,8 +53,8 @@ class Orders extends Component {
 
   componentDidMount() {
     // this.getUserAddressData()
-    let user_id = getGlobalData("user_id");
-    this.props.dispatch({
+    const { user_id, dispatch } = this.props;
+    dispatch({
       type: 'userAddressList/fetchCurrent',
       payload:{user_id},
     });
@@ -67,7 +68,7 @@ class Orders extends Component {
 
   onSubmitOrderAndProduct = () => {
     this.changeOrdersState('createOrderStatus', true)
-    let user_id = getGlobalData("user_id")
+    const { user_id, dispatch } = this.props;
     let ordersAddress = Taro.getStorageSync('ordersAddress')
     // console.log("onSubmitOrderAndProduct ordersAddress",ordersAddress)
 
@@ -117,7 +118,6 @@ class Orders extends Component {
       if(dataType === 'cartSelected') deleteIdList = shopping.map(item => item.id);
 
       // console.log('createOrder orderContent',orderContent)
-      const {dispatch} = this.props;
       dispatch({
         type: 'orderMutate/create',
         payload: orderContent,
@@ -179,8 +179,13 @@ class Orders extends Component {
       Taro.setStorageSync('cartCount',cartCount);
       Taro.removeStorageSync('cartList')
     }
-    // todo check here
-    setGlobalData('payOrder',orderContent);
+
+    // setGlobalData('payOrder',orderContent);
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'common/save',
+      payload: {orderContent}});
+
     this.changeOrdersState('createOrderStatus', false)
     Taro.navigateTo({
       url: `/pages/pay/index`

@@ -1,14 +1,15 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Picker, Text } from '@tarojs/components'
 import { AtForm, AtInput, AtSwitch } from 'taro-ui'
-import {getGlobalData} from "../../utils/global_data"
+// import {getGlobalData} from "../../utils/global_data"
 import {connect} from "@tarojs/redux";
 import moment from 'moment'
 import {idGen} from "../../utils/func"
 // import {insert, update} from "../../utils/crud"
 import './index.scss'
 
-@connect(({ userAddressMutate, loading }) => ({
+@connect(({ userAddressMutate, common, loading }) => ({
+  user_id: common.user_id,
   createResult: userAddressMutate.createResult,
   updateResult: userAddressMutate.updateResult,
   ...loading,
@@ -44,7 +45,7 @@ class AddressUpdate extends Component {
   }
 
   saveAddress = () => {
-    let user_id = getGlobalData("user_id");
+    const {user_id} = this.props;// getGlobalData("user_id");
     // console.log("saveAddress user_id",user_id)
     let createdAt = moment().format('YYYY-MM-DD HH:mm:ss');
     let {username, telephone, province, city, area, address, defaultStatus, id} = this.state;

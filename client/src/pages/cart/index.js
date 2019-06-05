@@ -3,9 +3,9 @@ import { View, ScrollView } from '@tarojs/components'
 import {connect} from "@tarojs/redux";
 import ButtonItem from '../../components/button'
 import Loading from '../../components/loading'
-import {findMany, remove} from "../../utils/crud"
+// import {findMany, remove} from "../../utils/crud"
 import {getWindowHeight} from '../../utils/style'
-import {getGlobalData} from "../../utils/global_data"
+// import {getGlobalData} from "../../utils/global_data"
 import Tip from './tip'
 // import Gift from './gift'
 import Empty from './empty'
@@ -14,7 +14,8 @@ import Footer from './footer'
 import './index.scss'
 
 
-@connect(({ userCartList, userCartMutate, loading }) => ({
+@connect(({ userCartList, userCartMutate, common, loading }) => ({
+  user_id: common.user_id,
   deleteResult: userCartMutate.deleteResult,
   userCartList,
   ...loading,
@@ -39,8 +40,8 @@ class Cart extends Component {
   }
 
   componentDidShow() {
-    let user_id = getGlobalData("user_id");
-    this.props.dispatch({
+    const { user_id,dispatch } = this.props; // getGlobalData("user_id");
+    dispatch({
       type: 'userCartList/fetch',
       payload: { user_id }
     });
@@ -219,7 +220,7 @@ class Cart extends Component {
     let {pageType, cartList, totalPrice, selectedCount, isSelectAll} = this.state
 
     const { userCartList, deleteResult, effects }  = this.props;
-    if (effects[userCartList/fetch]) { //!this.state.loaded
+    if (effects['userCartList/fetch']) { //!this.state.loaded
       return <Loading />
     }
     if(cartList.length ==0 && userCartList) {

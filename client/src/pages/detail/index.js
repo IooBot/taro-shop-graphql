@@ -11,9 +11,10 @@ import DetailImg from './detail-img'
 import Footer from './footer'
 import Spec from './spec'
 import './index.scss'
-import {getGlobalData} from "../../utils/global_data"
+// import {getGlobalData} from "../../utils/global_data"
 
-@connect(({ productList, specificationStockList, userCartList, loading }) => ({
+@connect(({ productList, specificationStockList, userCartList, common, loading }) => ({
+  user_id: common.user_id,
   specificationStockList,
   productList,
   userCartList,
@@ -48,8 +49,8 @@ class Detail extends Component {
       type: 'specificationStockList/fetch',
       payload: {product_id: productId}
     });
-    let user_id = getGlobalData("user_id");
-    this.props.dispatch({
+    const { user_id, dispatch } = this.props;// getGlobalData("user_id");
+    dispatch({
       type: 'userCartList/fetch',
       payload: { user_id }
     });
@@ -112,7 +113,7 @@ class Detail extends Component {
     const detailInfo = productList.currentProduct;
     const detailSpec = specificationStockList.list;
 
-    let user_id = getGlobalData("user_id")
+    const {user_id} = this.props;// getGlobalData("user_id")
     let {img, price} = detailInfo;
     let sliderImg = detailInfo.img;
     let gallery = [detailInfo.img];

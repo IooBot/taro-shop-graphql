@@ -1,10 +1,14 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
+import {connect} from "@tarojs/redux";
 import OrderList from "./list"
 import './index.scss'
-import {getGlobalData} from "../../utils/global_data"
+// import {getGlobalData} from "../../utils/global_data"
 import {getWindowHeight} from "../../utils/style"
 
+@connect(({ common }) => ({
+  user_id: common.user_id
+}))
 class Order extends Component {
   config = {
     navigationBarTitleText: '我的订单',
@@ -51,7 +55,7 @@ class Order extends Component {
 
   render() {
     const { orderType, activeTypeIndex } = this.state
-    let user_id = getGlobalData("user_id")
+    const { user_id } = this.props; // getGlobalData("user_id")
 
     return (
       <View className='order-page'>

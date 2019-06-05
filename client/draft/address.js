@@ -1,5 +1,5 @@
 import {getGlobalData} from "../src/utils/global_data";
-import {findMany, insert, update} from "../src/utils/crud";
+import {findMany, insert, remove, update} from "../src/utils/crud";
 import Taro from "@tarojs/taro";
 
 getAddressData = () => {
@@ -52,5 +52,16 @@ update({collection: 'userAddress',condition: addressContent}).then((res)=>{
     this.goBackPage(1)
   }else{
     this.message('地址更新失败，请重新创建')
+  }
+})
+
+remove({collection:"userAddress",condition:{id:deleteId}}).then((data)=>{
+  // console.log('delete userAddress data',data)
+  if(data === "ok"){
+    Taro.showToast({
+      title: '删除成功',
+      icon: 'none'
+    })
+    this.getAddressData()
   }
 })
