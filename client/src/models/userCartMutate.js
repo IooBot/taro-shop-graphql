@@ -16,6 +16,10 @@ export default {
         type: 'saveCreateResult',
         payload: response,
       });
+      yield put({
+        type: 'userCartList/queryList',
+        payload: Array.isArray(response) ? response : [],
+      });
     },
     * update({ payload }, { call, put }) {
       const response = yield call(updateUsercart, payload);
@@ -29,6 +33,10 @@ export default {
       yield put({
         type: 'saveDeleteResult',
         payload: response,
+      });
+      yield put({
+        type: 'userCartList/queryList',
+        payload: Array.isArray(response) ? response : [],
       });
     },
   },
