@@ -62,9 +62,23 @@ class Cart extends Component {
   }
 
   changeCartPage = () => {
-    this.setState((preState) => ({
-      pageType: preState.pageType === 'detail' ? 'edit' : 'detail'
-    }))
+    console.log("changeCartPage this.state.pageType",this.state.pageType)
+
+    this.setState((preState) => {
+      console.log("changeCartPage preState",preState)
+      const pageType = preState.pageType === 'detail' ? 'edit' : 'detail'
+      console.log("changeCartPage changed pageType",pageType)
+
+      return ({
+          pageType:pageType
+        })
+    },()=>{
+      console.log("changeCartPage pageType",this.state.pageType)
+    })
+
+    setTimeout(()=>{
+      console.log("setTimeout pageType",this.state.pageType)
+    }, 10);
   }
 
   //计算选中总合计金额
@@ -166,7 +180,9 @@ class Cart extends Component {
   }
 
   //结算传值
-  settleAccounts = () => {
+  settleAccounts = (e) => {
+    console.log("settleAccounts e",e)
+    e.preventDefault()
     let {cartList, totalPrice, selectedCount} = this.state
     let shopping=[]
     cartList.map((item)=>{
@@ -185,7 +201,9 @@ class Cart extends Component {
   }
 
   // 多选删除
-  delete=()=>{
+  delete=(e)=>{
+    console.log("settleAccounts e",e)
+    e.preventDefault()
     let {cartList, selectedCount} = this.state
 
     Taro.showModal({
@@ -227,6 +245,8 @@ class Cart extends Component {
 
   render () {
     let {pageType, cartList, totalPrice, selectedCount, isSelectAll} = this.state
+    console.log("cart pageType",pageType)
+    console.log("cart cartList",cartList)
     const isEmpty = !cartList.length
     const isShowFooter = !isEmpty
 
@@ -259,7 +279,7 @@ class Cart extends Component {
         {!isEmpty &&
           <View className='cart__nav'>
             <View className='cart__nav-left'>购物车</View>
-            <View className='cart__nav-right'  onClick={this.changeCartPage} >
+            <View className='cart__nav-right'  onClick={this.changeCartPage.bind(this)} >
               {pageType === 'detail' ? "编辑" : "完成"}
             </View>
           </View>
