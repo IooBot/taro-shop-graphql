@@ -37,6 +37,7 @@ class Cart extends Component {
   // 获取购物车数据
   getCartData = () => {
     let user_id = getGlobalData("user_id")
+    console.log("getCartData user_id",user_id)
     const fields = [
       "count",
       "id",
@@ -44,7 +45,7 @@ class Cart extends Component {
       "specificationStock_id{id, color, size, stock, status}"
     ]
     findMany({collection:"userCart",condition:{user_id},fields}).then((res)=>{
-      // console.log(`cartList`,res)
+      console.log(`cartList`,res)
       res.forEach((item)=>{
         item.checked = false
       })
@@ -62,23 +63,9 @@ class Cart extends Component {
   }
 
   changeCartPage = () => {
-    console.log("changeCartPage this.state.pageType",this.state.pageType)
-
-    this.setState((preState) => {
-      console.log("changeCartPage preState",preState)
-      const pageType = preState.pageType === 'detail' ? 'edit' : 'detail'
-      console.log("changeCartPage changed pageType",pageType)
-
-      return ({
-          pageType:pageType
-        })
-    },()=>{
-      console.log("changeCartPage pageType",this.state.pageType)
-    })
-
-    setTimeout(()=>{
-      console.log("setTimeout pageType",this.state.pageType)
-    }, 10);
+    this.setState((preState) => ({
+      pageType: preState.pageType === 'detail' ? 'edit' : 'detail'
+    }))
   }
 
   //计算选中总合计金额
@@ -180,9 +167,7 @@ class Cart extends Component {
   }
 
   //结算传值
-  settleAccounts = (e) => {
-    console.log("settleAccounts e",e)
-    e.preventDefault()
+  settleAccounts = () => {
     let {cartList, totalPrice, selectedCount} = this.state
     let shopping=[]
     cartList.map((item)=>{
@@ -201,9 +186,7 @@ class Cart extends Component {
   }
 
   // 多选删除
-  delete=(e)=>{
-    console.log("settleAccounts e",e)
-    e.preventDefault()
+  delete = () =>{
     let {cartList, selectedCount} = this.state
 
     Taro.showModal({
@@ -245,8 +228,6 @@ class Cart extends Component {
 
   render () {
     let {pageType, cartList, totalPrice, selectedCount, isSelectAll} = this.state
-    console.log("cart pageType",pageType)
-    console.log("cart cartList",cartList)
     const isEmpty = !cartList.length
     const isShowFooter = !isEmpty
 
