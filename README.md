@@ -8,6 +8,10 @@ React + Taro + Dva + GraphQL + Sass + ES6/ES7 + mock
 
 ## 部分截图展示
 
+### 扫码体验
+
+<img src="screenshots/ecommerce_xcx.jpg" width="300px" />
+
 ### 首页 && 商品详情
 
 <img src="screenshots/home.PNG" width="300px" height="600px" />&nbsp;&nbsp;&nbsp;<img src="screenshots/product_detail.PNG" width="300px" height="600px" />&nbsp;&nbsp;&nbsp;<img src="screenshots/spec.PNG" width="300px" height="600px" />
