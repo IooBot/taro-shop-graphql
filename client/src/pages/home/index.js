@@ -57,35 +57,43 @@ class Home extends Component {
 
 
   auth =() =>{
-    Taro.login({
-      success(res) {
-        if (res.code) {
-          // 发起网络请求
-          // console.log("auth code",res)
-          Taro.request({
-              url: authUrl,
-              method:"POST",
-              data: {
-                code:res.code
-              },
-              header: {
-                'content-type': 'application/json'
-              }
-            })
-            .then((res1) => {
-              // console.log('auth res',res1)
-              let {openid, user_id} = res1.data
-              setGlobalData('openid', openid)
-              setGlobalData('user_id', user_id)
-            })
-            .catch((error) => {
-              console.log('auth error', error)
-            })
-        } else {
-          console.log('登录失败！' + res.errMsg)
+    // const env = Taro.getEnv()
+    // console.log("env",env)
+    // console.log("process.env.TARO_ENV",process.env.TARO_ENV)
+    if(process.env.TARO_ENV === 'weapp'){
+      Taro.login({
+        success(res) {
+          if (res.code) {
+            // 发起网络请求
+            // console.log("auth code",res)
+            Taro.request({
+                url: authUrl,
+                method:"POST",
+                data: {
+                  code:res.code
+                },
+                header: {
+                  'content-type': 'application/json'
+                }
+              })
+              .then((res1) => {
+                // console.log('auth res',res1)
+                let {openid, user_id} = res1.data
+                setGlobalData('openid', openid)
+                setGlobalData('user_id', user_id)
+              })
+              .catch((error) => {
+                console.log('auth error', error)
+              })
+          } else {
+            console.log('登录失败！' + res.errMsg)
+          }
         }
-      }
-    })
+      })
+    }else {
+      setGlobalData('openid', 'ioobot')
+      setGlobalData('user_id', 'ioobot')
+    }
   }
 
   getSlideShow = () => {

@@ -91,13 +91,13 @@ export default class Spec extends Component {
       selectColor:val,
       colorSpec
     },()=>{
-      this.changeSize()
+      this.changeSize(colorSpec)
     })
   }
 
   // 选择尺寸后更新当前规格选择
-  changeSize = () => {
-    let {colorSpec} = this.state
+  changeSize = (colorSpec) => {
+    // console.log("select colorSpec",colorSpec)
     let specFilter = colorSpec.filter(item=> item.select && item.status > 0)[0]
     // console.log("select specFilter",specFilter)
 
@@ -118,7 +118,7 @@ export default class Spec extends Component {
         return item
       })
     }),()=>{
-      this.changeSize()
+      this.changeSize(this.state.colorSpec)
     })
   }
 
@@ -221,8 +221,8 @@ export default class Spec extends Component {
   render() {
     let {price, img} = this.props
     let {count, selectColor, colorList, colorSpec, specFilter} = this.state
-    let specStock =  specFilter.stock || 0
-    let selectSize =  specFilter.size
+    let specStock =  specFilter && specFilter.stock || 0
+    let selectSize =  specFilter && specFilter.size
 
     return(
       <View className='popup-box' >

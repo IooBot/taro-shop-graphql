@@ -37,6 +37,7 @@ class Cart extends Component {
   // 获取购物车数据
   getCartData = () => {
     let user_id = getGlobalData("user_id")
+    console.log("getCartData user_id",user_id)
     const fields = [
       "count",
       "id",
@@ -44,7 +45,7 @@ class Cart extends Component {
       "specificationStock_id{id, color, size, stock, status}"
     ]
     findMany({collection:"userCart",condition:{user_id},fields}).then((res)=>{
-      // console.log(`cartList`,res)
+      console.log(`cartList`,res)
       res.forEach((item)=>{
         item.checked = false
       })
@@ -185,7 +186,7 @@ class Cart extends Component {
   }
 
   // 多选删除
-  delete=()=>{
+  delete = () =>{
     let {cartList, selectedCount} = this.state
 
     Taro.showModal({
@@ -259,7 +260,7 @@ class Cart extends Component {
         {!isEmpty &&
           <View className='cart__nav'>
             <View className='cart__nav-left'>购物车</View>
-            <View className='cart__nav-right'  onClick={this.changeCartPage} >
+            <View className='cart__nav-right'  onClick={this.changeCartPage.bind(this)} >
               {pageType === 'detail' ? "编辑" : "完成"}
             </View>
           </View>

@@ -18,7 +18,8 @@ export default class Category extends Component {
   render () {
     const { list } = this.props
     const more = {
-      image: 'https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/more.png',
+      // image: 'https://ece-img-1254337200.cos.ap-chengdu.myqcloud.com/icon/more.png',
+      image: 'https://fz-1254337200.cos.ap-chengdu.myqcloud.com/xtb/more.png',
       value: '更多',
       id: 'more'
     }
