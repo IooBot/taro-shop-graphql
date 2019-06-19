@@ -10,7 +10,7 @@ React + Taro + Dva + GraphQL + Sass + ES6/ES7 + mock
 
 ### 首页 && 商品详情
 
-<img src="screenshots/home.PNG" width="300px" height="600px" />&nbsp;&nbsp;&nbsp;<img src="screenshots/product_detail.png" width="300px" height="600px" />&nbsp;&nbsp;&nbsp;<img src="screenshots/spec.png" width="300px" height="600px" />
+<img src="screenshots/home.PNG" width="300px" height="600px" />&nbsp;&nbsp;&nbsp;<img src="screenshots/product_detail.PNG" width="300px" height="600px" />&nbsp;&nbsp;&nbsp;<img src="screenshots/spec.PNG" width="300px" height="600px" />
 
 ### 购物车
 
@@ -22,7 +22,7 @@ React + Taro + Dva + GraphQL + Sass + ES6/ES7 + mock
 
 ### 订单 && 详情
 
-<img src="screenshots/order_waitPay.PNG" width="300px" height="600px" />&nbsp;&nbsp;&nbsp;<img src="screenshots/order_detail.jpg" width="300px" height="600px" />
+<img src="screenshots/order_waitPay.PNG" width="300px" height="600px" />&nbsp;&nbsp;&nbsp;<img src="screenshots/order_detail.png" width="300px" height="600px" />
 
 ### 地址
 
@@ -30,7 +30,7 @@ React + Taro + Dva + GraphQL + Sass + ES6/ES7 + mock
 
 ### 我的 && 店铺管理
 
-<img src="screenshots/user.PNG" width="300px" height="600px" />&nbsp;&nbsp;&nbsp;<img src="screenshots/shop_m.jpg" width="300px" height="600px" />
+<img src="screenshots/user.PNG" width="300px" height="600px" />&nbsp;&nbsp;&nbsp;<img src="screenshots/shop_m.PNG" width="300px" height="600px" />
 
 ### 商品管理
 
