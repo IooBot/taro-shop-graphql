@@ -1,5 +1,7 @@
 ### taro-shop-graphql
 
+基于[e-Commerce](https://github.com/IooBot/e-Commerce) 电商react版用taro修改支持小程序，管理页面暂未修改
+
 ## 技术栈
 
 React + Taro + Dva + GraphQL + Sass + ES6/ES7 + mock
@@ -62,6 +64,11 @@ npm run dev:h5
 yarn run dev:h5
 
 ```
+
+## 项目说明
+
+Dva: dva分支
+开启了小程序云开发，可以关闭
 
 # 开发文档
 
