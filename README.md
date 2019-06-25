@@ -2,6 +2,8 @@
 
 基于[e-Commerce](https://github.com/IooBot/e-Commerce) 电商react版用taro修改支持小程序，管理页面暂未修改
 
+使用[mock-fc](https://github.com/IooBot/mock-fc)动态更新graphql server, 只需修改所需更新的数据，随时更新graphql server
+
 ## 技术栈
 
 React + Taro + Dva + GraphQL + Sass + ES6/ES7 + mock
